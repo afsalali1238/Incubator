@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Airbnb — Findings Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-snap-type: y mandatory; overflow-y: scroll; }
+  body { font-family: 'Inter', sans-serif; background: #ffffff; color: #1a1a2e; }
+
+  .panel {
+    min-height: 100vh;
+    scroll-snap-align: start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 80px;
+    position: relative;
+    border-bottom: 1px solid #e8e8f0;
+  }
+
+  .panel-inner { max-width: 860px; width: 100%; }
+
+  .panel-number {
+    position: absolute;
+    top: 40px; right: 60px;
+    font-size: 8rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    opacity: 0.04;
+    line-height: 1;
+    user-select: none;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #2563eb;
+    margin-bottom: 16px;
+  }
+
+  h1 { font-size: 2.4rem; font-weight: 700; line-height: 1.2; margin-bottom: 28px; color: #1a1a2e; }
+  h2 { font-size: 1.5rem; font-weight: 600; margin-bottom: 16px; color: #1a1a2e; }
+  p { font-size: 1rem; line-height: 1.7; color: #3d3d5c; margin-bottom: 16px; }
+
+  .accent { color: #2563eb; }
+
+  table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 14px; }
+  th { text-align: left; padding: 10px 14px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #8888aa; border-bottom: 2px solid #e8e8f0; }
+  td { padding: 12px 14px; border-bottom: 1px solid #f0f0f8; color: #3d3d5c; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 20px; }
+  .card { background: #f7f7fc; border-radius: 10px; padding: 20px; }
+  .card-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #8888aa; margin-bottom: 8px; font-weight: 600; }
+  .card-title { font-size: 15px; font-weight: 600; margin-bottom: 8px; color: #1a1a2e; }
+  .card p { font-size: 13px; margin-bottom: 0; }
+
+  .verdict-box {
+    background: #eff6ff;
+    border-left: 4px solid #2563eb;
+    border-radius: 0 10px 10px 0;
+    padding: 24px 28px;
+    margin-top: 24px;
+  }
+  .verdict-box .verdict-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: #2563eb; font-weight: 600; margin-bottom: 8px; }
+  .verdict-box p { color: #1a1a2e; font-weight: 500; margin: 0; }
+
+  .pill { display: inline-block; background: #eff6ff; color: #2563eb; border-radius: 20px; padding: 4px 12px; font-size: 12px; font-weight: 600; margin: 3px; }
+  .pill.red { background: #fff0f0; color: #dc2626; }
+  .pill.green { background: #f0fdf4; color: #16a34a; }
+
+  /* Dot nav */
+  .dot-nav {
+    position: fixed;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 100;
+  }
+  .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #d1d1e0;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .dot:hover, .dot.active { background: #2563eb; transform: scale(1.4); }
+</style>
+</head>
+<body>
+
+<nav class="dot-nav" id="dotNav"></nav>
+
+<!-- P01: THESIS -->
+<section class="panel" id="p1">
+  <div class="panel-number">01</div>
+  <div class="panel-inner">
+    <div class="tag">The Thesis</div>
+    <h1>Travelers priced out.<br>Homeowners with spare rooms.<br><span class="accent">One night changes everything.</span></h1>
+    <p>For conference-goers and event travelers priced out of sold-out hotels, Airbnb is a peer-to-peer short-stay marketplace that lets them book a real home by the night. Unlike hotels (full) or VRBO/HomeAway (7-night minimums), Airbnb offers flexible, affordable, human stays — starting with one conference, one city, three hosts.</p>
+    <div class="verdict-box">
+      <div class="verdict-label">Riskiest Assumption</div>
+      <p>Homeowners will let strangers sleep in their homes. If false, the supply side evaporates and there is no marketplace. Cheap test: 3 hosts, 1 conference (IDSA SF, August 2008), sell out all 3. If hosts repeat → thesis holds.</p>
+    </div>
+  </div>
+</section>
+
+<!-- P02: MARKET -->
+<section class="panel" id="p2">
+  <div class="panel-number">02</div>
+  <div class="panel-inner">
+    <div class="tag">The Market</div>
+    <h1>A $500B hotel industry<br>with a <span class="accent">structural gap</span> at the edges.</h1>
+    <p>Global hotel market ~$500B (2008). TAM is anyone who travels and sleeps somewhere. SAM is event-driven demand overflow (conferences, concerts, sports) where hotels sell out — estimated 15–20% of all hotel nights. SOM: SF event market in year 1.</p>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-label">Market shape</div>
+        <div class="card-title">Oligopoly with a long tail</div>
+        <p>Marriott/Hilton/Hyatt own 40%+ of top-city capacity. Independent hosts own the long tail — millions of spare rooms priced at zero. The gap is there. Nobody is bridging it.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Timing signal</div>
+        <div class="card-title">Trust infrastructure just arrived</div>
+        <p>Craigslist proved strangers transact. Facebook (2008: 100M users) normalized digital identity. PayPal is universal. The trust rails exist for the first time.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Who holds budget</div>
+        <div class="card-title">Corporate travel + conference-goers</div>
+        <p>Conference attendees expense travel. Budget is real and annual. Repeat demand is built into the event calendar — not one-off.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Demand type</div>
+        <div class="card-title">Expanding</div>
+        <p>Remote work, digital nomads, and event tourism are all growing. The addressable market expands every year as more people travel more flexibly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P03: WINNERS -->
+<section class="panel" id="p3">
+  <div class="panel-number">03</div>
+  <div class="panel-inner">
+    <div class="tag">The Winners</div>
+    <h1>Who solved the<br><span class="accent">cold-start problem</span> and how.</h1>
+    <table>
+      <thead><tr><th>Company</th><th>Wedge</th><th>Build Sequence</th><th>Moat</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>eBay (1995)</strong></td>
+          <td>Pez dispenser collector community — hand-listed, photographed manually by founders</td>
+          <td>Manual listings → seller tools → buyer trust (feedback) → categories → global</td>
+          <td>Liquidity flywheel: more sellers → more buyers → more sellers</td>
+        </tr>
+        <tr>
+          <td><strong>Couchsurfing (2004)</strong></td>
+          <td>Backpacker community who already trusted strangers; zero money changed hands</td>
+          <td>Community first → profiles → vouching system → hosts globally</td>
+          <td>Identity and vouching removed cost of trust — but no monetization moat</td>
+        </tr>
+        <tr>
+          <td><strong>Etsy (2005)</strong></td>
+          <td>Brooklyn craft fairs — went booth-to-booth signing up sellers before building buyer tools</td>
+          <td>Supply density (craft fair circuit) → SEO → buyer marketplace → seller analytics</td>
+          <td>Handmade positioning + seller community identity</td>
+        </tr>
+        <tr>
+          <td><strong>Craigslist (1995)</strong></td>
+          <td>SF Bay Area emails turned into listings — local density first</td>
+          <td>One city → trust through repetition → city-by-city → national</td>
+          <td>First-mover density; network effects city by city</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="margin-top:20px; font-size:13px; color:#8888aa;">Pattern: every winner started with a supply-dense, trust-native community before building buyer tools. Supply first. Always.</p>
+  </div>
+</section>
+
+<!-- P04: PLAYBOOK -->
+<section class="panel" id="p4">
+  <div class="panel-number">04</div>
+  <div class="panel-inner">
+    <div class="tag">The Playbook</div>
+    <h1>The sequence that wins.<br><span class="accent">Not the features — the order.</span></h1>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-label">Step 1 — Find the demand spike</div>
+        <div class="card-title">Sold-out event, real city</div>
+        <p>Don't launch into thin air. Find where hotels are sold out and travelers are desperate. IDSA conference, SF, August 2008. This is your launch window.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Step 2 — Do it manually</div>
+        <div class="card-title">Founders do the photography</div>
+        <p>eBay listed manually. Etsy went to craft fairs. You visit each host, shoot the photos, write the copy. Build host identity before you build host tools.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Step 3 — Nail trust before scale</div>
+        <div class="card-title">Review + escrow from day one</div>
+        <p>Mutual review after every stay. Payment in escrow before check-in, released after. Not optional. Trust infrastructure is the entire product in year one.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Step 4 — Prove repeatability</div>
+        <div class="card-title">Host says "I'd do it again"</div>
+        <p>The only metric that matters after IDSA. If your first 3 hosts repeat without founder handholding, the model works. Only then build self-serve tools.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Step 5 — City-by-city</div>
+        <div class="card-title">Next event, next city</div>
+        <p>DNC (Denver, 2008) is your second launch. Same playbook: find demand spike, recruit hosts manually, go live 3 weeks before. Repeat until self-serve listing works.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Step 6 — PMF gate before scaling</div>
+        <div class="card-title">"Very disappointed" >40%</div>
+        <p>Sean Ellis test at week 10. If >40% would be very disappointed without Airbnb, hire growth. If not, fix the product. Do not hire growth on a broken loop.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P05: GRAVEYARD -->
+<section class="panel" id="p5">
+  <div class="panel-number">05</div>
+  <div class="panel-inner">
+    <div class="tag">The Graveyard</div>
+    <h1>Who died here.<br><span class="accent">And exactly why.</span></h1>
+    <table>
+      <thead><tr><th>Company</th><th>Wedge</th><th>Cause of Death</th><th>Lesson</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Wimdu (2011)</strong></td>
+          <td>Airbnb clone, Rocket Internet — $90M raised, launched in 80 cities in 3 months</td>
+          <td>Bought supply without earning trust. Listings were low quality, hosts unmotivated. Guest experience collapsed. Acquired at distressed value 2018.</td>
+          <td>You cannot buy host community. Quality gates and identity are the product, not the inventory count.</td>
+        </tr>
+        <tr>
+          <td><strong>9flats (2011)</strong></td>
+          <td>European Airbnb clone, VC-backed</td>
+          <td>No differentiated trust layer. Tried to win on price. Died when Airbnb expanded to Europe with genuine host relationships.</td>
+          <td>Price is not a moat. Trust is.</td>
+        </tr>
+        <tr>
+          <td><strong>Crashpadder (2010)</strong></td>
+          <td>UK short-stay marketplace, earlier than Airbnb in Europe</td>
+          <td>Failed to build mutual-review loop early enough. Guests reported quality inconsistency. Acquired by Airbnb 2012 for the host base, not the product.</td>
+          <td>First-mover advantage means nothing without review infrastructure. Build reviews before you build anything else.</td>
+        </tr>
+        <tr>
+          <td><strong>Couchsurfing (monetization attempt)</strong></td>
+          <td>35M+ users, deep trust community</td>
+          <td>Tried to introduce payment after building a free community. Existing hosts rejected monetization as a betrayal of community values. Identity collapsed.</td>
+          <td>Free-to-paid transitions destroy community trust. Start with money from day one.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- P06: HERESY -->
+<section class="panel" id="p6">
+  <div class="panel-number">06</div>
+  <div class="panel-inner">
+    <div class="tag">The Heresy</div>
+    <h1>The strongest case<br><span class="accent">this fails.</span></h1>
+    <p>Here is the unflinching devil's advocate. If you can't beat these arguments, don't build.</p>
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-title">🔴 The liability argument</div>
+      <p>One serious incident — theft, assault, property damage — goes viral and the supply side evaporates overnight. Insurance doesn't solve perception. The hotel industry will use every incident as PR. One bad story can kill the company before it reaches scale.</p>
+    </div>
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-title">🔴 The regulation argument</div>
+      <p>Cities will regulate short-term rentals the moment they become popular. New York, San Francisco, and Paris have already moved against vacation rentals. If the regulatory environment turns hostile before you reach scale, you lose.</p>
+    </div>
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-title">🔴 The hotel retaliation argument</div>
+      <p>Marriott, Hilton, and Hyatt have lobbying budgets that dwarf your entire raise. They will back local regulation, pursue zoning enforcement, and run PR campaigns against home-sharing. They've beaten Uber-style disruption before.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">🟡 Counter-position</div>
+      <p>All three risks are real and permanent. The answer is not to dismiss them — it's to move fast enough that by the time they materialize, you have sufficient supply density, host community loyalty, and political capital to fight back. The window is 18–24 months. Use it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- P07: TRENDS -->
+<section class="panel" id="p7">
+  <div class="panel-number">07</div>
+  <div class="panel-inner">
+    <div class="tag">The Trends</div>
+    <h1>What the next<br><span class="accent">24 months</span> looks like.</h1>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-label">Tailwind #1</div>
+        <div class="card-title">Smartphone penetration accelerating</div>
+        <p>iPhone launched 2007. Android 2008. Mobile-first booking will be the default within 24 months. Airbnb built as mobile-first has structural advantage over hotels with legacy booking systems.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Tailwind #2</div>
+        <div class="card-label" style="margin-top:8px">Financial crisis (2008)</div>
+        <div class="card-title" style="margin-top:0">People need extra income</div>
+        <p>The 2008 financial crisis is hitting in real time. Homeowners under mortgage pressure will rent spare rooms. Travelers will look for cheaper alternatives to hotels. Both sides of the marketplace are being pushed toward you.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Tailwind #3</div>
+        <div class="card-title">Social trust infrastructure maturing</div>
+        <p>Facebook profiles, LinkedIn history, and Craigslist reputation are normalizing digital identity. The trust infrastructure required for peer-to-peer lodging is arriving at exactly the right moment.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Headwind</div>
+        <div class="card-title">Short-term rental regulation risk</div>
+        <p>NYC and SF are already discussing short-term rental restrictions. This is a 3–5 year risk, not immediate — but regulatory strategy needs to start now, not after you're big enough to be a target.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- P08: ORG -->
+<section class="panel" id="p8">
+  <div class="panel-number">08</div>
+  <div class="panel-inner">
+    <div class="tag">The Org</div>
+    <h1>The team about to<br><span class="accent">be hired. In sequence.</span></h1>
+    <table>
+      <thead><tr><th>#</th><th>Role</th><th>Hire Trigger</th><th>De-risks</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="pill">Day 1</span></td>
+          <td><strong>Community & Supply Lead</strong></td>
+          <td>Immediate</td>
+          <td>Will homeowners open their homes?</td>
+        </tr>
+        <tr>
+          <td><span class="pill">Day 1</span></td>
+          <td><strong>Trust & Safety Designer</strong></td>
+          <td>Immediate</td>
+          <td>Will guests trust enough to book?</td>
+        </tr>
+        <tr>
+          <td><span class="pill">Post-MVP</span></td>
+          <td><strong>Product Engineer</strong></td>
+          <td>Post-IDSA validation</td>
+          <td>Can we build self-serve fast enough?</td>
+        </tr>
+        <tr>
+          <td><span class="pill">Launch</span></td>
+          <td><strong>Growth & Demand Lead</strong></td>
+          <td>3+ cities verified</td>
+          <td>Can we acquire guests at sustainable CAC?</td>
+        </tr>
+        <tr>
+          <td><span class="pill">PMF</span></td>
+          <td><strong>Brand & Content Lead</strong></td>
+          <td>PMF >40% "very disappointed"</td>
+          <td>Can we build a brand that scales trust?</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="margin-top:20px; font-size:13px; color:#8888aa;">Org template: Creator Marketplace — community-led growth, supply quality gating, host identity before scale. Do not hire Growth before proving the loop works manually.</p>
+  </div>
+</section>
+
+<!-- P09: THE CALL -->
+<section class="panel" id="p9">
+  <div class="panel-number">09</div>
+  <div class="panel-inner">
+    <div class="tag">The Call</div>
+    <h1>CEO verdict:<br><span class="accent">BUILD.</span></h1>
+    <p>The riskiest assumption is human trust, not technology. But the trust infrastructure — digital identity, payment rails, community norms from Craigslist and Couchsurfing — has just arrived. The 2008 financial crisis is pushing both sides of the marketplace toward you. The window is real and it is narrow.</p>
+    <p>The graveyard is full of companies that either moved without earning trust (Wimdu) or earned trust without monetizing it (Couchsurfing). The playbook is to start with money from day one, earn trust through manual host relationships before building tools, and hit 3 cities before the regulatory environment turns.</p>
+    <div class="grid-2" style="margin-top:8px">
+      <div class="card">
+        <div class="card-label">Build this</div>
+        <div class="card-title">Peer-to-peer short-stay marketplace</div>
+        <p>SF only. Event-overflow demand only. Spare rooms only. Mutual review from booking #1. PayPal escrow manual. Expand only after IDSA validation.</p>
+      </div>
+      <div class="card">
+        <div class="card-label">Don't build this</div>
+        <div class="card-title">Not a hotel aggregator. Not VRBO.</div>
+        <p>Not long-term rental. Not professional property managers. Not a search engine for existing listings. The scope fence is the product.</p>
+      </div>
+    </div>
+    <div class="verdict-box" style="margin-top:24px">
+      <div class="verdict-label">Cheap test — run in the next 3 weeks</div>
+      <p>3 SF hosts. IDSA Design Conference. Sell out all 3 nights. If 2 of 3 hosts say they'd do it again and 1 guest books a second stay — the thesis is validated. Total cost: your time and $0 in paid marketing.</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const panels = document.querySelectorAll('.panel');
+  const nav = document.getElementById('dotNav');
+  panels.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => panels[i].scrollIntoView({ behavior: 'smooth' });
+    nav.appendChild(dot);
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const idx = [...panels].indexOf(e.target);
+        nav.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+      }
+    });
+  }, { threshold: 0.5 });
+  panels.forEach(p => observer.observe(p));
+</script>
+</body>
+</html>

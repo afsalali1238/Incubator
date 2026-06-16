@@ -115,7 +115,13 @@ Incubator/
 │       ├── orchestration.md        # hire/fire/delegate/spawn + board meeting + health scores
 │       └── hq-template.md          # the HQ Dashboard HTML template
 ├── examples/
-│   └── airbnb/           # real example output (charter, roster, hq.html, agent skill)
+│   ├── README.md                   # index of all examples
+│   ├── airbnb/                     # ★ lead example — all 7 output files + hq.html
+│   ├── slack-company/              # B2B messaging wedge
+│   ├── uber-company/               # ride-hailing city launch
+│   ├── gymshark-company/           # DTC fitness apparel
+│   ├── oculus-company/             # consumer VR hardware
+│   └── 23andme-company/            # consumer DNA testing
 └── dist/
     └── project-ceo.skill           # packaged installable
 ```
