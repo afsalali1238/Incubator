@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.9.1 — 2026-06-16
+- SKILL.md: Fixed Phase 2/3 session resume paradox by tying the resume trigger to `INCUBATOR.md` instead of `00_charter.md` (which is generated in Phase 4).
+- SKILL.md: Implemented chunking in Phase 4 agent generation (max 2 agents at a time) to prevent output token limit collapse.
+- hq-template.md: Added new "Action Plan" sidebar tab and `<!-- INJECT: ACTION_PLAN -->` block to support non-technical founder paths.
+- agent-skill-template.md: Removed hardcoded Linux mount paths for the packaging script; replaced with generic environment instructions.
+
 ## 1.9.0 — 2026-06-16
 - examples/airbnb/hq.html: stripped all remaining calendar references (nav item,
   page div, CSS, comment) — lead example now fully consistent with v1.5.0 removal

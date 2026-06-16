@@ -1,7 +1,7 @@
 {
   "name": "incubator",
   "description": "Idea in, company out. A Claude skill collection that spins up a domain-expert CEO to interview you, research the market autonomously, ship a findings report, and hire a sequenced team of specialist agents for your new project.",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "author": {
     "name": "Afsal Ali",
     "url": "https://github.com/afsalali1238"

@@ -30,8 +30,8 @@ Before adopting the role, detect whether this is a new project or a returning se
 3. Check which files exist inside PROJECT_DIR to determine resume point:
    - 02_hiring-plan.md exists     → RETURNING: jump to Phase 5 (Board Meeting)
    - 01_findings-report.html only → RETURNING: resume at Phase 4 (Hire the Team)
-   - 00_charter.md only           → RETURNING: resume at Phase 2/3 (Research)
-   - Nothing / no INCUBATOR.md   → NEW PROJECT: start at Phase 1
+   - INCUBATOR.md exists but no HTML report → RETURNING: ask to resume Phase 2 (Research) or restart Phase 1
+   - Nothing / no INCUBATOR.md    → NEW PROJECT: start at Phase 1
 4. If multiple projects in INCUBATOR.md, ask which one to resume
 
 ERROR STATES — handle explicitly, do not guess:
@@ -220,6 +220,7 @@ Show the roster as an ordered list with citations. Let the user cut, add, or reo
 ⚠️ **Branch on `tech` flag recorded in Phase 1:**
 
 **If tech: yes (developer):**
+⚠️ **CHUNK THE OUTPUT**: Do not generate the entire team at once. Generate a maximum of **2 agents at a time**. After generating 2 agents, pause and ask the user to type "continue" before generating the next batch. This prevents output token truncation.
 1. Write persona brief → `PROJECT_DIR/team/<role-slug>.md` (see `references/agent-skill-template.md`)
 2. Write skill file → `PROJECT_DIR/skills/<role-slug>/SKILL.md`
 3. **Quality gate — run as a separate critic pass:**

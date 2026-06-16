@@ -18,6 +18,7 @@ This file contains the template Claude uses to generate `hq.html` in Phase 7.
 | `<!-- INJECT: CHARTER -->` | `00_charter.md` | Full file |
 | `<!-- INJECT: TEAM -->` | `02_hiring-plan.md` | Full file |
 | `<!-- INJECT: ROSTER -->` | `roster.md` | Full file (with health emoji preserved) |
+| `<!-- INJECT: ACTION_PLAN -->` | `action-plan.md` | Full file (if generated on non-technical path) |
 
 ---
 
@@ -304,6 +305,9 @@ This file contains the template Claude uses to generate `hq.html` in Phase 7.
   <a class="nav-item" onclick="show('hiring')">
     <span class="icon">🎯</span> Hiring Plan
   </a>
+  <a class="nav-item" onclick="show('action-plan')">
+    <span class="icon">🚀</span> Action Plan
+  </a>
 
   <div class="nav-section">Docs</div>
   <a class="nav-item" onclick="show('charter')">
@@ -352,6 +356,20 @@ This file contains the template Claude uses to generate `hq.html` in Phase 7.
       <h2>Org & Hire Sequence</h2>
       <div class="prose">
         <!-- INJECT: TEAM -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Action plan page -->
+  <div id="page-action-plan" class="page">
+    <div class="page-header">
+      <h1>Action Plan</h1>
+      <div class="meta">Assigned tasks and milestones</div>
+    </div>
+    <div class="card">
+      <h2>Top Actions</h2>
+      <div class="prose">
+        <!-- INJECT: ACTION_PLAN -->
       </div>
     </div>
   </div>

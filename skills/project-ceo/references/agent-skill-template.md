@@ -116,17 +116,15 @@ fence, context. What you hand back and in what format.>
 
 ## 3. Packaging
 
-After writing the skill folders, if the skill-creator packaging script is available at
-`/mnt/skills/examples/skill-creator/scripts/package_skill.py` or the Cowork equivalent:
+After writing the skill folders, if you have the Anthropic `skill-creator` CLI available in your environment, package each skill:
 
 ```bash
 for d in <pack>/skills/*/; do
-  python <path-to-script> "$d" 2>/dev/null || true
+  python3 -m scripts.package_skill "$d" 2>/dev/null || true
 done
 ```
 
-If not available, leave as folders and tell the user they're ready to drop into their skills
-directory. Either way, the SKILL.md files are valid and immediately usable.
+If not available, leave them as raw folders and tell the user they are ready to drop into their skills directory. Either way, the SKILL.md files are valid and immediately usable.
 
 ---
 
