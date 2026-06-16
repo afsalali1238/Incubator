@@ -65,7 +65,7 @@ Write in the user's voice: short sentences, no hedging, no corporate filler.
 ## roster.md — the living team registry
 
 This file is the nerve center of Phase 5. The CEO reads it at the start of every session
-and updates it after every action. Never let it go stale.
+and updates it after every action. Never let it go stale. Markdown tables are visually nice but brittle, so we store the real state in a JSON block at the bottom.
 
 ```markdown
 # Roster — <Project Name>
@@ -87,6 +87,16 @@ CEO verdict: Build / Refine / Pivot
 
 | Role | Status | Reason | Work Redistributed To |
 |------|--------|--------|-----------------------|
+
+<!-- STATE_JSON
+{
+  "last_updated": "<date>",
+  "verdict": "Build",
+  "active_agents": [{"role": "Systems Designer", "task": "Build core loop spec", "last_action": "<date>: <what happened>"}],
+  "temporary_agents": [],
+  "archived_agents": []
+}
+-->
 ```
 
 ---

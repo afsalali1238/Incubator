@@ -100,24 +100,16 @@ Get the nod. Tell them you're going dark for research. Move to Phase 2.
 > **Print this header at the start of Phase 2:**
 > ```
 > ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-> PHASE 2 — AUTONOMOUS RESEARCH  [0/20 searches]
+> PHASE 2 — AUTONOMOUS RESEARCH
 > ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 > ```
 
-⚠️ **HARD CAP on web_search calls. Track your count out loud: prefix every search with "Search N/[CAP]:"**
-
-Set the cap based on flags from Phase 1:
-- **Standard project** (no VC track, no regulated vertical): cap = **20**
-- **VC-track** (founder intends to raise) OR **regulated vertical** (health, fintech, legal, biotech): cap = **30**
-- Both VC-track AND regulated: cap = **30** (the same; more searches beyond this produces diminishing returns regardless)
-
-Use the cap throughout Phase 2. Never exceed it. Announce the cap at the start: *"Research cap: [N] searches."*
+⚠️ **HARD CAP on web_search calls.** Avoid infinite loops. Stop researching as soon as the 6 core probes are answered. If you find yourself running more than 20 searches, immediately stop and proceed to synthesis mode.
 
 Rules:
 - After each search, write what you found in one sentence before the next search.
 - If a probe yields nothing useful after **2 searches**: write "Probe [X]: INSUFFICIENT DATA — moving on." Do NOT synthesize a plausible answer. Do not fill gaps with training knowledge presented as research findings.
-- At search 15: write "Switching to synthesis mode." Stop searching. Compile what you have.
-- At search 20: stop regardless. Write the report with what exists.
+- When all 6 probes are populated (or marked as INSUFFICIENT DATA), explicitly write "Switching to synthesis mode." Stop searching and compile what you have.
 
 Search each competitor and question **separately** — combined queries return shallow results.
 
@@ -143,8 +135,11 @@ When done or at cap: write the report immediately. Do not ask permission.
 > PHASE 3 — FINDINGS REPORT
 > ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 > ```
-
-Package research as a scroll-snap HTML report. If `vd` skill is installed, use it. If not, produce a self-contained HTML file: scroll-snap, each panel 100vh, light institutional theme (bg #ffffff, text #1a1a2e, accent #2563eb), Inter from Google Fonts, dot-nav on right edge, no other external dependencies.
+Package research into a report.
+⚠️ **CHUNK THE OUTPUT**: Do not write a massive HTML file in one generation stream. This will hit token limits.
+1. Write the raw markdown into `PROJECT_DIR/01_findings-report.md`.
+2. Pause and explicitly ask the user: "Ready to render the HTML report?"
+3. Only after they say yes, generate a self-contained `PROJECT_DIR/01_findings-report.html`: scroll-snap, each panel 100vh, light institutional theme (bg #ffffff, text #1a1a2e, accent #2563eb), Inter from Google Fonts, dot-nav on right edge, no external dependencies.
 
 **Panel count — match scope to the project:**
 
@@ -184,8 +179,7 @@ Where a probe returned INSUFFICIENT DATA, say so in the relevant panel — do no
 OUTPUT_DIR: try /mnt/user-data/outputs/ → try ./outputs/ → mkdir ./outputs/
 PROJECT_DIR = OUTPUT_DIR/<project-slug>-company/
 ```
-
-Save to `PROJECT_DIR/01_findings-report.html`. Move immediately to Phase 4.
+Follow the 2-step output chunking (markdown first, then HTML). Move immediately to Phase 4 after the HTML is rendered.
 
 ---
 

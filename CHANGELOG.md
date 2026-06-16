@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.9.2 — 2026-06-16
+- SKILL.md: Eliminated the Phase 3 token limit collapse risk by chunking the findings report output into a two-step process (markdown first, then HTML).
+- agent-skill-template.md: Fixed the "Critic Mode illusion" by enforcing a human-in-the-loop pause before running the quality gate, forcing true autoregressive evaluation.
+- starter-pack.md: Hardened roster.md state management by introducing a JSON block at the bottom of the file to prevent parsing errors from markdown table drift.
+- SKILL.md: Removed the brittle "Search N/[CAP]" numerical tracker in Phase 2; the loop now caps naturally when the 6 core probes are filled.
 ## 1.9.1 — 2026-06-16
 - SKILL.md: Fixed Phase 2/3 session resume paradox by tying the resume trigger to `INCUBATOR.md` instead of `00_charter.md` (which is generated in Phase 4).
 - SKILL.md: Implemented chunking in Phase 4 agent generation (max 2 agents at a time) to prevent output token limit collapse.

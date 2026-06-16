@@ -185,9 +185,12 @@ Passing (substance):
 
 ## Quality Gate — CRITIC MODE
 
-Run this as a **separate pass** after writing each skill. Do not evaluate while still in generation mode.
+Run this as a **human-in-the-loop separate pass** after writing each skill. LLMs cannot invisibly self-correct in the same turn. You must explicitly break the generation stream.
 
-**Cold-start instruction:** Imagine you are a senior professional in this role reading this skill for the first time. You did not write it. You have no knowledge of what the author was trying to say. Does it hold up?
+**Cold-start instruction:** 
+1. Write the agent skill draft.
+2. Stop generating and ask the user to type "CRITIQUE".
+3. ONLY when the user replies "CRITIQUE", imagine you are a senior professional reading the previously generated skill for the first time. You did not write it. Does it hold up?
 
 **Checklist — every box must be checked before moving to the next agent:**
 
