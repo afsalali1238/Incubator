@@ -110,9 +110,14 @@ Incubator/
 
 ## See it in action
 
-→ [Terrarium Planet — company starter pack](./examples/terrarium-planet-company/)  
-A god-sim game concept run through the full founding sequence.  
-Includes: [charter](./examples/terrarium-planet-company/00_charter.md), findings report, [HQ Dashboard](./examples/terrarium-planet-company/hq.html), and [Systems Designer skill](./examples/terrarium-planet-company/skills/systems-designer/SKILL.md).
+To prove the Incubator can handle any vertical, we've generated "Day Zero" company starter packs for 5 iconic startups. See how the CEO adapts the hiring sequence and risk assessments based on the industry:
+
+1. **[Gymshark (D2C Fashion)](./examples/gymshark-company/)** — Community-led apparel. (First hire: Influencer Manager)
+2. **[Slack (B2B SaaS Pivot)](./examples/slack-company/)** — Enterprise software. (First hire: UX Designer)
+3. **[Oculus VR (Deep Tech / Hardware)](./examples/oculus-company/)** — Consumer hardware. (First hire: Optical Engineer)
+4. **[Uber (Consumer Logistics)](./examples/uber-company/)** — Physical marketplace. (First hire: City Ops GM)
+5. **[23andMe (Regulated Biotech)](./examples/23andme-company/)** — Consumer health. (First hire: FDA Regulatory SME)
+6. **[Terrarium Planet (God-Sim Game)](./examples/terrarium-planet-company/)** — Indie game studio. (First hire: Systems Designer)
 
 ---
 
