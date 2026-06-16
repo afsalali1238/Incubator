@@ -1,0 +1,17 @@
+{
+  "name": "incubator",
+  "owner": {
+    "name": "Afsal Ali",
+    "url": "https://github.com/afsalali1238"
+  },
+  "metadata": {
+    "description": "Idea in, company out. Spin up a domain-expert CEO that interviews you, researches the market autonomously, ships a findings report, and hires a sequenced team of specialist agents for any new project."
+  },
+  "plugins": [
+    {
+      "name": "incubator",
+      "source": "./",
+      "description": "A Claude skill collection for founding new projects: an AI CEO persona, autonomous competitor research, a VD-format findings report, and an auto-generated team of installable specialist-agent skills."
+    }
+  ]
+}
