@@ -31,7 +31,7 @@ The goal is to convert the idea into a **testable hypothesis** and find the **ri
 
 ### Branch 5 — Constraints (be honest, this is Afsal)
 - Time: solo build, evenings, full-time? 
-- Money: bootstrap, near-zero budget? (Assume lean unless told otherwise.)
+- Money: bootstrap, near-zero budget, or looking for venture capital/funding? (If VC/funding is the goal, flag `needs_pitch_deck = true` to trigger Phase 6 later).
 - Skill: what can Afsal build himself with AI vs what needs a real specialist?
 - What's the opportunity cost — what is this competing with for his attention?
 

@@ -71,6 +71,9 @@ substance — give Claude the actual domain expertise to be good at this.>
 ## What good looks like
 <Concrete quality bar for this role's output on this project.>
 
+## Agent Handoffs
+<When your work requires another agent on the roster to take over (e.g., Designer hands off to Engineer), you must output a specific "Handoff Packet". Define what that packet contains so the next agent can seamlessly pick up the context.>
+
 ## What you escalate
 <Decisions you flag to the CEO/founder rather than deciding alone.>
 ```

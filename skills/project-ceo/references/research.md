@@ -37,6 +37,7 @@ Make the strongest possible case that a competitor wins and this project doesn't
 
 ## Discipline
 
+- **Use deep scrape tools:** Standard web search often fails on paywalls, developer docs, or deep API references. If you encounter a blocker on a critical competitor, use tools like `fetch` or `curl` to pull down the raw text of their pages to get the exact unit economics or features.
 - **Cite real sources.** Paraphrase findings; never reproduce source text. One short quote per source maximum, under 15 words.
 - **Believe surprising-but-sourced results**, but stay skeptical on SEO-heavy areas (product rankings, "best X" listicles) — corroborate.
 - **Don't flatter.** Your job is the truth that makes the next decision better, not the narrative that makes Afsal feel good.

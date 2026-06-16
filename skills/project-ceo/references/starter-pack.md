@@ -8,8 +8,11 @@ The final deliverable. One folder, everything Afsal needs to actually start runn
 ├── 01_findings-report.html   (the VD report from Phase 3)
 ├── 02_hiring-plan.md
 ├── 03_90-day-calendar.md
+├── hq.html                   (the Slack-like dashboard from Phase 7)
 ├── team/      (persona briefs)
 └── skills/    (installable skill folders)
+    ├── install-team.sh
+    └── install-team.ps1
 ```
 
 ---
@@ -84,4 +87,6 @@ Principles baked in:
 
 Before presenting, **create an `INCUBATOR.md` file at the root of the workspace**. This file should contain exactly one line: the absolute path to the `<project-slug>-company/` directory. This acts as the session re-entry anchor.
 
-`present_files` order: `00_charter.md` first (most relevant), then `01_findings-report.html`, then the folder. Close with a short CEO sign-off and the single next action. No long postamble — Afsal opens the files himself.
+Generate the `install-team.sh` and `install-team.ps1` scripts inside the `skills/` directory. These scripts should simply copy all the `.skill` folders into the user's global Claude Code skills directory.
+
+`present_files` order: `hq.html` first (as the virtual office), then `00_charter.md`, then `01_findings-report.html`. Close with a short CEO sign-off, instructing Afsal to open `hq.html` in a browser, and state the single next action. No long postamble.
