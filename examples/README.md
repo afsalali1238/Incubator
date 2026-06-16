@@ -16,7 +16,6 @@ Real output from running `project-ceo` on real companies. Each folder is what th
 | [`00_charter.md`](./airbnb/00_charter.md) | Thesis, verdict, riskiest assumption, scope fence, org at a glance |
 | [`01_findings-report.html`](./airbnb/01_findings-report.html) | 9-panel research report — open in browser |
 | [`02_hiring-plan.md`](./airbnb/02_hiring-plan.md) | Org chart + sequenced hire order with de-risk rationale |
-| [`03_90-day-calendar.md`](./airbnb/03_90-day-calendar.md) | Week-by-week plan calibrated to full-time budget |
 | [`roster.md`](./airbnb/roster.md) | Live team registry with 🟢/🟡/🔴 health scores |
 | [`hq.html`](./airbnb/hq.html) | Rendered HQ Dashboard — open in browser |
 | [`team/community-supply-lead.md`](./airbnb/team/community-supply-lead.md) | Agent persona brief — real host acquisition framework |
@@ -26,7 +25,7 @@ Real output from running `project-ceo` on real companies. Each folder is what th
 
 ## Other examples
 
-Each has: charter, findings report, hiring plan, 90-day calendar, and one installable agent skill.
+Each has: charter, findings report, hiring plan, and one installable agent skill.
 
 | Company | Vertical | Wedge | Agent skill shown |
 |---------|---------|-------|------------------|
@@ -45,7 +44,6 @@ Each has: charter, findings report, hiring plan, 90-day calendar, and one instal
 ├── 00_charter.md              ← thesis, verdict, riskiest assumption, org at a glance
 ├── 01_findings-report.html    ← 9-panel research report (open in browser)
 ├── 02_hiring-plan.md          ← org chart + sequenced hire order with reasons
-├── 03_90-day-calendar.md      ← week-by-week plan calibrated to your time budget
 ├── hq.html                    ← dark-mode command centre (Charter/Roster/Calendar/Agents)
 ├── roster.md                  ← live team registry with health scores
 ├── team/                      ← persona briefs, one per hired agent

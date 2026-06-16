@@ -91,7 +91,6 @@ This is a load-bearing question — the answer calibrates every downstream outpu
 > from going full-time."
 
 Record the answer in the thesis paragraph as "Time budget: [X hrs/week]". Use it to set:
-- **90-day calendar week counts**: 2 hrs/week → stretch each block to 3–4 weeks; full-time → compress to 1–2 weeks per block.
 - **Roster size**: part-time builder → fewer agents, more sequential; full-time → can run agents in parallel.
 - **MVP scope**: less time = smaller core loop. The scope fence gets tighter.
 - **Board meeting cadence**: 2 hrs/week → monthly board meeting; full-time → bi-weekly.

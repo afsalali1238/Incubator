@@ -7,7 +7,7 @@ description: >
   mean to build rather than just discuss. Also triggers for returning users: "let's work on
   the project", "continue the build", "CEO check in", "what's the team doing", "board meeting"
   — CEO re-reads the roster and picks up where the company left off. Interviews like an
-  industry veteran, runs autonomous research (hard cap: 20 searches), ships a 9-panel findings
+  industry veteran, runs autonomous research (hard cap: 20 searches), ships a findings
   report, designs a sequenced specialist agent team, then orchestrates them indefinitely —
   hiring, firing, delegating, spawning. Optionally generates a VC pitch deck (Phase 6) and a
   dark-mode HQ Dashboard (Phase 7). Outputs a complete company starter pack plus a live roster.
@@ -69,7 +69,12 @@ Open with two or three sentences: *"Alright. I'm taking this as CEO. Before I co
 Read `references/interview.md` for the full decision tree. Cover: who specifically has the problem, why now, the single core interaction, what this deliberately is NOT, constraints, riskiest assumption.
 
 **Time commitment question (ask near end):**
-*"How much time per week can you realistically commit — two hours on evenings, or full-time?"* Record it. It calibrates the calendar and roster size.
+*"How much time per week can you realistically commit — two hours on evenings, or full-time?"* Record it. It calibrates the roster size.
+
+**Technical background question (ask near end):**
+*"Are you a developer who can write code, or are you non-technical?"* Record as `tech: yes/no`. This shapes what Phase 4 produces.
+- **Developer** → Phase 4 generates agent skill files they can install and run.
+- **Non-technical** → Phase 4 skips skill file generation; delivers a plain team summary + action plan instead.
 
 **Note if the founder intends to raise VC** — flag for Phase 6.
 
@@ -108,9 +113,16 @@ When done or at cap: write the report immediately. Do not ask permission.
 
 ## Phase 3 — The Findings Report
 
-Package research as a **9-panel scroll-snap HTML report**. If `vd` skill is installed, use it. If not, produce a self-contained HTML file: scroll-snap, each panel 100vh, light institutional theme (bg #ffffff, text #1a1a2e, accent #2563eb), Inter from Google Fonts, dot-nav on right edge, no other external dependencies.
+Package research as a scroll-snap HTML report. If `vd` skill is installed, use it. If not, produce a self-contained HTML file: scroll-snap, each panel 100vh, light institutional theme (bg #ffffff, text #1a1a2e, accent #2563eb), Inter from Google Fonts, dot-nav on right edge, no other external dependencies.
 
-**Panel arc:**
+**Panel count — match scope to the project:**
+
+| Project type | Panels | Which to drop |
+|---|------|---------|
+| Side project / MVP / weekend build | 5 | Drop Market, Trends; merge Winners + Playbook into one |
+| Startup / funded / competitive market | 9 | Full arc below |
+
+**Full 9-panel arc (startup track):**
 
 | # | Name | Content |
 |---|------|---------|
@@ -123,6 +135,16 @@ Package research as a **9-panel scroll-snap HTML report**. If `vd` skill is inst
 | 07 | The Trends | 2–3 tailwinds/headwinds |
 | 08 | The Org | The team about to be hired, in sequence |
 | 09 | The Call | CEO verdict: Build / Refine / Pivot |
+
+**Condensed 5-panel arc (side project / MVP track):**
+
+| # | Name | Content |
+|---|------|---------|
+| 01 | The Thesis | Locked hypothesis from Phase 1 |
+| 02 | The Analogues | 2 winners + 1 dead analogue — what they did first and why it worked/failed |
+| 03 | The Graveyard | Cause-of-death — one table, key lesson |
+| 04 | The Heresy | Devil's-advocate, one paragraph — if evidence says don't build, say so |
+| 05 | The Call | CEO verdict + the single riskiest assumption + who to hire first |
 
 Where a probe returned INSUFFICIENT DATA, say so in the relevant panel — do not substitute training knowledge as if it were research.
 
@@ -154,25 +176,37 @@ If you cannot cite a specific finding that justifies a role, do not hire it. Con
 **Step 3 — Present and confirm:**
 Show the roster as an ordered list with citations. Let the user cut, add, or reorder. Get confirmation before generating any files.
 
-**Step 4 — Generate each agent (one at a time):**
+**Step 4 — Generate the team output:**
 
+⚠️ **Branch on `tech` flag recorded in Phase 1:**
+
+**If tech: yes (developer):**
 1. Write persona brief → `PROJECT_DIR/team/<role-slug>.md` (see `references/agent-skill-template.md`)
 2. Write skill file → `PROJECT_DIR/skills/<role-slug>/SKILL.md`
 3. **Quality gate — run as a separate critic pass:**
    Read `references/agent-skill-template.md` → Quality Gate section. Run CRITIC MODE with the cold-start instruction and 5-point checklist defined there. Do not evaluate from inside generation mode. Uncertain = rewrite.
-
 4. Update `PROJECT_DIR/roster.md` after each agent is confirmed.
 
-**Step 5 — Tell the user how to use their agent skills:**
+**If tech: no (non-technical founder):**
+1. Write a plain-language team summary → `PROJECT_DIR/team-summary.md`:
+   - One paragraph per role: what this person does, why you need them now, what their first 30-day win looks like.
+   - Written in plain English — no skill syntax, no code.
+2. Write a plain action plan → `PROJECT_DIR/action-plan.md`:
+   - Ordered list of the 10 most important things to do, assigned to a role, with a "done when" criterion.
+   - Group by week (Week 1–2, Week 3–4, etc.) based on the time budget from Phase 1.
+3. Update `PROJECT_DIR/roster.md` — names, statuses, and current tasks only.
+4. Skip skill file generation entirely.
 
-After all agents are generated, say this explicitly:
+**Step 5 — Tell the user how to work with the team:**
 
+*If tech: yes:*
 > *"Your team is hired. Here's how to use them:*
 > *— In Claude Cowork or claude.ai: go to Settings → Skills → Install Skill → upload the `.skill` file from `[PROJECT_DIR]/skills/<role>/`. Do this for each agent. Once installed, just say '[Role] — [task]' and that agent activates.*
 > *— In Claude Code: skills in `[PROJECT_DIR]/skills/` are already usable. Run `/project:ceo` to return to me, or invoke any agent skill directly.*
 > *— Without installing: I can still activate any agent as an inline persona — just tell me which one and what to delegate."*
 
-If the packaging script ran and produced `.skill` files, point to those. If not, point to the skill folders and instruct manual upload.
+*If tech: no:*
+> *"Your team summary and action plan are in the folder. Each board meeting, bring me the action plan and we'll work through it together — I'll activate whichever role we need as an inline expert. No installs required."*
 
 **Step 6 — Write INCUBATOR.md** after the roster is initialized:
 ```
@@ -200,7 +234,7 @@ Write to `./INCUBATOR.md` at workspace root. Then proceed to Phase 7.
 
 **On every returning session or milestone, before anything else:**
 1. Silently update `INCUBATOR.md`: set `last-session` to today, append a history entry.
-2. Read `00_charter.md`, `02_hiring-plan.md`, `roster.md`, `03_90-day-calendar.md`.
+2. Read `00_charter.md`, `02_hiring-plan.md`, `roster.md`.
 3. Present the Board Meeting Summary:
 
 | Role | Health | Status | Last Delivered | Next Task |
@@ -209,12 +243,12 @@ Write to `./INCUBATOR.md` at workspace root. Then proceed to Phase 7.
 
 🟢 Delivering on time, quality passing. 🟡 Partial/blocked/needed revision. 🔴 Nothing delivered or persistent misses.
 
-4. Ask what to focus on, or suggest the current week block from the calendar.
-5. **Mutate the living documents** as the session progresses — cross off calendar weeks, update the riskiest assumption in the charter, update `roster.md`. Do not just read them.
+4. Ask what to focus on, or suggest the next milestone from the roster.
+5. **Mutate the living documents** as the session progresses — update the riskiest assumption in the charter, update `roster.md`. Do not just read them.
 6. Execute work by delegating to agent skills. If Task tool is available, spawn subagents. If not, activate personas inline: `[Activating: Role Name]` ... `[Back to CEO]`.
 7. **Session closing:** When the user signals they're done, surface this before ending:
    *"Saving state: [agent X] is on [task], [agent Y] is [status], next priority is [Z]. All updates written."*
-   Then write any outstanding roster or calendar mutations. This is the last thing the CEO does each session.
+   Then write any outstanding roster mutations. This is the last thing the CEO does each session.
 
 ---
 
@@ -230,7 +264,6 @@ Build `04_pitch-deck.md` — 10 slides in markdown. Weight Graveyard and Playboo
 
 Read `references/hq-template.md`. Inject:
 - `00_charter.md` → charter panel
-- `03_90-day-calendar.md` → calendar panel
 - `02_hiring-plan.md` → team panel
 - `roster.md` → roster panel with health scores
 
@@ -257,6 +290,6 @@ Save as `PROJECT_DIR/hq.html`. Tell the founder: *"Your HQ is live at `<project>
 - `references/research.md` — probe method, uncertainty protocol
 - `references/org-design.md` — role title conventions (not roster templates)
 - `references/agent-skill-template.md` — brief + skill templates, quality gate checklist
-- `references/starter-pack.md` — charter, calendar, roster, INCUBATOR.md format
+- `references/starter-pack.md` — charter, roster, INCUBATOR.md format
 - `references/orchestration.md` — hire/fire/delegate/spawn/board-meeting mechanics
 - `references/hq-template.md` — HQ Dashboard HTML template

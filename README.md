@@ -20,7 +20,7 @@ Invoke **`project-ceo`** at the start of any project. Claude becomes the **found
 | **4. Hire the Team** | Interactive | Derives a 4–7 agent roster from your vertical, sequenced by what de-risks fastest. Quality-gates every generated skill — no flavor without substance. |
 | **5. Board Meeting** | Ongoing | Per-agent 🟢/🟡/🔴 health scores, roster changes, riskiest current assumption, next action. Runs at every milestone or returning session. |
 | **6. Data Room** | Conditional (VC track) | Converts research into a 10-slide pitch deck weighted on Graveyard and Playbook — why others failed, why this sequence wins. |
-| **7. HQ Dashboard** | Automatic | Generates a zero-dependency dark-mode `hq.html` — your command centre. Charter, roster, calendar, hiring plan in one browser tab. |
+| **7. HQ Dashboard** | Automatic | Generates a zero-dependency dark-mode `hq.html` — your command centre. Charter, roster, and hiring plan in one browser tab. |
 
 **The CEO doesn't disappear after founding.** It writes an `INCUBATOR.md` index at your workspace root. Every time you return — "CEO check in", "let's work on the project" — it re-reads the roster, checks team health, and picks up exactly where the company left off.
 
@@ -47,7 +47,6 @@ The [`examples/airbnb/`](./examples/airbnb/) folder shows real output from a ful
 ├── 00_charter.md            # thesis, CEO verdict, riskiest assumption, org at a glance
 ├── 01_findings-report.html  # the 9-panel research report
 ├── 02_hiring-plan.md        # org chart + sequenced hire order with reasons
-├── 03_90-day-calendar.md    # week-by-week plan calibrated to your time budget
 ├── 04_pitch-deck.md         # 10-slide VC pitch deck (VC track only)
 ├── hq.html                  # dark-mode command centre — open in any browser
 ├── roster.md                # LIVE team registry with health scores — updated every session
@@ -125,7 +124,7 @@ Incubator/
 │       ├── research.md             # method + 20-search hard cap + graveyard protocol
 │       ├── org-design.md           # vertical roster patterns + sequencing
 │       ├── agent-skill-template.md # brief + skill templates + quality gate checklist
-│       ├── starter-pack.md         # charter, calendar, roster, INCUBATOR.md format
+│       ├── starter-pack.md         # charter, roster, INCUBATOR.md format
 │       ├── orchestration.md        # hire/fire/delegate/spawn + board meeting + health scores
 │       └── hq-template.md          # the HQ Dashboard HTML template
 ├── examples/

@@ -22,7 +22,6 @@ Build in PROJECT_DIR. Present `00_charter.md` first, then the report, then the f
 ├── 00_charter.md               # The one-pager. Read this first.
 ├── 01_findings-report.html     # VD research report from Phase 3
 ├── 02_hiring-plan.md           # Org chart + sequenced hire order
-├── 03_90-day-calendar.md       # Week-by-week build plan, agents assigned
 ├── roster.md                   # LIVE team registry — updated every session
 ├── team/                       # Persona briefs, one per agent
 │   ├── <role-slug>.md
@@ -86,53 +85,6 @@ CEO verdict: Build / Refine / Pivot
 - **For each role:** one paragraph on what they de-risk and what their first win looks like
 - Pointer to the matching `team/<role>.md` brief and `skills/<role>/` skill
 
----
-
-## 03_90-day-calendar.md — the build plan
-
-Map the **Idea → MVP → Launch** arc onto weeks. Use the time budget from Phase 1 to set
-week counts — this is not a generic template:
-
-| Time budget | Validate block | MVP block | Iterate block | Launch block |
-|-------------|---------------|-----------|---------------|--------------|
-| 2 hrs/week  | 3–4 weeks     | 8–10 wks  | 6–8 wks       | 3–4 wks      |
-| 10 hrs/week | 1–2 weeks     | 4–5 wks   | 3–4 wks       | 2 wks        |
-| Full-time   | 1 week        | 2–3 wks   | 2–3 wks       | 1–2 wks      |
-
-Each block names the agent who owns it.
-
-```markdown
-## Weeks 1–[N] — Validate (Idea stage)
-Owner: <Domain SME agent>
-- The cheap test of the riskiest assumption
-- Customer/player/user discovery actions
-Exit: <problem-solution fit signal>
-
-## Weeks [N]–[M] — Build the core loop (MVP stage)
-Owner: <Core builder agent> (+ <SME> reviewing)
-- Build ONLY the single core interaction
-- Set up CLAUDE.md and scope-fence document
-Exit: a real human can touch the core thing and react
-
-## Weeks [M]–[P] — Iterate toward evidence (MVP → Launch)
-Owner: <relevant agents>
-- Measurement framework before users arrive
-- Iteration loops based on evidence
-Exit: genuine signal (retention / payment / referral / "very disappointed" test)
-
-## Weeks [P]–[Q] — Launch readiness
-Owner: <Launch/GTM agent>
-- Security/quality pass
-- Distribution / first real users
-Exit: a repeatable way to get the next users
-```
-
-**Principles baked in:**
-- Don't build before the Validate block exits
-- Build only the core interaction in the MVP block — scope fence holds
-- Measurement framework before users, so early traction isn't mistaken for PMF
-- Every block has an exit criterion, not just tasks
-- Every block is assigned to an agent
 
 ---
 

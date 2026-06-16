@@ -16,7 +16,6 @@ This file contains the template Claude uses to generate `hq.html` in Phase 7.
 | Placeholder | Source file | Section to inject |
 |-------------|-------------|-------------------|
 | `<!-- INJECT: CHARTER -->` | `00_charter.md` | Full file |
-| `<!-- INJECT: CALENDAR -->` | `03_90-day-calendar.md` | Full file |
 | `<!-- INJECT: TEAM -->` | `02_hiring-plan.md` | Full file |
 | `<!-- INJECT: ROSTER -->` | `roster.md` | Full file (with health emoji preserved) |
 
@@ -235,41 +234,6 @@ This file contains the template Claude uses to generate `hq.html` in Phase 7.
   .badge.fired   { color: var(--red);    border-color: var(--red); }
   .badge.temp    { color: var(--purple); border-color: var(--purple); }
 
-  /* ── Calendar ── */
-  .cal-block {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--accent);
-    border-radius: var(--radius);
-    padding: 14px 18px;
-    margin-bottom: 12px;
-  }
-  .cal-block.done { border-left-color: var(--green); opacity: 0.65; }
-  .cal-block.current { border-left-color: var(--yellow); }
-  .cal-block .week-label {
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    color: var(--text-muted);
-  }
-  .cal-block .week-title {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text);
-    margin: 4px 0;
-  }
-  .cal-block .owner {
-    font-size: 12px;
-    color: var(--accent);
-  }
-  .cal-block .exit {
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-top: 8px;
-    font-style: italic;
-  }
-
   /* ── Content prose (for injected markdown) ── */
   .prose { color: var(--text-muted); }
   .prose h2 { font-size: 16px; font-weight: 600; color: var(--text); margin: 20px 0 10px; }
@@ -336,10 +300,6 @@ This file contains the template Claude uses to generate `hq.html` in Phase 7.
   <a class="nav-item" onclick="show('roster')">
     <span class="icon">👥</span> Roster
   </a>
-  <a class="nav-item" onclick="show('calendar')">
-    <span class="icon">📅</span> Calendar
-  </a>
-
   <div class="nav-section">Team</div>
   <a class="nav-item" onclick="show('hiring')">
     <span class="icon">🎯</span> Hiring Plan
@@ -378,20 +338,6 @@ This file contains the template Claude uses to generate `hq.html` in Phase 7.
       <h2>Active Agents</h2>
       <div class="prose">
         <!-- INJECT: ROSTER -->
-      </div>
-    </div>
-  </div>
-
-  <!-- Calendar page -->
-  <div id="page-calendar" class="page">
-    <div class="page-header">
-      <h1>90-Day Calendar</h1>
-      <div class="meta">Idea → MVP → Launch</div>
-    </div>
-    <div class="card">
-      <h2>Build Plan</h2>
-      <div class="prose">
-        <!-- INJECT: CALENDAR -->
       </div>
     </div>
   </div>

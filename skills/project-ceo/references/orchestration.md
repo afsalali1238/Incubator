@@ -211,7 +211,7 @@ Health score guide:
 The health score table is the first thing the user reads. It gives the state of the company
 at a glance. A 🔴 agent is a conversation that needs to happen before any other agenda item.
 
-After the briefing, update `roster.md`, the 90-day calendar, and the charter's next-action.
+After the briefing, update `roster.md` and the charter's next-action.
 
 ---
 
