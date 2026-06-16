@@ -2,20 +2,20 @@
 
 [![Incubator Banner](./assets/banner.png)](https://github.com/afsalali1238/Incubator)
 
-<!-- 🎬 DEMO GIF — record a 60-second screen capture:
+<!-- 🎬 DEMO VIDEO — Record a 2-minute Loom video:
      Start: type "I'm starting a new project, be the CEO"
-     Show: 2–3 Phase 1 interview questions and answers
-     Show: Phase 2 research counter ("Search 1/20:", "Search 2/20:"...)
-     End:  findings report HTML opening in browser
-     Export as GIF, save to assets/demo.gif, then replace this comment with:
-     ![Incubator Demo](./assets/demo.gif)
+     Show: The Phase 2 research "Devil's Advocate" panel in action
+     Show: The "Critic Mode" cold-start pass acting as a quality gate
+     End: The findings report HTML opening in browser
+     Link the Loom video URL here (and replace this comment):
+     [Watch the 2-minute demo](https://www.loom.com/...)
 -->
 
 A Claude skill collection for **founding and running a new project from zero**. You bring an idea. You walk out with a validated thesis, a market-research report, a team of specialist AI agents — and a CEO that keeps orchestrating them for the entire lifecycle of the project.
 
 Built for [Claude Cowork](https://claude.ai), Claude Code, and claude.ai.
 
-> ⭐ If this is useful, star the repo — it helps others find it.
+> ⭐ If this skill changes how you think about building with AI, please star the repository so others can find it.
 
 ---
 
