@@ -71,7 +71,7 @@ else
 fi
 
 # ── 4. Assert version consistency before committing ───────────────────────────
-PLUGIN_VER=$(python3 -c "import json,os; print(json.load(open(os.environ['REPO_ROOT']+'/.claude-plugin/plugin.json'))['version'])" REPO_ROOT="$REPO_ROOT")
+PLUGIN_VER=$(REPO_ROOT="$REPO_ROOT" python3 -c "import json,os; print(json.load(open(os.environ['REPO_ROOT']+'/.claude-plugin/plugin.json'))['version'])")
 CHANGELOG_VER=$(grep -m1 "^## " "$REPO_ROOT/CHANGELOG.md" | sed 's/## \([0-9.]*\).*/\1/')
 
 if [ "$PLUGIN_VER" != "$VERSION" ]; then
