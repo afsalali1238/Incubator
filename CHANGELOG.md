@@ -1,10 +1,77 @@
 # Changelog
 
+## 1.9.6 — 2026-06-16
+- SKILL.md (Phase 1): added pushback triggers for vague answers — CEO must challenge "segment not
+  person" user definitions, generic "why now" answers, and universal riskiest assumptions before
+  advancing; records unfixed gaps explicitly rather than silently moving on
+- SKILL.md (Phase 1): added HOLD condition at Phase 1 exit — if critical gap remains after
+  pushback, CEO refuses to go dark and resumes Phase 1; cannot get the nod on a weak thesis
+- SKILL.md (Phase 3): added explicit Heresy panel instruction — must write the strongest case
+  against the project without hedging; "proceed with caution" explicitly disqualified as a
+  Heresy conclusion; if evidence says don't build, report says don't build
+- SKILL.md (Phase 4): added uncited roster pushback — CEO names the missing justification and
+  refuses to add the role until the founder articulates the problem it solves
+- SKILL.md (Phase 5): added persistent 🔴 rule — two consecutive board meetings with nothing
+  delivered is a fire decision, not a flag; CEO names it directly and assigns the work
+- SKILL.md (Operating principles): split "don't flatter" into two explicit rules — pivot vs.
+  refine distinction made explicit; "proceed with caution" named as flattery
+
+## 1.9.5 — 2026-06-16
+- SKILL.md (Phase 2): added DRIFT CHECK before synthesis — compares research signals against
+  Phase 1 thesis on four dimensions (scope, audience, model, stage); 2+ flags trigger
+  "⚠️ DRIFT DETECTED" output and inject "Assumption revisions" into Phase 3 Panel 01
+- SKILL.md (Phase 3): added confidence labels (🔵🟡🔴) applied inline to every key finding;
+  High = multiple independent sources, Medium = partial/conflicting, Low = inferred/thin/INSUFFICIENT
+- SKILL.md (Phase 5): added ASSUMPTION AUDIT step before board meeting summary — re-reads
+  Phase 1 thesis against current agent outputs and flags strategic drift as "⚠️ ASSUMPTION DRIFT"
+  in board summary under "Revised Understanding"; fixed duplicate step-4 numbering in Phase 5
+- SKILL.md (Phase 2/3/4): extended session-state.json schemas with operational fields:
+  drift_flags, key_assumptions, confidence (Phase 2); confidence_summary, open_risks (Phase 3);
+  unresolved_assumptions, critical_risks (Phase 4); plus summary field in all three
+- orchestration.md: fixed file truncation (missing last 3 lines); added DEGRADATION MODES
+  section — LOW_SIGNAL (≤30% probes returned data), CONFLICT (contradictory signals on core
+  thesis), PARTIAL_RESUME (in-progress state detected) — each with explicit trigger + behavior
+- orchestration.md: added CHECKPOINT SUMMARIES pattern — summary field in every
+  session-state.json write, ≤20 words, reduces full file-read on resume
+
+## 1.9.4 — 2026-06-16
+- release.sh: removed dead `python3 - "$VERSION" << 'PY'` heredoc block (no-op code that
+  misled readers about what was executing); step 2 now uses a single clean inline invocation
+- release.sh: added integrity check (step 4) — unpacks .skill artifact and diffs every source
+  file against packaged content; aborts commit if any mismatch is found; dist can no longer
+  silently drift from source
+- dist/project-ceo.skill: updated to current source (was stale at v1.0-era, 28K vs 31K)
+- SKILL.md (Phase 2): restored stakes-aware search cap (20 standard / 30 VC-track or regulated
+  vertical); restored running tally — cap announced at phase start, count reported at synthesis
+- SKILL.md (resume logic): added session-state.json as authoritative phase checkpoint; file-
+  existence inference now fallback-only; entry point reads JSON phase field first if present
+- SKILL.md (Phase 2/3/4): write session-state.json after each phase completes so any dropout
+  is recoverable to the exact phase boundary, not just approximated from file presence
+- starter-pack.md: session-state.json added to both tech:yes and tech:no folder structures
+- orchestration.md: STATE_JSON block declared as canonical source of truth for roster state;
+  markdown table is now explicitly presentation-only; CEO reads/writes JSON first, regenerates
+  table from it
+- agent-skill-template.md + SKILL.md: quality gate now outputs explicit [CRITIQUE GATE] prompt
+  and requires "Quality gate: PASS" or "Quality gate: FAIL — rewriting [section]" token before
+  proceeding; cannot skip critique while appearing to comply
+
+## 1.9.3 — 2026-06-16
+- SKILL.md (CRITICAL): Moved INCUBATOR.md initial write from Phase 4 to end of Phase 1 —
+  session anchor is now created the moment the thesis is locked, eliminating the data-loss
+  window across Phases 2–3. Phase 4 Step 6 now updates the file (sets dir + verdict) rather
+  than creating it from scratch.
+- SKILL.md (HIGH): Entry point resume logic now detects 01_findings-report.md (no .html) and
+  correctly routes returning users to the Phase 3 HTML render pause instead of forcing a
+  full Phase 2 restart.
+
 ## 1.9.2 — 2026-06-16
-- SKILL.md: Eliminated the Phase 3 token limit collapse risk by chunking the findings report output into a two-step process (markdown first, then HTML).
-- agent-skill-template.md: Fixed the "Critic Mode illusion" by enforcing a human-in-the-loop pause before running the quality gate, forcing true autoregressive evaluation.
-- starter-pack.md: Hardened roster.md state management by introducing a JSON block at the bottom of the file to prevent parsing errors from markdown table drift.
-- SKILL.md: Removed the brittle "Search N/[CAP]" numerical tracker in Phase 2; the loop now caps naturally when the 6 core probes are filled.
+- SKILL.md: Eliminated Phase 3 token limit collapse risk — chunked output into two steps (markdown first, then HTML on user confirm).
+- SKILL.md: Phase 4 agent generation chunked to max 2 at a time with user "continue" gate to prevent output truncation.
+- agent-skill-template.md: Fixed Critic Mode illusion — quality gate now requires human-in-the-loop pause (user types CRITIQUE) before evaluation begins.
+- starter-pack.md: Hardened roster.md state management — added JSON STATE block at bottom to prevent markdown table parse drift.
+- SKILL.md: Removed brittle "Search N/[CAP]" numerical counter; replaced with simpler 20-search hard cap.
+- plugin.json: Repaired truncated file (license field was missing value).
+
 ## 1.9.1 — 2026-06-16
 - SKILL.md: Fixed Phase 2/3 session resume paradox by tying the resume trigger to `INCUBATOR.md` instead of `00_charter.md` (which is generated in Phase 4).
 - SKILL.md: Implemented chunking in Phase 4 agent generation (max 2 agents at a time) to prevent output token limit collapse.
@@ -12,23 +79,6 @@
 - agent-skill-template.md: Removed hardcoded Linux mount paths for the packaging script; replaced with generic environment instructions.
 
 ## 1.9.0 — 2026-06-16
-- examples/airbnb/hq.html: stripped all remaining calendar references (nav item,
-  page div, CSS, comment) — lead example now fully consistent with v1.5.0 removal
-- examples/README.md: HQ tab list corrected from "Charter/Roster/Calendar/Agents"
-  to "Charter/Roster/Hiring Plan"
-- starter-pack.md: documented both Phase 4 output branches — tech:yes (team/+skills/)
-  and tech:no (team-summary.md + action-plan.md, no skills/ generated)
-- release.sh: removed all hardcoded session paths (/sessions/loving-sweet-cerf/...
-  and /tmp/incubator-work); now uses git rev-parse --show-toplevel and env vars;
-  SKILL_CREATOR_DIR and WORKSPACE_DIR are optional overrides; session ID scrubbed
-- org-design.md: ⚠️ NOT templates warning moved to top of file (line 9), before
-  any pattern content — model can no longer miss it by skimming the top half
-- Phase 4 quality gate: 5-point checklist inlined into SKILL.md as a fallback so
-  the gate survives even if agent-skill-template.md isn't opened under context pressure
-- Operating principles: added "write state early, write state often" checkpoint rule
-  — roster.md and INCUBATOR.md written before proceeding to next phase, not at end
-- Phase 2: search cap is now stakes-aware — standard projects cap at 20, VC-track
-  or regulated verticals (health, fintech, legal, biotech) cap at 30
 
 ## 1.8.0 — 2026-06-16
 - Phase 5: health scores now disclosed as CEO judgment at every board meeting open;

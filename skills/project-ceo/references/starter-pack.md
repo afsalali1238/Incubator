@@ -24,6 +24,7 @@ Build in PROJECT_DIR. Present `00_charter.md` first, then the report, then the f
 ├── 01_findings-report.html     # Research report from Phase 3
 ├── 02_hiring-plan.md           # Org chart + sequenced hire order
 ├── roster.md                   # LIVE team registry — updated every session
+├── session-state.json          # Phase checkpoint — authoritative resume anchor
 ├── team/                       # Persona briefs, one per agent
 │   ├── <role-slug>.md
 │   └── ...
@@ -40,7 +41,8 @@ Build in PROJECT_DIR. Present `00_charter.md` first, then the report, then the f
 ├── 02_hiring-plan.md           # Org chart + sequenced hire order
 ├── team-summary.md             # Plain-English team overview — one paragraph per role
 ├── action-plan.md              # Ordered top-10 actions, assigned by role, with done-when criteria
-└── roster.md                   # LIVE team registry — updated every session
+├── roster.md                   # LIVE team registry — updated every session
+└── session-state.json          # Phase checkpoint — authoritative resume anchor
 ```
 *Note: skills/ and team/ persona briefs are not generated on the non-technical path.*
 

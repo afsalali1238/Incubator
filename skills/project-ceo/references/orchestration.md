@@ -6,9 +6,16 @@ This is the operating manual for Phase 5: how the CEO runs the company after fou
 
 ## The Roster (`roster.md`)
 
-The roster is the single source of truth for the agent team. Re-read it at the start of every
-session. Update it after every action. Never let it go stale — a stale roster is a CEO who
-has lost track of their company.
+The roster tracks the agent team. The **markdown table is presentation** — it is what the
+user reads. The **`<!-- STATE_JSON -->` block at the bottom is the source of truth** — it is
+what the CEO reads and writes.
+
+**Rule:** When reading state (resuming, doing board meeting prep), read the `STATE_JSON` block
+first. When updating state (after a hire, fire, task completion), update the `STATE_JSON`
+block first, then regenerate the markdown table from it. Never let the two diverge.
+
+If the JSON block is absent from an existing roster.md, add it immediately by reading the
+markdown table and serializing it to JSON before doing any other work.
 
 **Format:**
 
@@ -232,3 +239,51 @@ USER
 The CEO never bypasses the user on direction-level decisions. The agents never bypass the CEO
 on domain-level calls (they escalate). The user never has to manage individual agents directly
 — that's the CEO's job.
+
+---
+
+## DEGRADATION MODES
+
+Three explicit modes for when the system operates under constraint or unresolvable conflict.
+The CEO announces the active mode at the start of the affected phase output.
+
+### LOW_SIGNAL
+**Trigger:** ≤30% of planned probes returned useful data (INSUFFICIENT DATA majority).
+**Behavior:**
+- Do not synthesize a confident report — compress to only what was actually found
+- Annotate the Phase 3 report: *"⚠️ LOW_SIGNAL — findings are provisional. Recommend follow-up research before committing resources."*
+- CEO verdict in Panel 09: "Research incomplete — recommend [specific follow-up question] before a Build/Pivot call."
+- Continue to Phase 4 only if the founder explicitly confirms they want to proceed on thin data.
+
+### CONFLICT
+**Trigger:** Two or more probes return mutually contradictory signals on the same core thesis dimension (market size, user demand, competitive structure).
+**Behavior:**
+- Report both sides without reconciling them — present the conflict honestly
+- Annotate the relevant panel: *"⚠️ CONFLICT — [topic]: evidence points both [X] and [Y]. Not resolved."*
+- CEO recommendation in Panel 09: "Hold — resolve [specific question] before proceeding. Two cheap tests: [A], [B]."
+- Do not assign a confident Build/Pivot verdict under CONFLICT without disclosing the conflict first.
+
+### PARTIAL_RESUME
+**Trigger:** session-state.json is present but shows a phase without "complete" status, or file-existence heuristics detect partial completion.
+**Behavior:**
+- Announce: *"Resuming from Phase [N] — [N] searches used, [remaining topics] still pending."*
+- Read what exists before generating anything — do not restart completed sub-tasks
+- Do not ask the user to repeat Phase 1 unless charter files are missing or contradicted
+- If state is ambiguous: present last known state and ask "Resume from here, or start fresh?"
+
+---
+
+## CHECKPOINT SUMMARIES
+
+Every `session-state.json` write includes a `summary` field — one sentence, ≤20 words — that lets the CEO resume with immediate context before reading full project files.
+
+```json
+{
+  "phase": 3,
+  "status": "complete",
+  "summary": "Capio — Phase 3 complete. Market validated (🔵), monetization weak (🔴), three graveyard exits failed on distribution."
+}
+```
+
+Write this field after every phase. It costs nothing and saves a full file-read on resume.
+

@@ -187,12 +187,20 @@ Passing (substance):
 
 Run this as a **human-in-the-loop separate pass** after writing each skill. LLMs cannot invisibly self-correct in the same turn. You must explicitly break the generation stream.
 
-**Cold-start instruction:** 
-1. Write the agent skill draft.
-2. Stop generating and ask the user to type "CRITIQUE".
-3. ONLY when the user replies "CRITIQUE", imagine you are a senior professional reading the previously generated skill for the first time. You did not write it. Does it hold up?
+**Protocol — follow exactly:**
+1. Write the agent skill draft. Stop generating.
+2. Output this line verbatim: `"[CRITIQUE GATE] Type CRITIQUE to evaluate, or CONTINUE to accept and proceed."`
+3. Wait for user reply.
+   - User types **CRITIQUE** → run the checklist below in cold-start mode.
+   - User types **CONTINUE** → treat as accepted, proceed to next agent.
+4. After running the checklist, output exactly one of:
+   - `"Quality gate: PASS"` → proceed to next agent.
+   - `"Quality gate: FAIL — rewriting [specific section]."` → rewrite, then re-run gate.
+   - Do NOT proceed to the next agent without one of these two tokens appearing in your output.
 
-**Checklist — every box must be checked before moving to the next agent:**
+**Cold-start instruction:** Imagine you are a senior professional in this role reading this skill for the first time. You did not write it. You have no knowledge of what the author was trying to say. Does it hold up?
+
+**Checklist — every box must be checked before writing PASS:**
 
 □ **Named frameworks:** Does "The method" section name at least 2 specific frameworks, models, or heuristics a real practitioner would recognize? Generic advice ("think deeply about X") fails this check — named things only.
 

@@ -11,9 +11,17 @@
      ![Incubator Demo](./assets/demo.gif)
 -->
 
-A Claude skill collection for **founding and running a new project from zero**. You bring an idea. You walk out with a validated thesis, a market-research report, a team of specialist AI agents — and a CEO that keeps orchestrating them for the entire lifecycle of the project.
+A Claude skill that acts as the **founding CEO** for a new project — interviewing you into a testable hypothesis, researching the market, writing a findings report that will tell you to pivot if the evidence says so, and hiring a sequenced team of specialist AI agents.
 
 Built for [Claude Cowork](https://claude.ai), Claude Code, and claude.ai.
+
+---
+
+## Why this exists
+
+Agentic coding makes building feel free. That's the trap — you ship a prototype in an afternoon and mistake it for validation. Sense-making falls behind building.
+
+Incubator enforces the order. It won't let you hire a team before the research exists, or build before the idea is a falsifiable hypothesis. The CEO is required to tell you when the evidence says stop. And when you come back a week later, it picks up exactly where the company left off.
 
 > ⭐ If this is useful, star the repo — it helps others find it.
 
