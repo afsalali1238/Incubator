@@ -69,16 +69,6 @@
   tr:last-child td { border-bottom: none; }
   .health { font-size: 16px; }
 
-  /* Calendar */
-  .timeline { display: flex; flex-direction: column; gap: 0; }
-  .week { display: flex; align-items: flex-start; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--border); }
-  .week:last-child { border-bottom: none; }
-  .week-label { width: 72px; flex-shrink: 0; font-size: 11px; color: var(--text-muted); font-weight: 600; padding-top: 2px; }
-  .week-tasks { flex: 1; display: flex; flex-wrap: wrap; gap: 6px; }
-  .task-pill { background: var(--bg-panel); border: 1px solid var(--border); border-radius: 6px; padding: 5px 10px; font-size: 12px; color: var(--text); }
-  .task-pill.done { border-color: var(--green); color: var(--green); }
-  .task-pill.current { border-color: var(--accent); color: var(--accent); background: rgba(88,166,255,0.08); }
-  .task-pill.next { border-color: var(--border); color: var(--text-muted); }
 
   /* Charter fields */
   .charter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -108,7 +98,6 @@
   <nav>
     <a class="active" onclick="show('charter')">📋 Charter</a>
     <a onclick="show('roster')">👥 Roster</a>
-    <a onclick="show('calendar')">📅 Calendar</a>
     <a onclick="show('team')">🤖 Agents</a>
   </nav>
   <div class="sidebar-footer">
@@ -231,65 +220,7 @@
     </div>
   </div>
 
-  <!-- CALENDAR PAGE -->
-  <div id="calendar" class="page">
-    <div class="page-title">90-Day Calendar</div>
-    <div class="page-sub">Full-time track — adjusted after Phase 1 interview</div>
-
-    <!-- INJECT: CALENDAR -->
-    <div class="panel">
-      <div class="panel-body">
-        <div class="timeline">
-          <div class="week">
-            <div class="week-label">Wk 1–2</div>
-            <div class="week-tasks">
-              <div class="task-pill done">✓ CEO interview</div>
-              <div class="task-pill done">✓ Market research (20 searches)</div>
-              <div class="task-pill done">✓ Findings report (VD)</div>
-              <div class="task-pill done">✓ Hire Supply Lead + Trust Designer</div>
-            </div>
-          </div>
-          <div class="week">
-            <div class="week-label">Wk 3–4</div>
-            <div class="week-tasks">
-              <div class="task-pill current">▶ Recruit 3 SF hosts</div>
-              <div class="task-pill current">▶ Photography all 3 listings</div>
-              <div class="task-pill current">▶ Build review + payment flow (manual)</div>
-              <div class="task-pill next">Go live for IDSA conference</div>
-            </div>
-          </div>
-          <div class="week">
-            <div class="week-label">Wk 5–6</div>
-            <div class="week-tasks">
-              <div class="task-pill next">IDSA conference — sell out 3 bookings</div>
-              <div class="task-pill next">Post-stay: guest NPS + host willingness score</div>
-              <div class="task-pill next">Board meeting: validate/pivot/kill</div>
-            </div>
-          </div>
-          <div class="week">
-            <div class="week-label">Wk 7–10</div>
-            <div class="week-tasks">
-              <div class="task-pill next">Hire Product Engineer (if validated)</div>
-              <div class="task-pill next">Expand to 3 more events in SF</div>
-              <div class="task-pill next">Build self-serve listing flow</div>
-              <div class="task-pill next">Democratic National Convention prep</div>
-            </div>
-          </div>
-          <div class="week">
-            <div class="week-label">Wk 11–13</div>
-            <div class="week-tasks">
-              <div class="task-pill next">Expand to 2nd city (NYC or Denver)</div>
-              <div class="task-pill next">PMF test: "very disappointed" survey</div>
-              <div class="task-pill next">Hire Growth Lead if >40% disappointed</div>
-              <div class="task-pill next">YC application (W2009)</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- TEAM / AGENTS PAGE -->
+<!-- TEAM / AGENTS PAGE -->
   <div id="team" class="page">
     <div class="page-title">Agent Team</div>
     <div class="page-sub">Installed skills — each is a domain-expert persona</div>

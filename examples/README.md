@@ -44,7 +44,7 @@ Each has: charter, findings report, hiring plan, and one installable agent skill
 ├── 00_charter.md              ← thesis, verdict, riskiest assumption, org at a glance
 ├── 01_findings-report.html    ← 9-panel research report (open in browser)
 ├── 02_hiring-plan.md          ← org chart + sequenced hire order with reasons
-├── hq.html                    ← dark-mode command centre (Charter/Roster/Calendar/Agents)
+├── hq.html                    ← dark-mode command centre (Charter/Roster/Hiring Plan)
 ├── roster.md                  ← live team registry with health scores
 ├── team/                      ← persona briefs, one per hired agent
 └── skills/                    ← installable agent skills, one per role

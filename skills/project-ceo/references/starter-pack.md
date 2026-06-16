@@ -17,10 +17,11 @@ Build in PROJECT_DIR. Present `00_charter.md` first, then the report, then the f
 
 ## Folder structure
 
+**Tech: yes (developer) branch:**
 ```
 <project-slug>-company/
 ├── 00_charter.md               # The one-pager. Read this first.
-├── 01_findings-report.html     # VD research report from Phase 3
+├── 01_findings-report.html     # Research report from Phase 3
 ├── 02_hiring-plan.md           # Org chart + sequenced hire order
 ├── roster.md                   # LIVE team registry — updated every session
 ├── team/                       # Persona briefs, one per agent
@@ -30,6 +31,18 @@ Build in PROJECT_DIR. Present `00_charter.md` first, then the report, then the f
     ├── <role-slug>/SKILL.md
     └── ...
 ```
+
+**Tech: no (non-technical founder) branch:**
+```
+<project-slug>-company/
+├── 00_charter.md               # The one-pager. Read this first.
+├── 01_findings-report.html     # Research report from Phase 3
+├── 02_hiring-plan.md           # Org chart + sequenced hire order
+├── team-summary.md             # Plain-English team overview — one paragraph per role
+├── action-plan.md              # Ordered top-10 actions, assigned by role, with done-when criteria
+└── roster.md                   # LIVE team registry — updated every session
+```
+*Note: skills/ and team/ persona briefs are not generated on the non-technical path.*
 
 ---
 

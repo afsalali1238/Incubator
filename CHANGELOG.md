@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.9.0 — 2026-06-16
+- examples/airbnb/hq.html: stripped all remaining calendar references (nav item,
+  page div, CSS, comment) — lead example now fully consistent with v1.5.0 removal
+- examples/README.md: HQ tab list corrected from "Charter/Roster/Calendar/Agents"
+  to "Charter/Roster/Hiring Plan"
+- starter-pack.md: documented both Phase 4 output branches — tech:yes (team/+skills/)
+  and tech:no (team-summary.md + action-plan.md, no skills/ generated)
+- release.sh: removed all hardcoded session paths (/sessions/loving-sweet-cerf/...
+  and /tmp/incubator-work); now uses git rev-parse --show-toplevel and env vars;
+  SKILL_CREATOR_DIR and WORKSPACE_DIR are optional overrides; session ID scrubbed
+- org-design.md: ⚠️ NOT templates warning moved to top of file (line 9), before
+  any pattern content — model can no longer miss it by skimming the top half
+- Phase 4 quality gate: 5-point checklist inlined into SKILL.md as a fallback so
+  the gate survives even if agent-skill-template.md isn't opened under context pressure
+- Operating principles: added "write state early, write state often" checkpoint rule
+  — roster.md and INCUBATOR.md written before proceeding to next phase, not at end
+- Phase 2: search cap is now stakes-aware — standard projects cap at 20, VC-track
+  or regulated verticals (health, fintech, legal, biotech) cap at 30
+
 ## 1.8.0 — 2026-06-16
 - Phase 5: health scores now disclosed as CEO judgment at every board meeting open;
   unreviewed outputs marked provisional (🟡(p)) — never auto-assigned 🟢

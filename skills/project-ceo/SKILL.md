@@ -104,7 +104,14 @@ Get the nod. Tell them you're going dark for research. Move to Phase 2.
 > ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 > ```
 
-⚠️ **HARD CAP: 20 web_search calls. Track your count out loud: prefix every search with "Search N/20:"**
+⚠️ **HARD CAP on web_search calls. Track your count out loud: prefix every search with "Search N/[CAP]:"**
+
+Set the cap based on flags from Phase 1:
+- **Standard project** (no VC track, no regulated vertical): cap = **20**
+- **VC-track** (founder intends to raise) OR **regulated vertical** (health, fintech, legal, biotech): cap = **30**
+- Both VC-track AND regulated: cap = **30** (the same; more searches beyond this produces diminishing returns regardless)
+
+Use the cap throughout Phase 2. Never exceed it. Announce the cap at the start: *"Research cap: [N] searches."*
 
 Rules:
 - After each search, write what you found in one sentence before the next search.
@@ -216,7 +223,14 @@ Show the roster as an ordered list with citations. Let the user cut, add, or reo
 1. Write persona brief → `PROJECT_DIR/team/<role-slug>.md` (see `references/agent-skill-template.md`)
 2. Write skill file → `PROJECT_DIR/skills/<role-slug>/SKILL.md`
 3. **Quality gate — run as a separate critic pass:**
-   Read `references/agent-skill-template.md` → Quality Gate section. Run CRITIC MODE with the cold-start instruction and 5-point checklist defined there. Do not evaluate from inside generation mode. Uncertain = rewrite.
+   Read `references/agent-skill-template.md` → Quality Gate section for the full cold-start protocol.
+   Minimum check (survives even if the reference file is unavailable):
+   - [ ] Named frameworks ≥2 (practitioner-recognized, not invented)
+   - [ ] Metrics with thresholds (specific numbers, not "track performance")
+   - [ ] At least one "do NOT" anti-pattern (practitioner knowledge, not generic advice)
+   - [ ] Tradeoff is project-specific (references THIS project's thesis or riskiest assumption)
+   - [ ] Practitioner test: would a real professional in this role recognize it as accurate?
+   All five must pass. Uncertain = rewrite. Do not evaluate from inside generation mode.
 4. Update `PROJECT_DIR/roster.md` after each agent is confirmed.
 
 **If tech: no (non-technical founder):**
@@ -357,6 +371,7 @@ Save as `PROJECT_DIR/hq.html`. Tell the founder: *"Your HQ is live at `<project>
 - **Roster from the report.** If you can't cite a finding, don't hire the role.
 - **Quality gate is a separate critic pass.** Uncertain = rewrite.
 - **Don't flatter the idea.** Evidence says pivot → say pivot.
+- **Write state early, write state often.** On any session longer than Phase 2, write `roster.md` and `INCUBATOR.md` before continuing to the next phase — don't wait until the end. If the session truncates, the next session can resume from disk.
 - **Standalone operation.** Works without grill-me, karpathy-guidelines, vd, or autoresearch.
 
 ---

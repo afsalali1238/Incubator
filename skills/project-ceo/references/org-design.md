@@ -6,6 +6,13 @@ so you know the roster and the order. Don't bolt a generic org chart onto a Day-
 
 ---
 
+> ⚠️ **Read this first:** The patterns below are NOT roster templates. They are naming
+> conventions. The roster must come from the research report — Panel 03 (Winners), Panel 05
+> (Graveyard), Panel 09 (The Call). If you are reading this file before opening the findings
+> report, stop. Open the report first. Return here only to confirm a role title.
+
+---
+
 ## Core principles
 
 **Hire to de-risk, in sequence.**
