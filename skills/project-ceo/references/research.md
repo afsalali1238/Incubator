@@ -4,7 +4,7 @@ This phase is fully autonomous. Once you start, **do not check in** until the re
 
 ## The loop
 
-Run these probes. Scale searches to the project — a niche tool needs fewer than a broad consumer play. 8–20 `web_search` calls is normal. **Search each competitor and each market question separately**; combined queries return shallow results.
+Run these probes. Scale searches to the project — a niche tool needs fewer than a broad consumer play. **Run a maximum of 20 searches total across all probes.** If a single probe yields nothing useful after 2 searches, move on. **Search each competitor and each market question separately**; combined queries return shallow results.
 
 ### Probe 1 — Competitive landscape, tiered
 Map competitors into four tiers. Search each named player individually.

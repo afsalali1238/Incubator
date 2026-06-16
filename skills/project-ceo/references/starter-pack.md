@@ -82,4 +82,6 @@ Principles baked in:
 
 ## Presentation
 
+Before presenting, **create an `INCUBATOR.md` file at the root of the workspace**. This file should contain exactly one line: the absolute path to the `<project-slug>-company/` directory. This acts as the session re-entry anchor.
+
 `present_files` order: `00_charter.md` first (most relevant), then `01_findings-report.html`, then the folder. Close with a short CEO sign-off and the single next action. No long postamble — Afsal opens the files himself.

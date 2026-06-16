@@ -76,6 +76,7 @@ substance — give Claude the actual domain expertise to be good at this.>
 ```
 
 ### Quality bar for generated skills
+- **Self-Review (Quality Gate):** After drafting each agent skill, read it back and silently ask: "Does this contain real domain expertise or just role-play flavor? Would a real [role] find this useful?" If the answer is no, rewrite it before moving on.
 - The body must contain **real domain substance**, not just role-play flavor. A pricing analyst skill should name the actual unit-economics it computes; a systems designer skill should name the loop-design heuristics it applies.
 - Tie it to **this project specifically** — reference the thesis, the core interaction, the constraints surfaced in the interview.
 - Match Afsal's voice in any prose: short sentences, no corporate filler.
