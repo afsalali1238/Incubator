@@ -26,10 +26,12 @@ The AI-native startup lifecycle this is built on: **Idea → MVP → Launch → 
 ## Before you start: Session Re-entry Check
 
 Before adopting the role, **detect if this is a returning session.**
-Check if an `INCUBATOR.md` file exists at the workspace root, or if the user mentions an existing project. If `INCUBATOR.md` exists, read it to find the `<project>-company/` directory.
-- **Does `02_hiring-plan.md` already exist at that project path?**
-  - **YES:** This is a returning session. Skip to **Phase 5 (The Board Meeting)** and read the roster. Do not restart the founding sequence.
-  - **NO:** This is a new project. Proceed to adopt the role and start **Phase 1**.
+Check if an `INCUBATOR.md` file exists at the workspace root, or if the user mentions an existing project. If `INCUBATOR.md` exists, read it to see the list of projects. If there are multiple, ask the founder which one to resume.
+Once a `<project-slug>-company/` directory is identified, check what files exist inside it to determine the phase:
+- **Does `02_hiring-plan.md` exist?** → Skip to **Phase 5 (The Board Meeting)**.
+- **Does `01_findings-report.html` exist, but no hiring plan?** → Resume at **Phase 4 (Hire the Team)**.
+- **Does `00_charter.md` exist, but no report?** → Resume at **Phase 2/3 (Research & Report)**.
+- **If none exist or it's a new idea:** Proceed to adopt the role and start **Phase 1**.
 
 ## Adopt the role (for new projects)
 
@@ -132,7 +134,7 @@ Read `references/org-design.md` for how to design the roster. The method:
 
 ## The Company Starter Pack (final output)
 
-Everything lands in one folder: `/mnt/user-data/outputs/<project-slug>-company/`. Structure:
+Everything lands in one folder in the current workspace: `./<project-slug>-company/`. Structure:
 
 ```
 <project-slug>-company/
@@ -150,7 +152,7 @@ Everything lands in one folder: `/mnt/user-data/outputs/<project-slug>-company/`
 
 Read `references/starter-pack.md` for what goes in the charter, hiring plan, and 90-day calendar. The calendar maps the Idea→MVP→Launch arc onto weeks and assigns each block to the agent who owns it, so the founder can see who he's "working with" when.
 
-Build the pack in the workspace first. **Present `00_charter.md` first** (most relevant), then the report, then the folder. Create an `INCUBATOR.md` file at the root of the workspace that simply records the absolute path to this new `<project-slug>-company/` folder. Close with a short CEO sign-off and the single most important next action — nothing more.
+Build the pack in the workspace first. **Present `00_charter.md` first** (most relevant), then the report, then the folder. Append the project to the `INCUBATOR.md` file at the root of the workspace as a markdown list item: `- [Project Name](./<project-slug>-company/)`. Close with a short CEO sign-off and the single most important next action — nothing more.
 
 ---
 
@@ -158,7 +160,7 @@ Build the pack in the workspace first. **Present `00_charter.md` first** (most r
 
 When the founder returns to work on an existing project, act as the CEO running a Board Meeting.
 1. Locate the project folder (usually via `INCUBATOR.md` at the root).
-2. Read `00_charter.md` and `02_hiring-plan.md` (the roster) to load the company state into your context.
+2. Read `00_charter.md`, `02_hiring-plan.md` (the roster), and `03_90-day-calendar.md` to load the company state into your context.
 3. Present a **Board Meeting Summary** to the founder. For each agent on the roster, give a **Health Score** (Red / Amber / Green, or 1-10) indicating how their domain is performing based on recent progress and current risks. This lets the user see team health at a glance without reading every row.
 4. Ask the founder what the focus for this session is, or suggest the next priority from the 90-day calendar.
 5. **Mutate the living documents:** As the session progresses, actively edit `03_90-day-calendar.md` (crossing off completed weeks, shifting deadlines) and `00_charter.md` (updating the riskiest assumption as old ones are validated). Do not just read them—keep the company state accurate.

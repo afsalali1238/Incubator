@@ -1,6 +1,6 @@
-﻿# Company Starter Pack — Contents
+# Company Starter Pack — Contents
 
-The final deliverable. One folder, everything the founder needs to actually start running the project with a team. Build in `/home/claude/<project-slug>-company/`, then copy to `/mnt/user-data/outputs/`.
+The final deliverable. One folder, everything the founder needs to actually start running the project with a team. Build directly in the workspace: `./<project-slug>-company/`.
 
 ```
 <project-slug>-company/
@@ -85,7 +85,7 @@ Principles baked in:
 
 ## Presentation
 
-Before presenting, **create an `INCUBATOR.md` file at the root of the workspace**. This file should contain exactly one line: the absolute path to the `<project-slug>-company/` directory. This acts as the session re-entry anchor.
+Before presenting, **ensure the project is added to `INCUBATOR.md` at the root of the workspace**. Append it as a new line: `- [Project Name](./<project-slug>-company/)`. This acts as the session re-entry anchor.
 
 Generate the `install-team.sh` and `install-team.ps1` scripts inside the `skills/` directory. These scripts should simply copy all the `.skill` folders into the user's global Claude Code skills directory.
 
