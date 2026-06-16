@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.8.0 — 2026-06-16
+- Phase 5: health scores now disclosed as CEO judgment at every board meeting open;
+  unreviewed outputs marked provisional (🟡(p)) — never auto-assigned 🟢
+- Phase 2/3/4/5/6/7: visible phase transition headers printed before each phase
+  ("━━ PHASE N — NAME ━━") so users can't lose track of where the session is
+- ENTRY POINT: INCUBATOR.md read confirmed aloud with path and project name
+- Phase 4 Step 6: INCUBATOR.md write confirmed with full path; explicit failure
+  message if write fails (no more silent skips)
+- Returning session: INCUBATOR.md update confirmed before board meeting opens
+- Phase 7: first-run session close — lists all output files, tells user exact
+  phrase to say next session ("board meeting" / "CEO check in")
+- README: GIF placeholder added with exact recording instructions
+
 ## 1.7.0 — 2026-06-16
 - Regenerated all 5 remaining example agent skills (Uber, Slack, 23andMe, Gymshark, Oculus)
   to meet the hardened quality gate: named frameworks, metrics with thresholds, do-NOT
