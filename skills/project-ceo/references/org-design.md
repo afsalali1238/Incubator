@@ -28,10 +28,15 @@ Idea → MVP → Launch → Scale. Hire Idea/MVP roles first. Don't hire Scale r
 
 ---
 
-## Vertical roster patterns (adapt, never copy literally)
+## Role title conventions by vertical
 
-These are starting templates. Derive the *actual* roster from the specific project and what
-de-risks it fastest. Reorder freely.
+**These are NOT roster templates.** The actual roster must be derived from the research report
+(Panel 03 Winners, Panel 05 Graveyard, Panel 09 The Call). Use this section only to find
+the conventional title for a role once the research has told you what role is needed.
+
+If you are consulting this section before reading the findings report, stop. Open the report first.
+
+Adapt freely — these are naming conventions, not org charts.
 
 ### Sandbox / simulation / god-sim game
 1. **Systems & Gameplay Designer** — first; owns the core loop; if the loop isn't fun, nothing else matters [Idea→MVP]

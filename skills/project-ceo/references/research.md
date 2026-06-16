@@ -115,7 +115,13 @@ please the founder. A research engine pointed at confirming a bad idea is worse 
 
 - Cite real sources. Paraphrase findings — never reproduce source text. One short quote per
   source maximum, under 15 words.
+- **INSUFFICIENT DATA is a valid and required answer.** If a probe returns nothing credible
+  after 2 searches, write "Probe [X]: INSUFFICIENT DATA" and move on. Do not fill the gap
+  with training knowledge presented as research findings. A confident-sounding hallucination
+  is worse than a gap — the founder may make a real decision based on it.
 - When done with all probes, write the report (Phase 3). Do not ask permission.
+- In the report: where a probe returned INSUFFICIENT DATA, state that clearly in the relevant
+  panel. Do not substitute. The founder needs to know what you actually found vs. what you inferred.
 - Carry forward to the report: the tiered competitor map, 2–4 winners with build sequences,
   graveyard table with causes of death and lessons, market shape, trends, and your synthesized
   devil's-advocate case.
