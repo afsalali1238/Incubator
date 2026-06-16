@@ -1,5 +1,7 @@
 # Incubator — idea in, company out
 
+![Incubator Banner](./assets/banner.png)
+
 A Claude skill collection for **founding a new project from zero**. You bring an idea. You walk out with a validated thesis, a market-research report, and a team of specialist AI agents — structured exactly the way a real company in that vertical would build itself.
 
 Built for [Claude Cowork](https://claude.ai), Claude Code, and claude.ai.
