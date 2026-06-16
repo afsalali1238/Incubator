@@ -12,32 +12,41 @@ The goal is to convert the idea into a **testable hypothesis** and find the **ri
 - Who *specifically* has this problem? Push for a precise profile (job title, context, situation) — not "people" or "businesses."
 - How often do they hit it, and how badly does it hurt? (Mild annoyance vs hair-on-fire.)
 - What do they do about it *today*? The current workaround is the real competitor.
-- Is this a problem Afsal has lived, or one he's observed? (Domain expertise is a moat — note it.)
+- Is this a problem the founder has lived, or one he's observed? (Domain expertise is a moat — note it.)
 
 ### Branch 2 — Why now / why him
 - What changed that makes this buildable or winnable now? (Tech shift, regulation, behavior, cost collapse.)
-- What does Afsal know or have that a generic competitor doesn't? (His logistics ops depth, GCC health knowledge, AI-native build speed, the specific community he belongs to.)
+- What does the founder know or have that a generic competitor doesn't? (His logistics ops depth, GCC health knowledge, AI-native build speed, the specific community he belongs to.)
 
 ### Branch 3 — The solution, sharpened
 - In one sentence, what does the thing *do*?
 - What is the **single core interaction** the whole product lives or dies on? (You'll later tell the team to build only this first.)
 - What does it deliberately **NOT** do? (Scope fence — write it down. Zero-friction scope creep kills AI-native builds.)
-- Does this solution address the problem the validation will reveal, or the problem Afsal *assumed* going in? Flag the gap if you sense one.
+- Does this solution address the problem the validation will reveal, or the problem the founder *assumed* going in? Flag the gap if you sense one.
 
 ### Branch 4 — Winning
 - What does success look like in 90 days? In a year? Be concrete — a number, a milestone, a feeling.
 - Is this a business, a tool, a portfolio piece, or a bet? (Changes everything downstream. A portfolio game ≠ a venture-scale SaaS.)
 - What's the exit condition for "this is working" vs "this is dead"?
 
-### Branch 5 — Constraints (be honest, this is Afsal)
+### Branch 5 — Constraints (be honest, this is the founder)
 - Time: solo build, evenings, full-time? 
 - Money: bootstrap, near-zero budget, or looking for venture capital/funding? (If VC/funding is the goal, flag `needs_pitch_deck = true` to trigger Phase 6 later).
-- Skill: what can Afsal build himself with AI vs what needs a real specialist?
+- Skill: what can the founder build himself with AI vs what needs a real specialist?
 - What's the opportunity cost — what is this competing with for his attention?
 
 ### Branch 6 — The riskiest assumption
 - Surface the one belief that, if wrong, makes the whole thing collapse. Name it explicitly.
 - Ask: what cheap test would disprove it fastest? (This often becomes the MVP.)
+
+### Branch 7 — The pivot (only if relevant)
+If the founder mentions this is a rethink of something previous:
+- What did the original version do, and what happened?
+- What's the specific belief that changed? (Not "it didn't work" — what specifically did you learn was wrong?)
+- Is this a pivot or a restart? (Pivots reuse some moat; restarts don't.)
+- What from the original is worth keeping? What must be abandoned?
+
+Pivot evidence is high-value research input. Carry it into Phase 2.
 
 ## Technique notes
 
@@ -49,8 +58,8 @@ The goal is to convert the idea into a **testable hypothesis** and find the **ri
 
 ## Exit criteria
 
-You can leave the interview when you can write a **one-paragraph thesis** in this shape and Afsal agrees:
+You can leave the interview when you can write a **one-paragraph thesis** in this shape and the founder agrees:
 
-> For [specific user] who [specific painful situation], [project] is a [category] that [single core value]. Unlike [current workaround / main competitor], it [key differentiator rooted in Afsal's edge]. The riskiest assumption is [X]; we'll test it by [cheap test].
+> For [specific user] who [specific painful situation], [project] is a [category] that [single core value]. Unlike [current workaround / main competitor], it [key differentiator rooted in the founder's edge]. The riskiest assumption is [X]; we'll test it by [cheap test].
 
 Show him that paragraph. Get the nod. Then go autonomous.

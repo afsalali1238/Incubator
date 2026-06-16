@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Findings Report - Terrarium Planet</title>
+    <style>
+        body { font-family: system-ui, sans-serif; background: #fafafa; color: #111; max-width: 800px; margin: 0 auto; padding: 2rem; }
+        .panel { background: #fff; padding: 2rem; margin-bottom: 2rem; border: 1px solid #eee; border-radius: 8px; scroll-snap-align: start; }
+        .panel-number { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 0.5rem; display: block; }
+        h2 { margin-top: 0; font-size: 1.5rem; }
+        .highlight { background: #fff3cd; padding: 0.2rem; }
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        th, td { border: 1px solid #eee; padding: 0.75rem; text-align: left; }
+        th { background: #fafafa; }
+    </style>
+</head>
+<body>
+
+<section class="panel">
+    <span class="panel-number">Panel 01</span>
+    <h2>The Thesis</h2>
+    <p>For casual strategy players who find deep simulation games overwhelming, <strong>Terrarium Planet</strong> is a god-sim game that limits interactions to simple elemental placements (rain, heat, rock, seed). Unlike traditional 4X or management sims, it relies entirely on emergent cellular automata to create complex ecosystems from simple inputs. The riskiest assumption is that limiting player agency to "blunt tools" will feel satisfying rather than frustrating.</p>
+</section>
+
+<section class="panel">
+    <span class="panel-number">Panel 02</span>
+    <h2>The Market</h2>
+    <p>The "cozy game" and "casual sim" market is <strong>expanding</strong>, driven by players seeking low-stress, ambient experiences. TAM is broad (anyone who plays Stardew Valley or Animal Crossing), but the SOM is specific: players who want a "desktop pet" style ecosystem simulation that runs quietly in the background.</p>
+</section>
+
+<section class="panel">
+    <span class="panel-number">Panel 03</span>
+    <h2>The Winners</h2>
+    <p>We found 3 analogous successes:</p>
+    <ul>
+        <li><strong>WorldBox:</strong> Nailed the "god-game" scale by keeping graphics pixel-art and interactions physics-based.</li>
+        <li><strong>The Powder Toy:</strong> Proved that pure cellular automata (sand falling, water flowing) is intrinsically fun even without a "game" layer.</li>
+        <li><strong>Townscaper:</strong> Proved that removing "goals" and just letting players build beautiful things is a viable, highly monetizable wedge.</li>
+    </ul>
+</section>
+
+<section class="panel">
+    <span class="panel-number">Panel 04</span>
+    <h2>The Playbook</h2>
+    <p>How the winners sequenced their builds:</p>
+    <ol>
+        <li><strong>The Sandbox First:</strong> Built the physics engine (the sand, the water, the grid) before adding ANY characters or goals.</li>
+        <li><strong>The Visuals:</strong> Polished the "feel" (how the blocks snap or flow) to make the basic interaction inherently satisfying.</li>
+        <li><strong>The Viral Engine:</strong> Added a way to easily share "creations" or "worlds" (gifs, save codes) before doing any traditional marketing.</li>
+    </ol>
+</section>
+
+<section class="panel">
+    <span class="panel-number">Panel 05</span>
+    <h2>The Graveyard</h2>
+    <table>
+        <tr><th>Game</th><th>Cause of Death</th></tr>
+        <tr><td>Godhood</td><td>Feature bloat: Added too much management and stats, lost the "toy" feel.</td></tr>
+        <tr><td>Spore (Cell Stage)</td><td>Abandoned the cellular simulation too quickly to move into a traditional RPG.</td></tr>
+    </table>
+</section>
+
+<section class="panel">
+    <span class="panel-number">Panel 06</span>
+    <h2>The Heresy (Devil's Advocate)</h2>
+    <p>The strongest case against this project: <strong>"It's a toy, not a game."</strong> Without explicit goals or failure states, players might drop off after 10 minutes once they've seen all the elemental interactions. If the cellular automata isn't deep enough to surprise the player on day 3, the retention curve will flatline immediately.</p>
+</section>
+
+<section class="panel">
+    <span class="panel-number">Panel 07</span>
+    <h2>The Trends</h2>
+    <ul>
+        <li><strong>Tailwind:</strong> WebGL/WebGPU enables complex cellular automata directly in the browser, lowering friction to zero.</li>
+        <li><strong>Tailwind:</strong> Rise of "second monitor games" — ambient experiences played alongside work.</li>
+        <li><strong>Headwind:</strong> Infinite content generators (AI) make purely procedural visual toys less novel.</li>
+    </ul>
+</section>
+
+<section class="panel">
+    <span class="panel-number">Panel 08</span>
+    <h2>The Org</h2>
+    <p>To build this, we need:</p>
+    <ol>
+        <li><strong>Systems Designer:</strong> To design the elemental matrix and prevent simulation collapse.</li>
+        <li><strong>Frontend/WebGL Engineer:</strong> To make the cellular automata visually performant in the browser.</li>
+        <li><strong>Game Economist / Balancer:</strong> To pace the progression so players don't see everything in 10 minutes.</li>
+    </ol>
+</section>
+
+<section class="panel">
+    <span class="panel-number">Panel 09</span>
+    <h2>The Call</h2>
+    <p class="highlight"><strong>Verdict: BUILD.</strong></p>
+    <p>The technical risk is low (cellular automata is well understood), but the design risk is high. The wedge is building a 4-element web prototype that is inherently fun to touch. We will test the "toy vs game" heresy by seeing if players spontaneously set their own goals.</p>
+</section>
+
+</body>
+</html>

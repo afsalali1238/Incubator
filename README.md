@@ -12,7 +12,7 @@ Built for [Claude Cowork](https://claude.ai), Claude Code, and claude.ai.
 
 Start any new project and invoke the **`project-ceo`** skill. Claude stops being a generic assistant and becomes the **founding CEO** of a company built around your idea — with real, specific industry expertise for that vertical (a god-sim game, a health-tech tool, a logistics SaaS, a creator marketplace, whatever you're building).
 
-It then runs a four-phase founding sequence:
+It then runs a seven-phase founding sequence:
 
 | Phase | What happens | Reuses |
 |-------|--------------|--------|
@@ -20,6 +20,9 @@ It then runs a four-phase founding sequence:
 | **2. Autonomous Research** | Fully autonomous, no check-ins. Maps competitors by tier, finds 2–4 successful analogues and reverse-engineers **the order they built things in**, digs the graveyard for causes of death, and runs a devil's-advocate pass that's allowed to tell you to pivot. | `autoresearch` (spirit) |
 | **3. The Report** | Packages findings as a numbered-panel, scroll-snap HTML **Visual Document** — Thesis → Market → Winners → Playbook → Graveyard → Heresy → Trends → Org → Call. | `vd` |
 | **4. Hire the Team** | Derives a 4–7 agent roster *from your vertical*, sequenced by what de-risks the project fastest. Generates each agent as both a **persona brief** and an **installable `.skill` file** you can invoke later. | — |
+| **5. Board Meeting** | On return sessions: loads state, presents team health scores, and updates living documents as work progresses. | `INCUBATOR.md` |
+| **6. The Data Room** | (Optional) If raising VC, automatically builds a 10-slide markdown pitch deck focused on the Wedge and Graveyard findings. | — |
+| **7. HQ Dashboard** | Generates `hq.html`, a Slack-like UI that loads all project documents into channels so you can manage your company from a virtual office. | — |
 
 **The final output** is a `<your-project>-company/` folder — a complete *company starter pack*:
 
@@ -37,7 +40,10 @@ It then runs a four-phase founding sequence:
 
 ## Install
 
-### Claude Code (one command)
+### Claude Code (coming soon)
+
+> ⚠️ The `/plugin marketplace` command is not yet live in Claude Code.
+> Use the manual install below while this is in development.
 
 ```
 /plugin marketplace add afsalali1238/Incubator
@@ -102,11 +108,29 @@ Incubator/
 
 ---
 
+## See it in action
+
+→ [Terrarium Planet — company starter pack](./examples/terrarium-planet-company/)  
+A god-sim game concept run through the full founding sequence.  
+Includes: [charter](./examples/terrarium-planet-company/00_charter.md), findings report, [HQ Dashboard](./examples/terrarium-planet-company/hq.html), and [Systems Designer skill](./examples/terrarium-planet-company/skills/systems-designer/SKILL.md).
+
+---
+
 ## Design notes
 
 The structure follows the **AI-native startup lifecycle** — *Idea → MVP → Launch → Scale* — where the founder is the *orchestrator of agents*, not the individual contributor. The whole point of the skill is to keep your **sense-making ahead of your building**, because agentic coding makes building feel free, and that's the trap that kills AI-native startups: shipping a prototype and mistaking it for validation.
 
 The roster pattern (each agent is a domain-expert persona, hired in a de-risking order) is adapted from the role-as-advisor approach in [slavingia/skills](https://github.com/slavingia/skills).
+
+---
+
+## Developing
+
+After editing any file in `skills/project-ceo/`, run:
+```bash
+bash scripts/package.sh
+```
+to update the installable dist file.
 
 ---
 

@@ -16,6 +16,21 @@ Not "a marketing helper." A *specific* expert a real company of this type employ
 - a point of view and a way of thinking
 - the first 3 concrete tasks they'd do on this project
 
+## When no pattern fits — derive from first principles
+
+If the vertical doesn't match a pattern below, derive the roster by asking:
+
+1. What is the single thing that, if wrong, kills the project?
+   → Hire this first.
+2. What is the second-most-dangerous unknown?
+   → Hire this second.
+3. What can only be done by someone with domain credentials or relationships (regulatory, community, technical)?
+   → Hire this early, even if it feels premature.
+4. What is purely executional and can be done later?
+   → Defer these.
+
+The patterns below are starting points, not constraints. Adapt aggressively.
+
 ## Vertical → roster patterns (adapt, don't copy literally)
 
 These are starting templates. Derive the *actual* roster from the specific project. Reorder by what de-risks *this* idea fastest.
@@ -68,8 +83,8 @@ Produce an ordered list, each line: **role — why this hire now — lifecycle s
 5. Community Lead      — audience and distribution                              [Launch]
 ```
 
-Present this to Afsal as an org chart + sequence. Let him cut/add/reorder. Then generate the files.
+Present this to the founder as an org chart + sequence. Let him cut/add/reorder. Then generate the files.
 
 ## CEO ↔ agent relationship
 
-In the persona briefs and skills, frame each agent as reporting to the CEO. The CEO sets direction and arbitrates; each agent owns their domain and pushes back within it. This is the "orchestrator of agents" model — Afsal directs the CEO, the CEO directs the team.
+In the persona briefs and skills, frame each agent as reporting to the CEO. The CEO sets direction and arbitrates; each agent owns their domain and pushes back within it. This is the "orchestrator of agents" model — the founder directs the CEO, the CEO directs the team.

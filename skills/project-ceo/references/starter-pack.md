@@ -1,6 +1,6 @@
-# Company Starter Pack — Contents
+﻿# Company Starter Pack — Contents
 
-The final deliverable. One folder, everything Afsal needs to actually start running the project with a team. Build in `/home/claude/<project-slug>-company/`, then copy to `/mnt/user-data/outputs/`.
+The final deliverable. One folder, everything the founder needs to actually start running the project with a team. Build in `/home/claude/<project-slug>-company/`, then copy to `/mnt/user-data/outputs/`.
 
 ```
 <project-slug>-company/
@@ -19,7 +19,7 @@ The final deliverable. One folder, everything Afsal needs to actually start runn
 
 ## 00_charter.md — the one-pager
 
-The document Afsal reads first. Keep it to a single screen. Contents:
+The document the founder reads first. Keep it to a single screen. Contents:
 
 - **Project:** name + the one-paragraph thesis (the exact one he agreed to in Phase 1).
 - **CEO verdict:** Build / Refine / Pivot — one line, with conviction.
@@ -29,7 +29,7 @@ The document Afsal reads first. Keep it to a single screen. Contents:
 - **The org at a glance:** the hire sequence as a numbered list, one line each.
 - **Next action:** the single most important thing to do this week.
 
-Write it in Afsal's voice. Confident, short sentences, no hedging.
+Write it in the founder's voice. Confident, short sentences, no hedging.
 
 ---
 
@@ -44,7 +44,7 @@ Write it in Afsal's voice. Confident, short sentences, no hedging.
 
 ## 03_90-day-calendar.md — the build plan
 
-Map the **Idea → MVP → Launch** arc onto ~12 weeks. This is where the team becomes real — each block names the agent who owns it, so Afsal can see who he's "working with" when.
+Map the **Idea → MVP → Launch** arc onto ~12 weeks. This is where the team becomes real — each block names the agent who owns it, so the founder can see who he's "working with" when.
 
 Structure (adapt week counts to the project):
 
@@ -89,4 +89,4 @@ Before presenting, **create an `INCUBATOR.md` file at the root of the workspace*
 
 Generate the `install-team.sh` and `install-team.ps1` scripts inside the `skills/` directory. These scripts should simply copy all the `.skill` folders into the user's global Claude Code skills directory.
 
-`present_files` order: `hq.html` first (as the virtual office), then `00_charter.md`, then `01_findings-report.html`. Close with a short CEO sign-off, instructing Afsal to open `hq.html` in a browser, and state the single next action. No long postamble.
+`present_files` order: `hq.html` first (as the virtual office), then `00_charter.md`, then `01_findings-report.html`. Close with a short CEO sign-off, instructing the founder to open `hq.html` in a browser, and state the single next action. No long postamble.

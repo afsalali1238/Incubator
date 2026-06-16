@@ -19,7 +19,7 @@ For each tier, make the *strongest* case for why it threatens this project — n
 Find **2–4 genuinely successful analogous projects**. They don't have to be exact competitors — analogues count (a successful sandbox game is an analogue for a new god-sim even if the theme differs). For each, reverse-engineer:
 - **The wedge** — the narrow first thing they nailed before expanding.
 - **The first feature / first version** — what their MVP actually was.
-- **The build sequence** — what they shipped in what order. *This is what Afsal wants most.* He's copying sequencing, not features.
+- **The build sequence** — what they shipped in what order. *This is what the founder wants most.* He's copying sequencing, not features.
 - **Monetization** — how/when they started charging.
 - **The moat** — what's hard to replicate now (data, workflow lock-in, community, domain depth).
 
@@ -33,16 +33,37 @@ Sketch TAM/SAM/SOM from public data. Don't manufacture a fundable-looking number
 Identify **2–3 external trends** (regulatory, technological, demographic) that will move this market in ~24 months. Label each a **tailwind** or **headwind** for this specific hypothesis.
 
 ### Probe 6 — Devil's advocate (mandatory)
-Make the strongest possible case that a competitor wins and this project doesn't. Why their approach is better, why customers choose them, why the differentiator isn't as defensible as Afsal thinks. If the research genuinely surfaces evidence the idea needs revision, **the report must say so**. Confirmation bias with a research engine attached is the failure mode you're guarding against.
+Make the strongest possible case that a competitor wins and this project doesn't. Why their approach is better, why customers choose them, why the differentiator isn't as defensible as the founder thinks. If the research genuinely surfaces evidence the idea needs revision, **the report must say so**. Confirmation bias with a research engine attached is the failure mode you're guarding against.
 
 ## Discipline
 
 - **Use deep scrape tools:** Standard web search often fails on paywalls, developer docs, or deep API references. If you encounter a blocker on a critical competitor, use tools like `fetch` or `curl` to pull down the raw text of their pages to get the exact unit economics or features.
 - **Cite real sources.** Paraphrase findings; never reproduce source text. One short quote per source maximum, under 15 words.
 - **Believe surprising-but-sourced results**, but stay skeptical on SEO-heavy areas (product rankings, "best X" listicles) — corroborate.
-- **Don't flatter.** Your job is the truth that makes the next decision better, not the narrative that makes Afsal feel good.
+- **Don't flatter.** Your job is the truth that makes the next decision better, not the narrative that makes the founder feel good.
 - When the loop is done, write the report (Phase 3). Don't ask permission.
 
-## What to carry into the report
+## When research yields thin results
 
-A tight bundle: the tiered competitor map, the 2–4 winners with their build sequences, the graveyard table with causes of death, the market shape, the trends, and your own synthesized devil's-advocate case. Panel 04 of the VD (The Playbook) is built almost entirely from Probe 2's sequencing findings — make sure that's rich.
+If fewer than 2 analogues surface after 4+ searches, widen the analogy radius: a failing sandbox game in a different genre is still evidence. Note the widening in the report — "no direct analogues found; using [X] as a structural parallel."
+
+If the graveyard is empty, say so explicitly in Panel 05: "No documented failures found in this space — treat this as a risk, not a positive signal. Unknown failure modes are more dangerous than known ones."
+
+If market size data is unavailable, estimate from first principles and label clearly: "Estimated, not sourced."
+
+Never leave a panel blank. Thin evidence stated honestly is better than a placeholder.
+
+## Research-to-report mapping
+
+| Probe | Panel | Notes |
+|-------|-------|-------|
+| 4 — Market shape | 02 The Market | TAM sketch + expanding/consolidating/mature |
+| 2 — Winners | 03 The Winners | The 2–4 analogues |
+| 2 — Winners (sequencing) | 04 The Playbook | The build order, extracted from winner analysis |
+| 3 — Graveyard | 05 The Graveyard | Cause-of-death table |
+| 6 — Devil's advocate | 06 The Heresy | Strongest case against |
+| 5 — Trends | 07 The Trends | 2–3 tailwinds/headwinds |
+| 1 — Competitive landscape | feeds 03, 05, 06 | Tiered map informs multiple panels |
+
+Panel 01 (Thesis) comes from Phase 1, not research.
+Panels 08 (Org) and 09 (Call) are CEO synthesis, not research output.
