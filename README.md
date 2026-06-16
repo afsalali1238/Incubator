@@ -95,6 +95,17 @@ Or drop `skills/project-ceo/` into your skills directory directly.
 
 ---
 
+## How agents execute
+
+**Two modes depending on your setup:**
+
+- **Claude Code / Task tool available:** agents run as real subagents — the CEO spawns them, they work independently, and return results. Full multi-agent execution.
+- **Claude Cowork / standard claude.ai:** agents activate as inline personas. The CEO labels them clearly (`[Activating: Growth Lead]` ... `[Back to CEO]`) and switches between them in the same conversation. Same domain expertise, no parallel execution.
+
+The skill is useful in both modes. The difference is speed and parallelism, not quality of output.
+
+---
+
 ## What's inside
 
 ```

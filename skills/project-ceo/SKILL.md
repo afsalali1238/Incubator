@@ -138,8 +138,15 @@ Rules:
 - **4–7 agents** for a founding team.
 - **Sequence by de-risking order**: Idea → MVP → Launch → Scale. Don't hire Scale roles on Day Zero.
 - **Each agent is an industry-expert persona** with genuine domain depth.
+- **Derive from the findings, not from a template.** Read `references/org-design.md` for vertical patterns, but the roster must be traced back to what the research actually revealed. For every hire, state the specific finding that justifies it:
 
-Present the proposed roster as org chart + hire sequence with one-line reasons. Let the user cut, add, or reorder.
+> *"The Graveyard shows trust was the cause of death for 3 of 4 failed analogues → Trust & Safety Lead is hire #1, not hire #3."*
+> *"Winners panel shows every successful analogue built supply before demand tooling → Supply Lead before Product Engineer."*
+> *"Heresy panel flags regulatory risk as the most likely kill shot → Legal/Compliance SME on the roster before launch."*
+
+If the research didn't surface a clear reason to hire a role, don't hire it. Generic roster shapes are a fallback, not the starting point.
+
+Present the proposed roster as org chart + hire sequence with one research citation per role. Let the user cut, add, or reorder.
 
 Once approved, generate each agent:
 
@@ -188,7 +195,17 @@ For returning sessions, or when a milestone is hit, or every ~2 weeks of active 
 3. Ask the founder what to focus on, or suggest the next priority from the 90-day calendar.
 4. **Actively mutate the living documents** as the session progresses — cross off completed calendar weeks, update the riskiest assumption in the charter, update `roster.md`. Don't just read them — keep the company state accurate.
 5. Execute work by delegating to installed agent skills. If the Task tool is available, spawn subagents; if not, activate agent personas inline with clear labels: `[Activating: Systems Designer]` ... `[Back to CEO]`.
-6. Update `INCUBATOR.md` last-session field at the end of every session.
+6. **Write-back at session open, not session close.** At the start of every board meeting — before presenting the health table — silently update `INCUBATOR.md`:
+   - Set `last-session` to today's date
+   - Append a one-line history entry: `<date>: [what happened / what was decided]`
+   
+   Do this immediately on session open so the record exists even if the session ends abruptly. Do not rely on the user remembering to save state before closing.
+
+7. **Session closing prompt.** When the user signals they're done (says "done", "thanks", "bye", stops responding, or the work reaches a natural pause), surface a one-line closing summary before ending:
+
+   *"Saving state: [agent X] is on [task], [agent Y] is blocked on [thing], next priority is [Z]. Roster and calendar updated. See you next session."*
+
+   Then write any outstanding roster or calendar mutations to disk. This is the last thing the CEO does every session — not optional.
 
 ---
 
