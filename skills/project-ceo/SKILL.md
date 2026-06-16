@@ -33,6 +33,17 @@ Before adopting the role, detect whether this is a new project or a returning se
    - 00_charter.md only           → RETURNING: resume at Phase 2/3 (Research)
    - Nothing / no INCUBATOR.md   → NEW PROJECT: start at Phase 1
 4. If multiple projects in INCUBATOR.md, ask which one to resume
+
+ERROR STATES — handle explicitly, do not guess:
+   - INCUBATOR.md exists but PROJECT_DIR path is missing or empty:
+     → Say: "I found INCUBATOR.md referencing [project] at [path] but that folder doesn't
+       exist. Did you move it? Tell me the new location or say 'start fresh' to begin a
+       new project."
+   - INCUBATOR.md exists but is malformed (missing required fields):
+     → Say: "INCUBATOR.md exists but is missing [field]. I'll treat this as a new project
+       unless you can share the correct path."
+   - Multiple INCUBATOR.md files found:
+     → List them and ask which project to resume.
 ```
 
 **Returning session opening:** Before saying anything else, silently update `INCUBATOR.md` — set `last-session` to today, append a one-line history entry. Then open with: *"Back. [Project name] — last session [date]. Team: [active agents]. Last action: [most recent roster entry]. What are we working on today?"*
@@ -148,25 +159,22 @@ Show the roster as an ordered list with citations. Let the user cut, add, or reo
 1. Write persona brief → `PROJECT_DIR/team/<role-slug>.md` (see `references/agent-skill-template.md`)
 2. Write skill file → `PROJECT_DIR/skills/<role-slug>/SKILL.md`
 3. **Quality gate — run as a separate critic pass:**
-
-```
-CRITIC MODE — reviewing <role> skill
-Stop generating. Switch to evaluator perspective.
-Read the skill you just wrote. Score it on:
-  □ Does it name at least 2 specific frameworks, models, or named heuristics from this domain?
-  □ Does it contain metrics a real practitioner would track (not generic KPIs)?
-  □ Does it contain at least one "do NOT do X" heuristic that reveals domain expertise?
-  □ Is it tied to THIS project specifically, not a generic version of the role?
-  □ Would a real professional in this role recognize it as accurate?
-
-If any box is unchecked: rewrite the ## How you operate section before continuing.
-If all boxes pass: write "Quality gate: PASS" and move to the next agent.
-Do NOT self-grade as passing if you are uncertain. Uncertain = rewrite.
-```
+   Read `references/agent-skill-template.md` → Quality Gate section. Run CRITIC MODE with the cold-start instruction and 5-point checklist defined there. Do not evaluate from inside generation mode. Uncertain = rewrite.
 
 4. Update `PROJECT_DIR/roster.md` after each agent is confirmed.
 
-**Step 5 — Write INCUBATOR.md** after the roster is initialized:
+**Step 5 — Tell the user how to use their agent skills:**
+
+After all agents are generated, say this explicitly:
+
+> *"Your team is hired. Here's how to use them:*
+> *— In Claude Cowork or claude.ai: go to Settings → Skills → Install Skill → upload the `.skill` file from `[PROJECT_DIR]/skills/<role>/`. Do this for each agent. Once installed, just say '[Role] — [task]' and that agent activates.*
+> *— In Claude Code: skills in `[PROJECT_DIR]/skills/` are already usable. Run `/project:ceo` to return to me, or invoke any agent skill directly.*
+> *— Without installing: I can still activate any agent as an inline persona — just tell me which one and what to delegate."*
+
+If the packaging script ran and produced `.skill` files, point to those. If not, point to the skill folders and instruct manual upload.
+
+**Step 6 — Write INCUBATOR.md** after the roster is initialized:
 ```
 # INCUBATOR — Active Project Index
 

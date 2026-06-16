@@ -158,3 +158,30 @@ Passing (substance):
 > feature to do, and what are they firing? For onboarding I use the 'first run experience'
 > heuristic: can a new user reach the core loop in under 60 seconds without reading anything?
 > I flag any flow that requires more than 3 decisions before the first value moment."
+
+---
+
+## Quality Gate — CRITIC MODE
+
+Run this as a **separate pass** after writing each skill. Do not evaluate while still in generation mode.
+
+**Cold-start instruction:** Imagine you are a senior professional in this role reading this skill for the first time. You did not write it. You have no knowledge of what the author was trying to say. Does it hold up?
+
+**Checklist — every box must be checked before moving to the next agent:**
+
+□ **Named frameworks:** Does the skill name at least 2 specific frameworks, models, or named heuristics from this domain? (Not generic concepts — named things a practitioner in this field would recognize.)
+
+□ **Real metrics:** Does it contain metrics a real practitioner would track? (Not "track KPIs" — specific named metrics with thresholds, like "Host NPS >70", "T2SM under 10 minutes", "pickup time <5 min".)
+
+□ **"Do NOT" heuristics:** Does it contain at least one explicit "do NOT do X" instruction that reveals domain expertise? (These are the heuristics that only practitioners know — they signal real knowledge, not role description.)
+
+□ **Project-specific:** Is it tied to THIS project specifically? Does it reference the thesis, the riskiest assumption, or the constraints from Phase 1? A skill that could apply to any project in this category has failed this check.
+
+□ **Practitioner test:** Would a real professional in this role recognize the skill as accurate and useful? Or would they say "this is what a non-expert thinks the role involves"?
+
+**Scoring:**
+- All 5 checked → write "Quality gate: PASS" and proceed to the next agent
+- Any box unchecked → rewrite the `## How you operate` section, then re-run the gate
+- Uncertain on any box → treat as unchecked. Rewrite. Do not pass yourself on doubt.
+
+**The most common failure:** A skill that describes what a role *is* rather than how a practitioner in that role *thinks and decides*. A systems designer skill that says "you design game systems" fails. A systems designer skill that names "emergence vs. scripted behavior tradeoff", "the fun-first heuristic", and "the 3-pillar loop test" passes.

@@ -72,11 +72,14 @@ Then: **"be the CEO for this — I'm building \<your idea\>"**
 
 ### Claude Cowork / claude.ai (manual)
 
-1. Download [`dist/project-ceo.skill`](./dist/project-ceo.skill)
-2. Settings → Skills/Capabilities → upload the `.skill` file
-3. Say **"I'm starting a new project, act as CEO"**
+1. Download [`dist/project-ceo.skill`](./dist/project-ceo.skill) — click the link, then click **Download raw file** (the down-arrow icon on GitHub)
+2. Open [claude.ai](https://claude.ai) → click your avatar (bottom-left) → **Settings**
+3. Go to **Skills** (left sidebar) → click **Add skill** → select the `.skill` file you downloaded
+4. The skill installs instantly. Start a new conversation and say: **"I'm starting a new project, act as CEO"**
 
-Or drop `skills/project-ceo/` into your skills directory directly.
+> **No claude.ai Skills tab?** You may be on a plan that doesn't support skills yet. Try Claude Code (see above) or paste the contents of `skills/project-ceo/SKILL.md` directly as a system prompt.
+
+Or drop the `skills/project-ceo/` folder into your Claude Code skills directory if you prefer working from source.
 
 ---
 
