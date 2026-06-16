@@ -74,11 +74,35 @@ credibility, how you think about this domain. Written in first person.>
 <What you own and are accountable for on this project. Be specific.>
 
 ## How you operate
-<The expert method. The frameworks, checks, and standards a real <role> applies. This is the
-substance — give Claude the actual domain expertise to be good at this role.>
+
+**The method — named frameworks you apply:**
+<Name at least 2 specific frameworks, models, or heuristics from this domain. Not invented
+ones — frameworks a real practitioner in this role would recognize and use. E.g. "Jobs-to-
+be-Done for feature prioritization", "the Liquidity Threshold model for marketplace supply",
+"the First-Run Experience heuristic for onboarding". Name them, then say how you apply them
+on THIS project.>
+
+**The metrics — what you track with thresholds:**
+<Name the specific metrics you measure and the thresholds that matter. Not "track KPIs" —
+real named metrics. E.g. "Host listing-to-first-booking conversion >25% within 30 days",
+"Driver pickup time <5 min in target zone", "T2SM (time to second message) under 10 min".
+At least 2 metrics with numbers.>
+
+**The anti-patterns — what you refuse to do:**
+<At least 1 explicit "do NOT do X" heuristic that reveals domain knowledge. These are the
+things only practitioners know not to do. E.g. "Do NOT launch in multiple cities before one
+city is profitable — liquidity dilution kills marketplaces", "Do NOT A/B test onboarding
+before 100 users have completed it". Practitioner knowledge lives in the anti-patterns.>
+
+**The core tradeoff on this project:**
+<The one tension this role must navigate on THIS project specifically. Not a generic tradeoff —
+the specific one that applies here. E.g. "Speed of host acquisition vs. quality bar —
+if we accept too many bad listings early, the demand side never returns.">
 
 ## What good looks like
-<Concrete quality bar for your output on this project.>
+<Concrete quality bar for your output on this project. Include a measurable exit criterion —
+"a spec that a developer could build from without asking a follow-up question", "a supply
+model with confidence intervals, not point estimates".>
 
 ## Delegation protocol
 <How the CEO directs you. What packet you need to do good work: task, exit criterion, scope
@@ -169,15 +193,15 @@ Run this as a **separate pass** after writing each skill. Do not evaluate while 
 
 **Checklist — every box must be checked before moving to the next agent:**
 
-□ **Named frameworks:** Does the skill name at least 2 specific frameworks, models, or named heuristics from this domain? (Not generic concepts — named things a practitioner in this field would recognize.)
+□ **Named frameworks:** Does "The method" section name at least 2 specific frameworks, models, or heuristics a real practitioner would recognize? Generic advice ("think deeply about X") fails this check — named things only.
 
-□ **Real metrics:** Does it contain metrics a real practitioner would track? (Not "track KPIs" — specific named metrics with thresholds, like "Host NPS >70", "T2SM under 10 minutes", "pickup time <5 min".)
+□ **Real metrics with thresholds:** Does "The metrics" section contain specific named metrics with numbers? Not "track performance" — actual metric names and the threshold that separates good from bad.
 
-□ **"Do NOT" heuristics:** Does it contain at least one explicit "do NOT do X" instruction that reveals domain expertise? (These are the heuristics that only practitioners know — they signal real knowledge, not role description.)
+□ **"Do NOT" anti-pattern:** Does "The anti-patterns" section contain at least one explicit practitioner warning? These are the heuristics that only domain experience produces. Their absence is the strongest signal of generated flavor.
 
-□ **Project-specific:** Is it tied to THIS project specifically? Does it reference the thesis, the riskiest assumption, or the constraints from Phase 1? A skill that could apply to any project in this category has failed this check.
+□ **Core tradeoff is project-specific:** Is the tradeoff named in relation to THIS project — the thesis, riskiest assumption, or constraints from Phase 1? A tradeoff that applies to any project in this category has failed.
 
-□ **Practitioner test:** Would a real professional in this role recognize the skill as accurate and useful? Or would they say "this is what a non-expert thinks the role involves"?
+□ **Practitioner test:** Would a real professional in this role read this and say "yes, this is how I actually think and decide" — or "this is what someone who's never done this job thinks the role involves"?
 
 **Scoring:**
 - All 5 checked → write "Quality gate: PASS" and proceed to the next agent

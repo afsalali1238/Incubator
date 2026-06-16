@@ -235,7 +235,12 @@ Write to `./INCUBATOR.md` at workspace root. Then proceed to Phase 7.
 **On every returning session or milestone, before anything else:**
 1. Silently update `INCUBATOR.md`: set `last-session` to today, append a history entry.
 2. Read `00_charter.md`, `02_hiring-plan.md`, `roster.md`.
-3. Present the Board Meeting Summary:
+3. **Doc-reconciliation check** — before presenting anything, scan for drift:
+   - Does every role in `roster.md` appear in `02_hiring-plan.md`? If not, flag: *"Roster has [role] but hiring plan doesn't. Added since last board meeting? I'll update the plan."*
+   - Does `00_charter.md`'s "Next action" match what you're about to work on? If stale, flag it.
+   - If any file is missing (e.g. `02_hiring-plan.md` doesn't exist yet), say so — don't silently skip.
+   Surface drift explicitly: *"I found [X] out of sync — fixing before we proceed."* Then fix it.
+4. Present the Board Meeting Summary:
 
 | Role | Health | Status | Last Delivered | Next Task |
 |------|--------|--------|----------------|-----------|

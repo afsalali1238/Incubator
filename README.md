@@ -171,9 +171,12 @@ The skill is useful in a single session. It becomes a different tool over weeks.
 
 ## Design
 
-Built on the **AI-native startup lifecycle** — *Idea → MVP → Launch → Scale* — where the founder is the *orchestrator of agents*, not the individual contributor. The skill keeps your **sense-making ahead of your building**, because agentic coding makes building feel free and that's the trap.
+Built as a **founding operating system**, not a company simulator. What you get is a structured pre-build research-and-planning ritual with a persistent state layer — the kind of thinking an experienced founding team does before writing a line of code, compressed into a turn-based session.
+
+The model plays multiple personas, all from the same context. That's a planning artifact, not a real team. The value isn't the illusion of an org — it's that the phases enforce order: you can't hire before you've researched, can't build before you've validated, can't add Scale roles before you've earned them. Sense-making before building. Agentic coding makes building feel free; that's the trap this is designed to prevent.
 
 Roster pattern adapted from [slavingia/skills](https://github.com/slavingia/skills).
+
 
 ---
 
