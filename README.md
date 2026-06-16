@@ -6,6 +6,8 @@ A Claude skill collection for **founding and running a new project from zero**. 
 
 Built for [Claude Cowork](https://claude.ai), Claude Code, and claude.ai.
 
+> ⭐ If this is useful, star the repo — it helps others find it.
+
 ---
 
 ## What it does
@@ -16,7 +18,7 @@ Invoke **`project-ceo`** at the start of any project. Claude becomes the **found
 |-------|------|--------------|
 | **1. Interview** | Interactive | CEO interrogates the idea one question at a time — exits only when you agree on a testable hypothesis. Captures your time budget and VC intent. |
 | **2. Research** | Fully autonomous · hard cap 20 searches | Maps competitors by tier, reverse-engineers 2–4 winners' *build sequences*, digs the graveyard for causes of death, runs a mandatory devil's-advocate pass |
-| **3. Report** | Autonomous | 9-panel Visual Document: Thesis → Market → Winners → Playbook → Graveyard → Heresy → Trends → Org → Call |
+| **3. Report** | Autonomous | Research report: 9 panels for startups, 5 for side projects/MVPs. Thesis → Analogues → Graveyard → Heresy → The Call — or the full arc to Trends and Org. |
 | **4. Hire the Team** | Interactive | Derives a 4–7 agent roster from your vertical, sequenced by what de-risks fastest. Quality-gates every generated skill — no flavor without substance. |
 | **5. Board Meeting** | Ongoing | Per-agent 🟢/🟡/🔴 health scores, roster changes, riskiest current assumption, next action. Runs at every milestone or returning session. |
 | **6. Data Room** | Conditional (VC track) | Converts research into a 10-slide pitch deck weighted on Graveyard and Playbook — why others failed, why this sequence wins. |
@@ -45,7 +47,7 @@ The [`examples/airbnb/`](./examples/airbnb/) folder shows real output from a ful
 ```
 <your-project>-company/
 ├── 00_charter.md            # thesis, CEO verdict, riskiest assumption, org at a glance
-├── 01_findings-report.html  # the 9-panel research report
+├── 01_findings-report.html  # research report (5 or 9 panels depending on scope)
 ├── 02_hiring-plan.md        # org chart + sequenced hire order with reasons
 ├── 04_pitch-deck.md         # 10-slide VC pitch deck (VC track only)
 ├── hq.html                  # dark-mode command centre — open in any browser
@@ -141,12 +143,29 @@ Incubator/
 
 ---
 
-## Companion skills (optional — works standalone without them)
+## Companion skills (optional — works fully standalone without any of these)
 
-- **`grill-me`** — relentless one-question-at-a-time interviewing
-- **`karpathy-guidelines`** — surface assumptions, avoid overcomplication
-- **`vd`** — Visual Document format used in Phase 3 (inline spec included as fallback)
-- **`autoresearch`** — autonomous-loop discipline Phase 2 is modeled on
+These are personal Claude Cowork skills. If you have them installed, the CEO uses them automatically. If not, equivalent behaviour is built in as a fallback.
+
+- **`grill-me`** — relentless one-question-at-a-time interviewing (Phase 1 fallback: built-in decision tree)
+- **`karpathy-guidelines`** — surface assumptions, avoid overcomplication (built into operating principles)
+- **`vd`** — Visual Document format used in Phase 3 (fallback: self-contained HTML generated inline)
+- **`autoresearch`** — autonomous-loop discipline (fallback: Search N/20: counter in Phase 2)
+
+---
+
+## Why not just prompt Claude?
+
+A raw prompt gets you a smart answer. This gets you a **persistent company**.
+
+The difference:
+- **Phases enforce order** — you can't hire a team before the research exists. The CEO won't let you build before sense-making.
+- **Research has a hard cap and accountability** — 20 searches, counted out loud, with explicit INSUFFICIENT DATA flags. Raw prompts hallucinate gaps.
+- **The roster is derived from evidence** — every hire is cited to a specific research panel, not generated from a template.
+- **Sessions persist** — `INCUBATOR.md` means the CEO picks up exactly where you left off, without you re-explaining the project.
+- **Agent quality is gated** — every generated skill goes through a cold-start critic pass before you install it.
+
+The skill is useful in a single session. It becomes a different tool over weeks.
 
 ---
 
