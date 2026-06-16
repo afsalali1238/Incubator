@@ -1,8 +1,8 @@
 # Incubator — idea in, company out
 
-![Incubator Banner](./assets/banner.png)
+[![Incubator Banner](./assets/banner.png)](https://github.com/afsalali1238/Incubator)
 
-A Claude skill collection for **founding a new project from zero**. You bring an idea. You walk out with a validated thesis, a market-research report, and a team of specialist AI agents — structured exactly the way a real company in that vertical would build itself.
+A Claude skill collection for **founding and running a new project from zero**. You bring an idea. You walk out with a validated thesis, a market-research report, a team of specialist AI agents — and a CEO that keeps orchestrating them for the entire lifecycle of the project.
 
 Built for [Claude Cowork](https://claude.ai), Claude Code, and claude.ai.
 
@@ -10,68 +10,88 @@ Built for [Claude Cowork](https://claude.ai), Claude Code, and claude.ai.
 
 ## What it does
 
-Start any new project and invoke the **`project-ceo`** skill. Claude stops being a generic assistant and becomes the **founding CEO** of a company built around your idea — with real, specific industry expertise for that vertical (a god-sim game, a health-tech tool, a logistics SaaS, a creator marketplace, whatever you're building).
+Invoke **`project-ceo`** at the start of any project. Claude becomes the **founding CEO** for your specific vertical — with real industry expertise, not generic advice. It runs a seven-phase sequence:
 
-It then runs a seven-phase founding sequence:
+| Phase | Mode | What happens |
+|-------|------|--------------|
+| **1. Interview** | Interactive | CEO interrogates the idea one question at a time — exits only when you agree on a testable hypothesis. Captures your time budget and VC intent. |
+| **2. Research** | Fully autonomous · hard cap 20 searches | Maps competitors by tier, reverse-engineers 2–4 winners' *build sequences*, digs the graveyard for causes of death, runs a mandatory devil's-advocate pass |
+| **3. Report** | Autonomous | 9-panel Visual Document: Thesis → Market → Winners → Playbook → Graveyard → Heresy → Trends → Org → Call |
+| **4. Hire the Team** | Interactive | Derives a 4–7 agent roster from your vertical, sequenced by what de-risks fastest. Quality-gates every generated skill — no flavor without substance. |
+| **5. Board Meeting** | Ongoing | Per-agent 🟢/🟡/🔴 health scores, roster changes, riskiest current assumption, next action. Runs at every milestone or returning session. |
+| **6. Data Room** | Conditional (VC track) | Converts research into a 10-slide pitch deck weighted on Graveyard and Playbook — why others failed, why this sequence wins. |
+| **7. HQ Dashboard** | Automatic | Generates a zero-dependency dark-mode `hq.html` — your command centre. Charter, roster, calendar, hiring plan in one browser tab. |
 
-| Phase | What happens | Reuses |
-|-------|--------------|--------|
-| **1. The Interview** | The CEO interrogates your idea one question at a time until it's a *testable hypothesis*, not a vague observation. Ends with a one-paragraph thesis you both agree on. | `grill-me`, `karpathy-guidelines` |
-| **2. Autonomous Research** | Fully autonomous, no check-ins. Maps competitors by tier, finds 2–4 successful analogues and reverse-engineers **the order they built things in**, digs the graveyard for causes of death, and runs a devil's-advocate pass that's allowed to tell you to pivot. | `autoresearch` (spirit) |
-| **3. The Report** | Packages findings as a numbered-panel, scroll-snap HTML **Visual Document** — Thesis → Market → Winners → Playbook → Graveyard → Heresy → Trends → Org → Call. | `vd` |
-| **4. Hire the Team** | Derives a 4–7 agent roster *from your vertical*, sequenced by what de-risks the project fastest. Generates each agent as both a **persona brief** and an **installable `.skill` file** you can invoke later. | — |
-| **5. Board Meeting** | On return sessions: loads state, presents team health scores, and updates living documents as work progresses. | `INCUBATOR.md` |
-| **6. The Data Room** | (Optional) If raising VC, automatically builds a 10-slide markdown pitch deck focused on the Wedge and Graveyard findings. | — |
-| **7. HQ Dashboard** | Generates `hq.html`, a Slack-like UI that loads all project documents into channels so you can manage your company from a virtual office. | — |
+**The CEO doesn't disappear after founding.** It writes an `INCUBATOR.md` index at your workspace root. Every time you return — "CEO check in", "let's work on the project" — it re-reads the roster, checks team health, and picks up exactly where the company left off.
 
-**The final output** is a `<your-project>-company/` folder — a complete *company starter pack*:
+---
+
+## See it in action
+
+The [`examples/airbnb/`](./examples/airbnb/) folder shows real output from a full run on the founding of Airbnb:
+
+| File | What it shows |
+|------|---------------|
+| [`00_charter.md`](./examples/airbnb/00_charter.md) | One-pager: thesis, verdict, riskiest assumption, scope fence, org at a glance, next action |
+| [`roster.md`](./examples/airbnb/roster.md) | Live team registry with 🟢/🟡/🔴 health scores and pending hire sequencing |
+| [`hq.html`](./examples/airbnb/hq.html) | The rendered HQ Dashboard — open in a browser |
+| [`team/community-supply-lead.md`](./examples/airbnb/team/community-supply-lead.md) | Agent persona brief with real domain depth (host acquisition, supply-demand theory, listing quality) |
+| [`skills/community-supply-lead/SKILL.md`](./examples/airbnb/skills/community-supply-lead/SKILL.md) | Installable agent skill — real supply-side playbook, not generic marketplace advice |
+
+---
+
+## The company starter pack
 
 ```
-<project>-company/
-├── 00_charter.md            # thesis, CEO verdict, riskiest assumption, the org at a glance
-├── 01_findings-report.html  # the VD research report
+<your-project>-company/
+├── 00_charter.md            # thesis, CEO verdict, riskiest assumption, org at a glance
+├── 01_findings-report.html  # the 9-panel research report
 ├── 02_hiring-plan.md        # org chart + sequenced hire order with reasons
-├── 03_90-day-calendar.md    # week-by-week build plan, each block owned by an agent
+├── 03_90-day-calendar.md    # week-by-week plan calibrated to your time budget
+├── 04_pitch-deck.md         # 10-slide VC pitch deck (VC track only)
+├── hq.html                  # dark-mode command centre — open in any browser
+├── roster.md                # LIVE team registry with health scores — updated every session
 ├── team/                    # persona briefs, one per hired agent
 └── skills/                  # installable specialist-agent skills, one per role
+
+INCUBATOR.md                 # session index at workspace root — how the CEO finds your project
 ```
 
 ---
 
 ## Install
 
-### Claude Code (coming soon)
-
-> ⚠️ The `/plugin marketplace` command is not yet live in Claude Code.
-> Use the manual install below while this is in development.
+### Claude Code (one command)
 
 ```
 /plugin marketplace add afsalali1238/Incubator
 /plugin install incubator
 ```
 
-Then start any project and say **"be the CEO for this — I'm building \<your idea\>"** and the sequence kicks off.
+Then: **"be the CEO for this — I'm building \<your idea\>"**
 
 ### Claude Cowork / claude.ai (manual)
 
-1. Download [`project-ceo.skill`](./dist/project-ceo.skill) from this repo.
-2. Add it via your skills/capabilities settings (upload the `.skill` file).
-3. Start a project and say **"I'm starting a new project, act as CEO"**.
+1. Download [`dist/project-ceo.skill`](./dist/project-ceo.skill)
+2. Settings → Skills/Capabilities → upload the `.skill` file
+3. Say **"I'm starting a new project, act as CEO"**
 
-Or drop the `skills/project-ceo/` folder into your skills directory directly.
+Or drop `skills/project-ceo/` into your skills directory directly.
 
 ---
 
 ## How to trigger it
 
-Any of these will wake the CEO:
-
+**New project:**
 - "I'm starting a new project — be the CEO for this."
 - "I want to build \<X\>, help me kick it off."
 - "Run point on this build as founder."
-- Just describe a fresh idea you intend to *build*, not just discuss.
 
-It will **not** trigger for editing an existing project's code, or for projects that already have a team — that's normal work, not a founding.
+**Returning to a project:**
+- "Let's work on the project."
+- "CEO check in — where are we?"
+- "Board meeting."
+- Just name the project — the CEO finds `INCUBATOR.md` and picks up.
 
 ---
 
@@ -82,60 +102,40 @@ Incubator/
 ├── .claude-plugin/
 │   ├── plugin.json
 │   └── marketplace.json
-├── skills/
-│   └── project-ceo/
-│       ├── SKILL.md
-│       └── references/
-│           ├── interview.md            # CEO interview decision tree + question bank
-│           ├── research.md             # autonomous research method + competitor tiering
-│           ├── org-design.md           # deriving & sequencing the agent roster per vertical
-│           ├── agent-skill-template.md # how each hired agent is generated (brief + SKILL.md)
-│           └── starter-pack.md         # charter, hiring plan, 90-day calendar contents
+├── assets/
+│   └── banner.png
+├── skills/project-ceo/
+│   ├── SKILL.md
+│   └── references/
+│       ├── interview.md            # decision tree + time-budget question
+│       ├── research.md             # method + 20-search hard cap + graveyard protocol
+│       ├── org-design.md           # vertical roster patterns + sequencing
+│       ├── agent-skill-template.md # brief + skill templates + quality gate checklist
+│       ├── starter-pack.md         # charter, calendar, roster, INCUBATOR.md format
+│       ├── orchestration.md        # hire/fire/delegate/spawn + board meeting + health scores
+│       └── hq-template.md          # the HQ Dashboard HTML template
+├── examples/
+│   └── airbnb/           # real example output (charter, roster, hq.html, agent skill)
 └── dist/
-    └── project-ceo.skill               # packaged, installable skill file
+    └── project-ceo.skill           # packaged installable
 ```
 
 ---
 
-## Companion skills (recommended)
+## Companion skills (optional — works standalone without them)
 
-`project-ceo` reuses these skills if they're installed. It works without them, but they make it sharper:
-
-- **`grill-me`** — relentless one-question-at-a-time interviewing.
-- **`karpathy-guidelines`** — surface assumptions, avoid overcomplication.
-- **`vd`** — the Visual Document report format used in Phase 3.
-- **`autoresearch`** — the autonomous-loop discipline Phase 2 is modeled on.
+- **`grill-me`** — relentless one-question-at-a-time interviewing
+- **`karpathy-guidelines`** — surface assumptions, avoid overcomplication
+- **`vd`** — Visual Document format used in Phase 3 (inline spec included as fallback)
+- **`autoresearch`** — autonomous-loop discipline Phase 2 is modeled on
 
 ---
 
-## See it in action
+## Design
 
-To prove the Incubator can handle any vertical, we've generated "Day Zero" company starter packs for 5 iconic startups. See how the CEO adapts the hiring sequence and risk assessments based on the industry:
+Built on the **AI-native startup lifecycle** — *Idea → MVP → Launch → Scale* — where the founder is the *orchestrator of agents*, not the individual contributor. The skill keeps your **sense-making ahead of your building**, because agentic coding makes building feel free and that's the trap.
 
-1. **[Gymshark (D2C Fashion)](./examples/gymshark-company/)** — Community-led apparel. (First hire: Influencer Manager)
-2. **[Slack (B2B SaaS Pivot)](./examples/slack-company/)** — Enterprise software. (First hire: UX Designer)
-3. **[Oculus VR (Deep Tech / Hardware)](./examples/oculus-company/)** — Consumer hardware. (First hire: Optical Engineer)
-4. **[Uber (Consumer Logistics)](./examples/uber-company/)** — Physical marketplace. (First hire: City Ops GM)
-5. **[23andMe (Regulated Biotech)](./examples/23andme-company/)** — Consumer health. (First hire: FDA Regulatory SME)
-6. **[Terrarium Planet (God-Sim Game)](./examples/terrarium-planet-company/)** — Indie game studio. (First hire: Systems Designer)
-
----
-
-## Design notes
-
-The structure follows the **AI-native startup lifecycle** — *Idea → MVP → Launch → Scale* — where the founder is the *orchestrator of agents*, not the individual contributor. The whole point of the skill is to keep your **sense-making ahead of your building**, because agentic coding makes building feel free, and that's the trap that kills AI-native startups: shipping a prototype and mistaking it for validation.
-
-The roster pattern (each agent is a domain-expert persona, hired in a de-risking order) is adapted from the role-as-advisor approach in [slavingia/skills](https://github.com/slavingia/skills).
-
----
-
-## Developing
-
-After editing any file in `skills/project-ceo/`, run:
-```bash
-bash scripts/package.sh
-```
-to update the installable dist file.
+Roster pattern adapted from [slavingia/skills](https://github.com/slavingia/skills).
 
 ---
 

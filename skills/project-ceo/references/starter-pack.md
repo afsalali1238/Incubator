@@ -1,92 +1,177 @@
 # Company Starter Pack — Contents
 
-The final deliverable. One folder, everything the founder needs to actually start running the project with a team. Build directly in the workspace: `./<project-slug>-company/`.
+The final deliverable of Phase 4. One folder, everything needed to actually run the project
+with a team.
+
+**Build path:**
+```
+1. Check if /mnt/user-data/outputs/ exists → use it   (Claude Cowork)
+2. Else check if ./outputs/ exists         → use it   (Claude Code)
+3. Else create ./outputs/                  → use it
+PROJECT_DIR = <output-dir>/<project-slug>-company/
+```
+
+Build in PROJECT_DIR. Present `00_charter.md` first, then the report, then the folder.
+
+---
+
+## Folder structure
 
 ```
 <project-slug>-company/
-├── 00_charter.md
-├── 01_findings-report.html   (the VD report from Phase 3)
-├── 02_hiring-plan.md
-├── 03_90-day-calendar.md
-├── hq.html                   (the Slack-like dashboard from Phase 7)
-├── team/      (persona briefs)
-└── skills/    (installable skill folders)
-    ├── install-team.sh
-    └── install-team.ps1
+├── 00_charter.md               # The one-pager. Read this first.
+├── 01_findings-report.html     # VD research report from Phase 3
+├── 02_hiring-plan.md           # Org chart + sequenced hire order
+├── 03_90-day-calendar.md       # Week-by-week build plan, agents assigned
+├── roster.md                   # LIVE team registry — updated every session
+├── team/                       # Persona briefs, one per agent
+│   ├── <role-slug>.md
+│   └── ...
+└── skills/                     # Installable skill files, one per agent
+    ├── <role-slug>/SKILL.md
+    └── ...
 ```
 
 ---
 
 ## 00_charter.md — the one-pager
 
-The document the founder reads first. Keep it to a single screen. Contents:
+Single screen. The document read first, every session.
 
-- **Project:** name + the one-paragraph thesis (the exact one he agreed to in Phase 1).
-- **CEO verdict:** Build / Refine / Pivot — one line, with conviction.
-- **The riskiest assumption:** named, plus the cheapest test to disprove it.
-- **The wedge:** the single core interaction to build first (from the interview + winners' sequencing).
-- **The scope fence:** what this deliberately is NOT doing yet.
-- **The org at a glance:** the hire sequence as a numbered list, one line each.
-- **Next action:** the single most important thing to do this week.
+- **Project:** name + the one-paragraph thesis (exact text from Phase 1 exit)
+- **CEO verdict:** Build / Refine / Pivot — one line, with conviction
+- **The riskiest assumption:** named, plus the cheapest test to disprove it
+- **The wedge:** the single core interaction to build first
+- **The scope fence:** what this deliberately is NOT doing yet
+- **The org at a glance:** hire sequence as a numbered list, one line each
+- **Next action:** the single most important thing to do this session
 
-Write it in the founder's voice. Confident, short sentences, no hedging.
+Write in the user's voice: short sentences, no hedging, no corporate filler.
+
+---
+
+## roster.md — the living team registry
+
+This file is the nerve center of Phase 5. The CEO reads it at the start of every session
+and updates it after every action. Never let it go stale.
+
+```markdown
+# Roster — <Project Name>
+Last updated: <date>
+CEO verdict: Build / Refine / Pivot
+
+## Active Agents
+
+| Role | Skill | Status | Current Task | Stage | Last Action |
+|------|-------|--------|-------------|-------|-------------|
+| Systems Designer | skills/systems-designer/ | active | Build core loop spec | MVP | <date>: <what happened> |
+
+## Temporary Agents (SPAWN)
+
+| Role | Task | Date | Outcome |
+|------|------|------|---------|
+
+## Archived Agents
+
+| Role | Status | Reason | Work Redistributed To |
+|------|--------|--------|-----------------------|
+```
 
 ---
 
 ## 02_hiring-plan.md — the org
 
-- **Org chart** (CEO at top, agents below, grouped by lifecycle stage). A simple indented/ASCII tree is fine.
-- **The hire sequence** — the ordered list from org-design, each line: `role — why this hire now — lifecycle stage`.
-- **For each role:** one paragraph on what they de-risk and what their first win looks like.
-- A pointer to the matching `team/<role>.md` brief and `skills/<role>/` skill.
+- **Org chart** (CEO at top, agents below, grouped by lifecycle stage — ASCII tree is fine)
+- **The hire sequence** — ordered list: `role — why this hire now — lifecycle stage`
+- **For each role:** one paragraph on what they de-risk and what their first win looks like
+- Pointer to the matching `team/<role>.md` brief and `skills/<role>/` skill
 
 ---
 
 ## 03_90-day-calendar.md — the build plan
 
-Map the **Idea → MVP → Launch** arc onto ~12 weeks. This is where the team becomes real — each block names the agent who owns it, so the founder can see who he's "working with" when.
+Map the **Idea → MVP → Launch** arc onto weeks. Use the time budget from Phase 1 to set
+week counts — this is not a generic template:
 
-Structure (adapt week counts to the project):
+| Time budget | Validate block | MVP block | Iterate block | Launch block |
+|-------------|---------------|-----------|---------------|--------------|
+| 2 hrs/week  | 3–4 weeks     | 8–10 wks  | 6–8 wks       | 3–4 wks      |
+| 10 hrs/week | 1–2 weeks     | 4–5 wks   | 3–4 wks       | 2 wks        |
+| Full-time   | 1 week        | 2–3 wks   | 2–3 wks       | 1–2 wks      |
+
+Each block names the agent who owns it.
 
 ```markdown
-## Weeks 1–2 — Validate (Idea stage)
+## Weeks 1–[N] — Validate (Idea stage)
 Owner: <Domain SME agent>
-- <the cheap test of the riskiest assumption>
-- <customer/player discovery actions>
+- The cheap test of the riskiest assumption
+- Customer/player/user discovery actions
 Exit: <problem-solution fit signal>
 
-## Weeks 3–6 — Build the core loop (MVP stage)
+## Weeks [N]–[M] — Build the core loop (MVP stage)
 Owner: <Core builder agent> (+ <SME> reviewing)
 - Build ONLY the single core interaction
-- <architecture/scope-doc setup — CLAUDE.md, scope fence>
+- Set up CLAUDE.md and scope-fence document
 Exit: a real human can touch the core thing and react
 
-## Weeks 7–10 — Iterate toward evidence (MVP → Launch)
+## Weeks [M]–[P] — Iterate toward evidence (MVP → Launch)
 Owner: <relevant agents>
-- <measurement framework before users arrive>
-- <iteration loops>
+- Measurement framework before users arrive
+- Iteration loops based on evidence
 Exit: genuine signal (retention / payment / referral / "very disappointed" test)
 
-## Weeks 11–12 — Launch readiness (Launch stage)
+## Weeks [P]–[Q] — Launch readiness
 Owner: <Launch/GTM agent>
-- <security/quality pass>
-- <distribution / audience / first real users>
-Exit: <repeatable way to get the next users>
+- Security/quality pass
+- Distribution / first real users
+Exit: a repeatable way to get the next users
 ```
 
-Principles baked in:
-- **Don't build before week 3.** Validation first — that's the whole CEO discipline.
-- **Build only the core interaction in the MVP block.** Scope fence holds.
-- **Measurement framework before users**, so early traction isn't mistaken for product-market fit.
-- Each block has an **exit criterion**, not just tasks.
-- Assign every block to an agent so the org chart maps to real work.
+**Principles baked in:**
+- Don't build before the Validate block exits
+- Build only the core interaction in the MVP block — scope fence holds
+- Measurement framework before users, so early traction isn't mistaken for PMF
+- Every block has an exit criterion, not just tasks
+- Every block is assigned to an agent
 
 ---
 
-## Presentation
 
-Before presenting, **ensure the project is added to `INCUBATOR.md` at the root of the workspace**. Append it as a new line: `- [Project Name](./<project-slug>-company/)`. This acts as the session re-entry anchor.
+---
 
-Generate the `install-team.sh` and `install-team.ps1` scripts inside the `skills/` directory. These scripts should simply copy all the `.skill` folders into the user's global Claude Code skills directory.
+## INCUBATOR.md — the session index (write to workspace root)
 
-`present_files` order: `hq.html` first (as the virtual office), then `00_charter.md`, then `01_findings-report.html`. Close with a short CEO sign-off, instructing the founder to open `hq.html` in a browser, and state the single next action. No long postamble.
+This file is what allows the CEO to re-enter the project next session without asking the user
+where the project lives. Write it after the roster is initialized (end of Phase 4). Update the
+`last-session` field at the end of every Phase 5 session.
+
+```markdown
+# INCUBATOR — Active Project Index
+
+## Active Project
+name: <project name>
+slug: <project-slug>
+dir: <full absolute path to PROJECT_DIR>
+started: <date>
+last-session: <date>
+CEO verdict: Build / Refine / Pivot
+time-budget: <X hrs/week>
+board-meeting-cadence: <bi-weekly / monthly>
+
+## Project History
+- <date>: Founded. Team: [roles]. Verdict: [Build/Refine/Pivot].
+- <date>: Board meeting. [Key decision or roster change].
+```
+
+Write to `./INCUBATOR.md` at the workspace root — the same directory the user opened Claude in.
+If multiple projects exist, add them as additional `## Project` sections with a `status: archived`
+field on completed ones.
+
+## Presentation order
+
+1. `present_files` with `00_charter.md` first — most immediately useful
+2. `01_findings-report.html` — the research
+3. The full `<project-slug>-company/` folder
+
+Close with: a short CEO sign-off, the single next action, and nothing else. The user opens
+the files themselves. Don't over-explain what's in them.

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Airbnb HQ — Incubator Dashboard</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --bg-panel: #161b22;
+    --bg-card: #21262d;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --yellow: #d29922;
+    --red: #f85149;
+    --purple: #bc8cff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; display: flex; min-height: 100vh; }
+
+  /* Sidebar */
+  .sidebar { width: 220px; background: var(--bg-panel); border-right: 1px solid var(--border); padding: 24px 0; flex-shrink: 0; display: flex; flex-direction: column; }
+  .sidebar-logo { padding: 0 20px 24px; border-bottom: 1px solid var(--border); margin-bottom: 12px; }
+  .sidebar-logo .project-name { font-size: 16px; font-weight: 700; color: var(--text); }
+  .sidebar-logo .project-tag { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  .sidebar-logo .verdict { display: inline-block; background: var(--green); color: #000; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 10px; margin-top: 6px; }
+  .sidebar nav a { display: block; padding: 9px 20px; color: var(--text-muted); text-decoration: none; font-size: 13px; cursor: pointer; transition: background 0.15s, color 0.15s; border-left: 3px solid transparent; }
+  .sidebar nav a:hover { background: var(--bg-card); color: var(--text); }
+  .sidebar nav a.active { background: var(--bg-card); color: var(--accent); border-left-color: var(--accent); }
+  .sidebar-footer { margin-top: auto; padding: 16px 20px; font-size: 11px; color: var(--text-muted); border-top: 1px solid var(--border); }
+
+  /* Main */
+  .main { flex: 1; overflow-y: auto; }
+  .page { display: none; padding: 32px; }
+  .page.active { display: block; }
+  .page-title { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+  .page-sub { color: var(--text-muted); font-size: 13px; margin-bottom: 28px; }
+
+  /* Stat cards */
+  .stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 14px; margin-bottom: 28px; }
+  .stat { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+  .stat-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .stat-value { font-size: 26px; font-weight: 700; }
+  .stat-value.green { color: var(--green); }
+  .stat-value.yellow { color: var(--yellow); }
+  .stat-value.accent { color: var(--accent); }
+  .stat-sub { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+
+  /* Panels */
+  .panel { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; }
+  .panel-header { padding: 14px 18px; border-bottom: 1px solid var(--border); font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .panel-body { padding: 18px; }
+
+  /* Badges */
+  .badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 10px; }
+  .badge.active { background: rgba(63,185,80,0.15); color: var(--green); border: 1px solid rgba(63,185,80,0.3); }
+  .badge.blocked { background: rgba(210,153,34,0.15); color: var(--yellow); border: 1px solid rgba(210,153,34,0.3); }
+  .badge.fired { background: rgba(248,81,73,0.15); color: var(--red); border: 1px solid rgba(248,81,73,0.3); }
+  .badge.temp { background: rgba(188,140,255,0.15); color: var(--purple); border: 1px solid rgba(188,140,255,0.3); }
+  .badge.pending { background: rgba(139,148,158,0.15); color: var(--text-muted); border: 1px solid var(--border); }
+
+  /* Table */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; padding: 8px 12px; font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  .health { font-size: 16px; }
+
+  /* Calendar */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .week { display: flex; align-items: flex-start; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .week:last-child { border-bottom: none; }
+  .week-label { width: 72px; flex-shrink: 0; font-size: 11px; color: var(--text-muted); font-weight: 600; padding-top: 2px; }
+  .week-tasks { flex: 1; display: flex; flex-wrap: wrap; gap: 6px; }
+  .task-pill { background: var(--bg-panel); border: 1px solid var(--border); border-radius: 6px; padding: 5px 10px; font-size: 12px; color: var(--text); }
+  .task-pill.done { border-color: var(--green); color: var(--green); }
+  .task-pill.current { border-color: var(--accent); color: var(--accent); background: rgba(88,166,255,0.08); }
+  .task-pill.next { border-color: var(--border); color: var(--text-muted); }
+
+  /* Charter fields */
+  .charter-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .field { background: var(--bg-panel); border: 1px solid var(--border); border-radius: 6px; padding: 14px; }
+  .field-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 6px; }
+  .field-value { font-size: 13px; line-height: 1.5; color: var(--text); }
+  .field-value.highlight { color: var(--accent); font-weight: 600; }
+  .field.full { grid-column: 1 / -1; }
+
+  /* Agent cards */
+  .agent-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+  .agent-card { background: var(--bg-panel); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+  .agent-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+  .agent-role { font-size: 13px; font-weight: 600; }
+  .agent-task { font-size: 12px; color: var(--text-muted); line-height: 1.4; margin-bottom: 10px; }
+  .agent-meta { font-size: 11px; color: var(--text-muted); }
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="sidebar-logo">
+    <div class="project-name">Airbnb</div>
+    <div class="project-tag">Peer-to-peer home sharing</div>
+    <div class="verdict">BUILD</div>
+  </div>
+  <nav>
+    <a class="active" onclick="show('charter')">📋 Charter</a>
+    <a onclick="show('roster')">👥 Roster</a>
+    <a onclick="show('calendar')">📅 Calendar</a>
+    <a onclick="show('team')">🤖 Agents</a>
+  </nav>
+  <div class="sidebar-footer">
+    Incubator v4<br>
+    Last updated: Aug 1, 2008
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- CHARTER PAGE -->
+  <div id="charter" class="page active">
+    <div class="page-title">Project Charter</div>
+    <div class="page-sub">Founding brief — generated after CEO interview</div>
+
+    <div class="stats">
+      <div class="stat"><div class="stat-label">CEO Verdict</div><div class="stat-value green">BUILD</div><div class="stat-sub">Full conviction</div></div>
+      <div class="stat"><div class="stat-label">Stage</div><div class="stat-value accent" style="font-size:18px">Idea→MVP</div><div class="stat-sub">Pre-product</div></div>
+      <div class="stat"><div class="stat-label">Time Budget</div><div class="stat-value" style="font-size:18px">Full-time</div><div class="stat-sub">3 founders</div></div>
+      <div class="stat"><div class="stat-label">Runway</div><div class="stat-value yellow">~4 wks</div><div class="stat-sub">To cheap test</div></div>
+    </div>
+
+    <!-- INJECT: CHARTER -->
+    <div class="charter-grid">
+      <div class="field">
+        <div class="field-label">Problem</div>
+        <div class="field-value">Travelers are priced out of hotels during demand spikes (sold-out events, conferences). Short-term alternative accommodations don't exist at scale — VRBO/HomeAway require week+ minimums.</div>
+      </div>
+      <div class="field">
+        <div class="field-label">Why Now</div>
+        <div class="field-value">Craigslist proved strangers transact online. Facebook normalized identity. SF design community is tight-knit and trust-native. IDSA conference in 3 weeks — hotels already sold out.</div>
+      </div>
+      <div class="field">
+        <div class="field-label">Solution</div>
+        <div class="field-value">Peer-to-peer short-stay marketplace. Homeowners list spare rooms. Travelers book by the night. Airbed + breakfast — cheap, personal, better than a sold-out hotel.</div>
+      </div>
+      <div class="field">
+        <div class="field-label">Wedge</div>
+        <div class="field-value highlight">IDSA Design Conference, San Francisco — August 2008. 3 hosts, all booked, zero hotel alternatives. Proof of concept in 1 event.</div>
+      </div>
+      <div class="field">
+        <div class="field-label">Riskiest Assumption</div>
+        <div class="field-value">Homeowners will let strangers sleep in their homes. If this fails, the entire supply side evaporates and the marketplace has nothing to sell.</div>
+      </div>
+      <div class="field">
+        <div class="field-label">Cheap Test</div>
+        <div class="field-value">3 hosts. 1 conference. Sell out all 3. If guests check out and hosts are willing to do it again — thesis validated in 72 hours.</div>
+      </div>
+      <div class="field full">
+        <div class="field-label">Scope Fence (v1)</div>
+        <div class="field-value">✅ SF only &nbsp;·&nbsp; ✅ Event-overflow demand only &nbsp;·&nbsp; ✅ Spare rooms / airbeds only<br>❌ Not long-term rental &nbsp;·&nbsp; ❌ Not hotel aggregator &nbsp;·&nbsp; ❌ Not VRBO competitor</div>
+      </div>
+      <div class="field">
+        <div class="field-label">Org Template</div>
+        <div class="field-value">Creator Marketplace — community-led growth, supply quality gating, host identity before scale</div>
+      </div>
+      <div class="field">
+        <div class="field-label">Phase 2 Research Note</div>
+        <div class="field-value">Winners: Couchsurfing (trust without money) + eBay (strangers transact). Graveyard: Wimdu (copied without trust layer). Moat: supply density + review flywheel.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROSTER PAGE -->
+  <div id="roster" class="page">
+    <div class="page-title">Team Roster</div>
+    <div class="page-sub">Living registry — updated after every board meeting</div>
+
+    <!-- INJECT: ROSTER -->
+    <div class="panel">
+      <div class="panel-header">🟢 Active Agents</div>
+      <div class="panel-body" style="padding:0">
+        <table>
+          <thead><tr><th>Health</th><th>Role</th><th>Status</th><th>Current Task</th><th>Last Action</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="health">🟢</td>
+              <td><strong>Community & Supply Lead</strong></td>
+              <td><span class="badge active">active</span></td>
+              <td>Recruit + photograph 3 SF hosts for IDSA conference</td>
+              <td>Identified 7 candidate hosts via Craigslist outreach</td>
+            </tr>
+            <tr>
+              <td class="health">🟡</td>
+              <td><strong>Trust & Safety Designer</strong></td>
+              <td><span class="badge blocked">blocked</span></td>
+              <td>Design mutual-review system and payment escrow flow</td>
+              <td>Review model drafted — blocked on payment provider decision</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">🕐 Pending Hires</div>
+      <div class="panel-body" style="padding:0">
+        <table>
+          <thead><tr><th>Role</th><th>Hire Stage</th><th>Trigger</th></tr></thead>
+          <tbody>
+            <tr><td>Product Engineer</td><td><span class="badge pending">MVP</span></td><td>After conference test proves bookings complete without incident</td></tr>
+            <tr><td>Growth & Demand Lead</td><td><span class="badge pending">Launch</span></td><td>After MVP has verified listings in 3+ cities</td></tr>
+            <tr><td>Brand & Content Lead</td><td><span class="badge pending">Launch</span></td><td>After PMF signal — "very disappointed" test >40%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">⚡ Temporary Agents (SPAWN)</div>
+      <div class="panel-body" style="padding:0">
+        <table>
+          <thead><tr><th>Role</th><th>Task</th><th>Date</th><th>Outcome</th></tr></thead>
+          <tbody>
+            <tr><td>Payments Advisor</td><td>Stripe vs manual PayPal escrow for v1</td><td>Jul 28</td><td>Stripe unavailable — use PayPal escrow manually for test</td></tr>
+            <tr><td>Legal Advisor</td><td>Short-term rental liability for hosts in SF</td><td>Jul 30</td><td>No SF regulation against it in 2008 — proceed</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- CALENDAR PAGE -->
+  <div id="calendar" class="page">
+    <div class="page-title">90-Day Calendar</div>
+    <div class="page-sub">Full-time track — adjusted after Phase 1 interview</div>
+
+    <!-- INJECT: CALENDAR -->
+    <div class="panel">
+      <div class="panel-body">
+        <div class="timeline">
+          <div class="week">
+            <div class="week-label">Wk 1–2</div>
+            <div class="week-tasks">
+              <div class="task-pill done">✓ CEO interview</div>
+              <div class="task-pill done">✓ Market research (20 searches)</div>
+              <div class="task-pill done">✓ Findings report (VD)</div>
+              <div class="task-pill done">✓ Hire Supply Lead + Trust Designer</div>
+            </div>
+          </div>
+          <div class="week">
+            <div class="week-label">Wk 3–4</div>
+            <div class="week-tasks">
+              <div class="task-pill current">▶ Recruit 3 SF hosts</div>
+              <div class="task-pill current">▶ Photography all 3 listings</div>
+              <div class="task-pill current">▶ Build review + payment flow (manual)</div>
+              <div class="task-pill next">Go live for IDSA conference</div>
+            </div>
+          </div>
+          <div class="week">
+            <div class="week-label">Wk 5–6</div>
+            <div class="week-tasks">
+              <div class="task-pill next">IDSA conference — sell out 3 bookings</div>
+              <div class="task-pill next">Post-stay: guest NPS + host willingness score</div>
+              <div class="task-pill next">Board meeting: validate/pivot/kill</div>
+            </div>
+          </div>
+          <div class="week">
+            <div class="week-label">Wk 7–10</div>
+            <div class="week-tasks">
+              <div class="task-pill next">Hire Product Engineer (if validated)</div>
+              <div class="task-pill next">Expand to 3 more events in SF</div>
+              <div class="task-pill next">Build self-serve listing flow</div>
+              <div class="task-pill next">Democratic National Convention prep</div>
+            </div>
+          </div>
+          <div class="week">
+            <div class="week-label">Wk 11–13</div>
+            <div class="week-tasks">
+              <div class="task-pill next">Expand to 2nd city (NYC or Denver)</div>
+              <div class="task-pill next">PMF test: "very disappointed" survey</div>
+              <div class="task-pill next">Hire Growth Lead if >40% disappointed</div>
+              <div class="task-pill next">YC application (W2009)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEAM / AGENTS PAGE -->
+  <div id="team" class="page">
+    <div class="page-title">Agent Team</div>
+    <div class="page-sub">Installed skills — each is a domain-expert persona</div>
+
+    <!-- INJECT: TEAM -->
+    <div class="agent-grid">
+      <div class="agent-card">
+        <div class="agent-card-top">
+          <div class="agent-role">Community & Supply Lead</div>
+          <span class="badge active">active</span>
+        </div>
+        <div class="agent-task">Host acquisition, listing quality, city launch playbook, supply-demand balance</div>
+        <div class="agent-meta">🟢 Health · Skill: skills/community-supply-lead/</div>
+      </div>
+      <div class="agent-card">
+        <div class="agent-card-top">
+          <div class="agent-role">Trust & Safety Designer</div>
+          <span class="badge blocked">blocked</span>
+        </div>
+        <div class="agent-task">Mutual-review system, payment escrow flow, host/guest identity verification</div>
+        <div class="agent-meta">🟡 Blocked on payment provider · Skill: skills/trust-safety/</div>
+      </div>
+      <div class="agent-card" style="opacity:0.5">
+        <div class="agent-card-top">
+          <div class="agent-role">Product Engineer</div>
+          <span class="badge pending">pending hire</span>
+        </div>
+        <div class="agent-task">Self-serve listing flow, booking system, mobile-first frontend</div>
+        <div class="agent-meta">Hire trigger: post-IDSA validation</div>
+      </div>
+      <div class="agent-card" style="opacity:0.5">
+        <div class="agent-card-top">
+          <div class="agent-role">Growth & Demand Lead</div>
+          <span class="badge pending">pending hire</span>
+        </div>
+        <div class="agent-task">SEO for event + neighborhood demand, referral loops, demand-side acquisition</div>
+        <div class="agent-meta">Hire trigger: 3+ cities with verified listings</div>
+      </div>
+      <div class="agent-card" style="opacity:0.5">
+        <div class="agent-card-top">
+          <div class="agent-role">Brand & Content Lead</div>
+          <span class="badge pending">pending hire</span>
+        </div>
+        <div class="agent-task">Host storytelling, community voice, "belong anywhere" positioning</div>
+        <div class="agent-meta">Hire trigger: PMF signal confirmed</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function show(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sidebar nav a').forEach(a => a.classList.remove('active'));
+  document.getElementById(page).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

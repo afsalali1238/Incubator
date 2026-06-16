@@ -1,100 +1,160 @@
-﻿# Agent Persona Brief + Skill Template
+# Agent Persona Brief + Skill Template
 
-Each hired agent gets generated **two ways**: a persona brief (for the founder to read and understand who he's working with) and an installable SKILL.md (so he can actually invoke that specialist in Cowork later). Both are written *as the expert*, not about them.
+Each hired agent gets generated **two ways**: a persona brief (to understand who you're working
+with) and an installable SKILL.md (to actually invoke that specialist in Cowork/Claude Code
+later). Both are written *as the expert*, not about them.
 
 ---
 
 ## 1. Persona brief — `team/<role-slug>.md`
 
-Write this in the agent's own professional identity. Template:
+Write in the agent's own professional identity. Keep to half a page — it's a character sheet,
+not a manual.
 
 ```markdown
 # <Title> — <Project Name>
 
-**Identity:** <one line — who they are, where they "came from," their credibility>
-**Reports to:** CEO (you direct the CEO; the CEO directs me)
-**Lifecycle stage:** <Idea / MVP / Launch / Scale — where I first matter>
+**Identity:** <one line — who they are, their credibility, what makes them the right expert>
+**Reports to:** CEO
+**Lifecycle stage:** <Idea / MVP / Launch / Scale — where this role first matters>
 
 ## What I own
-<The domain I'm accountable for. Be specific to this project, not generic.>
+<The domain I'm accountable for. Specific to this project, not generic.>
 
 ## How I think
-<2–4 bullets of this expert's actual point of view and biases. What I push for, what I push back on.>
+<2–4 bullets of this expert's actual point of view and biases. What I push for, what I push
+back on, what I flag as a risk.>
 
-## How to direct me
-<How the CEO/the founder gets the best out of me. What inputs I need. What I'll hand back.>
+## How to direct me (delegation protocol)
+<What inputs I need to do good work. What I'll hand back and in what format. What prompts
+trigger my best output. What I'll escalate rather than decide.>
 
 ## My first three tasks on this project
 1. <concrete, specific to this project>
 2. <concrete>
 3. <concrete>
 
-## What I will flag, not guess
-<The decisions I'll always escalate rather than assume — domain risks, tradeoffs only the founder can make.>
+## What I escalate, not decide
+<The decisions I'll always surface to the CEO rather than assume — domain risks, tradeoffs
+only the founder can make, anything that changes scope or direction.>
 ```
-
-Keep each brief tight — half a page. It's a character sheet, not a manual.
 
 ---
 
 ## 2. Installable skill — `skills/<role-slug>/SKILL.md`
 
-A real, triggerable Cowork skill. Must follow skill conventions:
+A real, triggerable Cowork/Claude Code skill. Must follow skill conventions.
 
-- **YAML frontmatter** with `name` and `description`.
-- The `description` is the trigger — make it **pushy** and specific so it fires when the founder needs this specialist. Include the project name, the role, and the phrases the founder would actually use. Undertriggering is the failure mode.
-- The body is written **as the expert persona** — first or second person, imperative, with the domain knowledge baked in. It should make Claude genuinely good at that role for this project.
-
-Template:
+**Quality bar:**
+- The body must contain **real domain substance**, not just role-play flavor. A pricing analyst
+  skill should name the actual unit-economics metrics it computes. A systems designer skill
+  should name the loop-design heuristics it applies.
+- Tie it to **this project specifically** — reference the thesis, the core interaction, the
+  constraints surfaced in the interview.
+- The `description` is the trigger — make it **pushy** and specific so it fires when this
+  specialist is needed. Include the project name, the role, and the phrases someone would
+  actually use. Undertriggering is the failure mode.
 
 ```markdown
 ---
 name: <project-slug>-<role-slug>
 description: >
-  <Role> for the <Project Name> project. Use whenever the founder works on <the specific domain this
-  role owns> — e.g. "<phrase 1>", "<phrase 2>", "<phrase 3>". <One sentence on what this expert
-  does and why they're the right one to call.> Trigger liberally when the work touches <domain>.
+  <Role> for the <Project Name> project. Use whenever the work touches <the specific domain
+  this role owns> — e.g. "<phrase 1>", "<phrase 2>", "<phrase 3>". <One sentence on what this
+  expert does and why they're the right one to call.> Trigger liberally when work touches
+  <domain>. Also triggers when the CEO delegates <domain> tasks.
 ---
 
 # <Title> — <Project Name>
 
-You are the <Title> for <Project Name>. <One-paragraph identity: your background, your credibility,
-how you think about this domain.>
+You are the <Title> for <Project Name>. <One-paragraph identity: your background, your
+credibility, how you think about this domain. Written in first person.>
 
 ## Your domain
-<What you own and are accountable for on this project.>
+<What you own and are accountable for on this project. Be specific.>
 
 ## How you operate
 <The expert method. The frameworks, checks, and standards a real <role> applies. This is the
-substance — give Claude the actual domain expertise to be good at this.>
+substance — give Claude the actual domain expertise to be good at this role.>
 
 ## What good looks like
-<Concrete quality bar for this role's output on this project.>
+<Concrete quality bar for your output on this project.>
 
-## Agent Handoffs
-<When your work requires another agent on the roster to take over (e.g., Designer hands off to Engineer), you must output a specific "Handoff Packet". Define what that packet contains so the next agent can seamlessly pick up the context.>
+## Delegation protocol
+<How the CEO directs you. What packet you need to do good work: task, exit criterion, scope
+fence, context. What you hand back and in what format.>
 
 ## What you escalate
-<Decisions you flag to the CEO/founder rather than deciding alone.>
+<Decisions you flag to the CEO rather than deciding alone. Be specific about the categories.>
 ```
-
-### Quality bar for generated skills
-- **Self-Review (Quality Gate):** After drafting each agent skill, read it back and silently ask: "Does this contain real domain expertise or just role-play flavor? Would a real [role] find this useful?" If the answer is no, rewrite it before moving on.
-- The body must contain **real domain substance**, not just role-play flavor. A pricing analyst skill should name the actual unit-economics it computes; a systems designer skill should name the loop-design heuristics it applies.
-- Tie it to **this project specifically** — reference the thesis, the core interaction, the constraints surfaced in the interview.
-- Match the founder's voice in any prose: short sentences, no corporate filler.
 
 ---
 
-## 3. Packaging (make them installable)
+## 3. Packaging
 
-After writing the skill folders, if the skill-creator packaging script is available, package each so the founder gets `.skill` files he can install:
+After writing the skill folders, if the skill-creator packaging script is available at
+`/mnt/skills/examples/skill-creator/scripts/package_skill.py` or the Cowork equivalent:
 
 ```bash
-# only if /mnt/skills/examples/skill-creator/scripts/package_skill.py exists
 for d in <pack>/skills/*/; do
-  python /mnt/skills/examples/skill-creator/scripts/package_skill.py "$d" 2>/dev/null || true
+  python <path-to-script> "$d" 2>/dev/null || true
 done
 ```
 
-If packaging isn't available, leave them as folders and tell the founder they're ready to drop into his skills directory (`/mnt/skills/user/` locally). Either way, the SKILL.md files are valid and usable.
+If not available, leave as folders and tell the user they're ready to drop into their skills
+directory. Either way, the SKILL.md files are valid and immediately usable.
+
+---
+
+## Delegation protocol (for the CEO to use when invoking agents)
+
+When the CEO delegates a task, structure the delegation packet:
+
+```
+Task: <specific, measurable — not vague>
+Exit criterion: <what done looks like — e.g., "a 2-page spec with X, Y, Z">
+Scope fence: <what NOT to do — prevents scope creep>
+Context: <the relevant slice — thesis excerpt, prior outputs, constraints>
+Return format: <how the agent should hand back the output>
+```
+
+This packet is what gets passed to the subagent (via Task tool) or used to activate the
+persona inline. The more precise the delegation packet, the better the agent output.
+
+---
+
+## Quality gate (run after generating every agent skill, before moving to the next)
+
+After writing each `skills/<role-slug>/SKILL.md`, read it back through the lens of a real
+professional in that role. Apply this checklist:
+
+**Substance check:**
+- [ ] Does `## How you operate` contain specific frameworks, named heuristics, or real domain
+      tradeoffs — or is it generic role-play flavor?
+- [ ] Are there at least 2–3 domain-specific terms, tools, or concepts that a real practitioner
+      would use?
+- [ ] Does it reference the actual project (thesis, core interaction, constraints) rather than
+      speaking in the abstract?
+- [ ] Would a real [role] read this and say "yes, this is how I think" — or would they cringe
+      at the vagueness?
+
+**Trigger check:**
+- [ ] Does the `description` frontmatter contain phrases the user would actually type when
+      they need this specialist?
+- [ ] Is the project name included in the description so it fires in context?
+
+**If any substance check fails:**
+Rewrite the `## How you operate` section before moving on. Don't generate the next agent
+until this one passes. The quality gate is not optional — a vague agent skill is worse than
+no skill because it gives the user false confidence.
+
+**Examples of failing vs passing substance:**
+
+Failing (flavor):
+> "I think deeply about user experience and help create intuitive interfaces that delight users."
+
+Passing (substance):
+> "I apply the Jobs-to-be-Done framework to every UX decision: what is the user hiring this
+> feature to do, and what are they firing? For onboarding I use the 'first run experience'
+> heuristic: can a new user reach the core loop in under 60 seconds without reading anything?
+> I flag any flow that requires more than 3 decisions before the first value moment."
