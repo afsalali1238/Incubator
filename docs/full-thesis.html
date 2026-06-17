@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project CEO — Full Thesis — Afsal Ali</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #080808;
+      --surface: #0f0f0f;
+      --border: #1c1c1c;
+      --text: #e2e2e2;
+      --muted: #555;
+      --accent: #f0f0f0;
+      --highlight: #c8f542;
+      --red: #ff4455;
+      --green: #44ff88;
+      --blue: #4488ff;
+      --stat: clamp(3.5rem, 9vw, 8rem);
+      --h1: clamp(2rem, 5vw, 4.2rem);
+      --h2: clamp(1.2rem, 2.5vw, 1.8rem);
+      --body: 1.05rem;
+      --label: 0.7rem;
+      --mono: 0.82rem;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html {
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+    }
+    body { overflow-x: hidden; }
+
+    .panel {
+      scroll-snap-align: start;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: clamp(1.5rem, 4vw, 3rem) clamp(1.5rem, 6vw, 5rem);
+      border-top: 1px solid var(--border);
+      position: relative;
+    }
+    .panel-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+    }
+    .panel-num {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: var(--label);
+      color: var(--muted);
+      letter-spacing: 0.12em;
+    }
+    .panel-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: var(--label);
+      color: var(--highlight);
+      letter-spacing: 0.18em;
+      font-weight: 500;
+    }
+    .panel-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      max-width: 900px;
+    }
+    .panel-footer {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: var(--label);
+      color: var(--muted);
+      text-align: right;
+      margin-top: 2rem;
+    }
+
+    /* Typography */
+    .display {
+      font-family: 'Playfair Display', serif;
+      font-size: var(--stat);
+      font-weight: 900;
+      line-height: 0.95;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+    }
+    .display.hl { color: var(--highlight); }
+    .display.red { color: var(--red); }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: var(--h1);
+      font-weight: 700;
+      line-height: 1.1;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .section-title em { font-style: italic; color: var(--highlight); }
+    .lede {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: #aaa;
+      line-height: 1.65;
+      margin-bottom: 2rem;
+      max-width: 680px;
+    }
+    p {
+      font-size: var(--body);
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 1rem;
+      max-width: 680px;
+    }
+    .mono {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: var(--mono);
+      color: var(--muted);
+    }
+
+    /* Cover panel */
+    .cover-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .cover-rule {
+      width: 60px;
+      height: 2px;
+      background: var(--highlight);
+      margin: 1.5rem 0;
+    }
+    .badge {
+      display: inline-block;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: var(--label);
+      color: var(--bg);
+      background: var(--highlight);
+      padding: 0.25rem 0.6rem;
+      letter-spacing: 0.12em;
+      margin-bottom: 1.2rem;
+    }
+
+    /* Stat callout */
+    .stat-block {
+      margin: 2rem 0;
+    }
+    .stat-row {
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .stat-item { display: flex; flex-direction: column; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 900;
+      color: var(--highlight);
+      line-height: 1;
+    }
+    .stat-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: var(--label);
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      margin-top: 0.3rem;
+    }
+
+    /* Phase table */
+    .phase-table {
+      width: 100%;
+      max-width: 800px;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+    }
+    .phase-table th {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: var(--label);
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-align: left;
+      padding: 0.5rem 1rem 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .phase-table td {
+      font-size: 0.9rem;
+      padding: 0.8rem 1rem 0.8rem 0;
+      border-bottom: 1px solid #161616;
+      vertical-align: top;
+      line-height: 1.4;
+    }
+    .phase-table td:first-child {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: var(--mono);
+      color: var(--highlight);
+      white-space: nowrap;
+    }
+    .phase-table td:nth-child(2) {
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .phase-table td:last-child {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    /* Contrast block */
+    .contrast-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+      max-width: 760px;
+    }
+    .contrast-col {
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+    }
+    .contrast-col.bad { border-color: #2a1215; background: #0f0a0b; }
+    .contrast-col.good { border-color: #1a2a12; background: #0a0f08; }
+    .contrast-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: var(--label);
+      letter-spacing: 0.12em;
+      margin-bottom: 0.8rem;
+    }
+    .contrast-label.bad { color: var(--red); }
+    .contrast-label.good { color: var(--green); }
+    .contrast-col ul {
+      list-style: none;
+      padding: 0;
+    }
+    .contrast-col ul li {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: #999;
+      padding: 0.25rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .contrast-col ul li:last-child { border-bottom: none; }
+
+    /* Protocol list */
+    .protocol-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      max-width: 700px;
+      margin: 1rem 0;
+    }
+    .protocol-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 0.9rem 1rem;
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .protocol-key {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: var(--mono);
+      color: var(--highlight);
+      min-width: 180px;
+      padding-top: 0.1rem;
+    }
+    .protocol-val {
+      font-size: 0.88rem;
+      color: #aaa;
+      line-height: 1.55;
+    }
+
+    /* Pushback triggers */
+    .trigger-block {
+      max-width: 720px;
+      margin: 1.5rem 0;
+    }
+    .trigger-item {
+      border-left: 2px solid var(--border);
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+    }
+    .trigger-item.active { border-left-color: var(--highlight); }
+    .trigger-q {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: var(--mono);
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+    .trigger-a {
+      font-size: 0.92rem;
+      color: var(--accent);
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    /* Timeline */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 700px;
+      margin: 1.5rem 0;
+    }
+    .timeline-item {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+    .timeline-ver {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: var(--mono);
+      color: var(--highlight);
+      min-width: 60px;
+      padding-top: 0.9rem;
+    }
+    .timeline-content {
+      flex: 1;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .timeline-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+    .timeline-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Boundary list */
+    .boundary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      max-width: 800px;
+      margin: 1.5rem 0;
+    }
+    .boundary-item {
+      padding: 1.2rem;
+      border: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .boundary-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: var(--mono);
+      color: var(--red);
+      margin-bottom: 0.5rem;
+    }
+    .boundary-body {
+      font-size: 0.85rem;
+      color: #777;
+      line-height: 1.55;
+    }
+
+    /* Callout quote */
+    .pullquote {
+      border-left: 3px solid var(--highlight);
+      padding: 1rem 1.5rem;
+      margin: 1.5rem 0;
+      max-width: 640px;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      font-style: italic;
+      color: var(--accent);
+      line-height: 1.45;
+    }
+
+    /* Rating block */
+    .rating-block {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .rating-num {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(4rem, 10vw, 8rem);
+      font-weight: 900;
+      color: var(--highlight);
+      line-height: 1;
+    }
+    .rating-denom {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 1.5rem;
+      color: var(--muted);
+    }
+    .rating-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: var(--label);
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      margin-top: 0.5rem;
+    }
+
+    /* Keyboard nav hint */
+    .nav-hint {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    @media (max-width: 600px) {
+      .contrast-grid { grid-template-columns: 1fr; }
+      .stat-row { gap: 1.5rem; }
+      .protocol-key { min-width: 130px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- PANEL 01 — COVER -->
+<section class="panel" id="p01">
+  <div class="panel-meta">
+    <span class="panel-num">№01 / 10</span>
+    <span class="panel-tag">AI · STARTUPS · PROTOCOL</span>
+  </div>
+  <div class="panel-body">
+    <span class="badge">FULL THESIS</span>
+    <div class="cover-stack">
+      <div class="display hl">Idea In.</div>
+      <div class="display">Company Out.</div>
+    </div>
+    <div class="cover-rule"></div>
+    <p class="lede">A Claude skill that replaces the three things founders skip before building: a co-founder-grade interview, autonomous market research, and a sequenced specialist agent team — all from a single install.</p>
+    <div class="stat-row">
+      <div class="stat-item">
+        <span class="stat-num">7</span>
+        <span class="stat-label">PHASES</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">8</span>
+        <span class="stat-label">REFERENCE FILES</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">485</span>
+        <span class="stat-label">LINES OF PROTOCOL</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">v1.9.6</span>
+        <span class="stat-label">CURRENT BUILD</span>
+      </div>
+    </div>
+    <p class="mono">Project CEO · Built by Afsal Ali · 2024–2026</p>
+  </div>
+  <div class="panel-footer">Afsal Ali · June 2026</div>
+</section>
+
+<!-- PANEL 02 — THE PROBLEM -->
+<section class="panel" id="p02">
+  <div class="panel-meta">
+    <span class="panel-num">№02 / 10</span>
+    <span class="panel-tag">THE PROBLEM</span>
+  </div>
+  <div class="panel-body">
+    <div class="section-title">Most founders don't fail at building.<br><em>They fail at deciding what to build.</em></div>
+    <p>AI coding tools make building feel free. Claude can ship an MVP in an afternoon. So the thinking phase gets skipped entirely — because it doesn't feel like work, and the building does.</p>
+
+    <div class="contrast-grid">
+      <div class="contrast-col bad">
+        <div class="contrast-label bad">WHAT GETS SKIPPED</div>
+        <ul>
+          <li>Who <em>specifically</em> has this problem</li>
+          <li>Why this moment — not "AI makes it possible"</li>
+          <li>What the competitive graveyard looks like</li>
+          <li>Which assumption, if wrong, kills everything</li>
+          <li>What the de-risking sequence is</li>
+          <li>Who to hire first and why</li>
+        </ul>
+      </div>
+      <div class="contrast-col good">
+        <div class="contrast-label good">WHAT ACTUALLY MATTERS</div>
+        <ul>
+          <li>A named user in a specific painful situation</li>
+          <li>A structural change that made now different</li>
+          <li>Cause-of-death patterns from dead analogues</li>
+          <li>The single assumption specific to this project</li>
+          <li>The order winners followed — not features, sequence</li>
+          <li>Roles justified by research findings, not templates</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pullquote">"Beautiful products built for imaginary users — that's not a building problem. That's a thinking problem."</div>
+  </div>
+  <div class="panel-footer">Afsal Ali · June 2026</div>
+</section>
+
+<!-- PANEL 03 — THE INSIGHT -->
+<section class="panel" id="p03">
+  <div class="panel-meta">
+    <span class="panel-num">№03 / 10</span>
+    <span class="panel-tag">THE INSIGHT</span>
+  </div>
+  <div class="panel-body">
+    <div class="section-title">Not a prompt.<br><em>A protocol.</em></div>
+    <p>The thinking a good investor does before writing a check — and the thinking a good advisor does before designing a team — can be systematized. That's the core insight.</p>
+    <p>A prompt is a suggestion. A protocol has <strong>state, phases, checkpoints, and conditions under which it pushes back and refuses to proceed.</strong> Project CEO is a protocol system: 7 phases, an explicit state machine, and a CEO that can tell you "I'm not starting research on this thesis yet."</p>
+
+    <div class="protocol-list">
+      <div class="protocol-item">
+        <span class="protocol-key">PROTOCOL HAS STATE</span>
+        <span class="protocol-val">session-state.json written after each phase. Authoritative resume anchor. The CEO finds your project automatically next session.</span>
+      </div>
+      <div class="protocol-item">
+        <span class="protocol-key">PROTOCOL CHECKS DRIFT</span>
+        <span class="protocol-val">DRIFT CHECK before synthesis — compares research signals against Phase 1 thesis on 4 dimensions. ASSUMPTION AUDIT before every board meeting.</span>
+      </div>
+      <div class="protocol-item">
+        <span class="protocol-key">PROTOCOL PUSHES BACK</span>
+        <span class="protocol-val">Three hardcoded triggers for vague answers. A HOLD condition at thesis lock. A Heresy panel that can say "Don't build this."</span>
+      </div>
+      <div class="protocol-item">
+        <span class="protocol-key">PROTOCOL HAS MODES</span>
+        <span class="protocol-val">LOW_SIGNAL, CONFLICT, PARTIAL_RESUME — explicit degradation modes with defined behavior for when things go wrong mid-session.</span>
+      </div>
+    </div>
+  </div>
+  <div class="panel-footer">Afsal Ali · June 2026</div>
+</section>
+
+<!-- PANEL 04 — THE ARCHITECTURE -->
+<section class="panel" id="p04">
+  <div class="panel-meta">
+    <span class="panel-num">№04 / 10</span>
+    <span class="panel-tag">THE ARCHITECTURE</span>
+  </div>
+  <div class="panel-body">
+    <div class="section-title">Seven phases.<br><em>Each one earns the next.</em></div>
+    <table class="phase-table">
+      <thead>
+        <tr>
+          <th>PHASE</th>
+          <th>NAME</th>
+          <th>OUTPUT</th>
+          <th>GATE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>01</td>
+          <td>CEO Interview</td>
+          <td>Locked thesis — specific user, why now, riskiest assumption</td>
+          <td>CEO can refuse thesis lock if gaps remain</td>
+        </tr>
+        <tr>
+          <td>02</td>
+          <td>Autonomous Research</td>
+          <td>6 probes, 20–30 web searches, DRIFT CHECK at synthesis</td>
+          <td>Hard cap. Stops at limit regardless.</td>
+        </tr>
+        <tr>
+          <td>03</td>
+          <td>Findings Report</td>
+          <td>9-panel HTML report (5-panel for side projects). Confidence labels 🔵🟡🔴</td>
+          <td>User confirms before HTML render</td>
+        </tr>
+        <tr>
+          <td>04</td>
+          <td>Hire the Team</td>
+          <td>Specialist agent skill files. Every role cites a research finding.</td>
+          <td>Quality gate: PASS / FAIL token required</td>
+        </tr>
+        <tr>
+          <td>05</td>
+          <td>Board Meeting</td>
+          <td>CEO review cadence — recurring, indefinite. Health scores, assumption audit.</td>
+          <td>Two 🔴 = fire decision</td>
+        </tr>
+        <tr>
+          <td>06</td>
+          <td>Data Room</td>
+          <td>10-slide VC pitch deck in markdown (VC-track only)</td>
+          <td>VC flag required from Phase 1</td>
+        </tr>
+        <tr>
+          <td>07</td>
+          <td>HQ Dashboard</td>
+          <td>Dark-mode HTML command center — charter, team, roster in one page</td>
+          <td>Auto after team is hired</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="mono" style="margin-top:1rem;">Non-technical founders: Phase 4 skips skill files → delivers plain team-summary.md + action-plan.md instead</p>
+  </div>
+  <div class="panel-footer">Afsal Ali · June 2026</div>
+</section>
+
+<!-- PANEL 05 — THE PROTOCOL LAYER -->
+<section class="panel" id="p05">
+  <div class="panel-meta">
+    <span class="panel-num">№05 / 10</span>
+    <span class="panel-tag">THE PROTOCOL LAYER</span>
+  </div>
+  <div class="panel-body">
+    <div class="section-title">State management<br><em>for a stateless model.</em></div>
+    <p>The hardest engineering problem in prompt systems isn't intelligence — it's continuity. A language model has no persistent memory between sessions. Project CEO solves this with an explicit file-based state machine.</p>
+
+    <div class="protocol-list">
+      <div class="protocol-item">
+        <span class="protocol-key">session-state.json</span>
+        <span class="protocol-val">Written after Phase 2, 3, and 4. Contains phase, status, searches_used, drift_flags, key_assumptions, confidence, open_risks, unresolved_assumptions, and a 20-word summary. Read first on every resume. File-existence inference is fallback only.</span>
+      </div>
+      <div class="protocol-item">
+        <span class="protocol-key">STATE_JSON in roster.md</span>
+        <span class="protocol-val">Canonical source of truth for agent team state. CEO reads and writes JSON block first, regenerates markdown table from it. Markdown is presentation only. The two cannot diverge.</span>
+      </div>
+      <div class="protocol-item">
+        <span class="protocol-key">DRIFT CHECK</span>
+        <span class="protocol-val">Runs at Phase 2 synthesis trigger. Checks 4 dimensions: scope, audience, model, stage. 2+ flags → "⚠️ DRIFT DETECTED" before synthesis. Injected into Panel 01 of the report.</span>
+      </div>
+      <div class="protocol-item">
+        <span class="protocol-key">ASSUMPTION AUDIT</span>
+        <span class="protocol-val">Runs before every board meeting. Re-reads Phase 1 thesis against current agent outputs. Any contradiction surfaces as "⚠️ ASSUMPTION DRIFT" before the agenda starts.</span>
+      </div>
+      <div class="protocol-item">
+        <span class="protocol-key">Confidence labels</span>
+        <span class="protocol-val">🔵 Multiple independent sources. 🟡 Partial or conflicting. 🔴 Inferred, single source, or INSUFFICIENT DATA. Applied inline to every key finding in the report.</span>
+      </div>
+    </div>
+  </div>
+  <div class="panel-footer">Afsal Ali · June 2026</div>
+</section>
+
+<!-- PANEL 06 — THE TEAM ENGINE -->
+<section class="panel" id="p06">
+  <div class="panel-meta">
+    <span class="panel-num">№06 / 10</span>
+    <span class="panel-tag">THE TEAM ENGINE</span>
+  </div>
+  <div class="panel-body">
+    <div class="section-title">The CEO never does<br><em>domain work directly.</em></div>
+    <p>Every role on the roster is hired because a specific research finding demanded it — from the Graveyard (what killed analogues), the Winners (what they built first), the Heresy (what the kill shot is). No finding, no hire.</p>
+
+    <div class="protocol-list">
+      <div class="protocol-item">
+        <span class="protocol-key">HIRE</span>
+        <span class="protocol-val">Name precisely → persona brief → skill file → first task immediately. A new hire with no task is an organizational smell. Every role gets their first delegation the day they're created.</span>
+      </div>
+      <div class="protocol-item">
+        <span class="protocol-key">FIRE</span>
+        <span class="protocol-val">Two consecutive 🔴 board meetings = fire, not monitor. "That's a fire, not a flag. Here's who takes the open work." No softening to "reduced scope" or "strategic realignment."</span>
+      </div>
+      <div class="protocol-item">
+        <span class="protocol-key">SPAWN</span>
+        <span class="protocol-val">One-off domain expertise that doesn't warrant a standing hire: IP lawyer, unit economics model, naming session. Task closes, temp agent is archived, outcome logged to roster.</span>
+      </div>
+      <div class="protocol-item">
+        <span class="protocol-key">DELEGATE</span>
+        <span class="protocol-val">Every delegation has: a measurable task, an exit criterion, a scope fence, and curated context. CEO reviews on correctness, completeness, and fit. Accept / Return with feedback / Re-delegate / Escalate.</span>
+      </div>
+      <div class="protocol-item">
+        <span class="protocol-key">QUALITY GATE</span>
+        <span class="protocol-val">[CRITIQUE GATE] prompt required after every skill. Only two valid outputs: "Quality gate: PASS" or "Quality gate: FAIL — rewriting [section]." No other path forward.</span>
+      </div>
+    </div>
+    <p class="mono" style="margin-top:1rem;">Health scores: 🟢 delivered + reviewed · 🟡 partial or blocked · 🔴 nothing delivered · 🟡(p) provisional for unreviewed work</p>
+  </div>
+  <div class="panel-footer">Afsal Ali · June 2026</div>
+</section>
+
+<!-- PANEL 07 — THE HONESTY LAYER -->
+<section class="panel" id="p07">
+  <div class="panel-meta">
+    <span class="panel-num">№07 / 10</span>
+    <span class="panel-tag">THE HONESTY LAYER</span>
+  </div>
+  <div class="panel-body">
+    <div class="section-title">The CEO pushes back.<br><em>Every time. By design.</em></div>
+    <p>Most AI tools in the "business advisor" category are optimized to make the user feel good. Project CEO is optimized to make the user think clearly. Three hardcoded pushback triggers fire before the CEO moves to the next question:</p>
+
+    <div class="trigger-block">
+      <div class="trigger-item active">
+        <div class="trigger-q">BROAD SEGMENT ANSWER: "Who has this problem?" → "small businesses" / "developers" / "parents"</div>
+        <div class="trigger-a">"That's a segment, not a person. Give me a specific job title, situation, and what they were doing when they felt this. I'll wait."</div>
+      </div>
+      <div class="trigger-item active">
+        <div class="trigger-q">GENERIC TIMING: "Why now?" → "the market is growing" / "AI makes it possible"</div>
+        <div class="trigger-a">"That's true for 50 products launching this month. What changed in the last 12 months that makes this the right moment — specifically for you?"</div>
+      </div>
+      <div class="trigger-item active">
+        <div class="trigger-q">UNIVERSAL ASSUMPTION: "Riskiest assumption?" → "people will use it" / "they'll pay for it"</div>
+        <div class="trigger-a">"That's every startup's riskiest assumption. What assumption is specific to this project — the one only you are making, that if wrong, makes this particular thing pointless?"</div>
+      </div>
+    </div>
+
+    <div class="pullquote">"Proceed with caution" — when the evidence says don't build — is just flattery with better vocabulary. The Heresy panel can say "Don't build this. Here's why:" and mean it.</div>
+    <p class="mono">Pivot ≠ Refine. Pivot means the thesis is wrong. Refine means execution was imprecise. They are not the same call.</p>
+  </div>
+  <div class="panel-footer">Afsal Ali · June 2026</div>
+</section>
+
+<!-- PANEL 08 — THE EVOLUTION -->
+<section class="panel" id="p08">
+  <div class="panel-meta">
+    <span class="panel-num">№08 / 10</span>
+    <span class="panel-tag">THE EVOLUTION</span>
+  </div>
+  <div class="panel-body">
+    <div class="section-title">53 tasks.<br><em>One direction.</em></div>
+    <p>Every version added one thing: more rigor where the previous version had a gap. The arc is from "long prompt" to "protocol system."</p>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-ver">v1.0</div>
+        <div class="timeline-content">
+          <div class="timeline-title">The original sketch</div>
+          <div class="timeline-desc">Basic interview + research. One file. No phases, no state, no reference files.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-ver">v1.5</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Adaptive panels + non-tech branch</div>
+          <div class="timeline-desc">9-panel (startup) vs 5-panel (side project). Non-technical founder gets team-summary.md + action-plan.md instead of skill files.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-ver">v1.7</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Example agent skills + org-design guardrails</div>
+          <div class="timeline-desc">Five real example agent skills at practitioner quality. org-design.md designated naming-only — not a roster template.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-ver">v1.8</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Transparency + ritual</div>
+          <div class="timeline-desc">Health scores disclosed as CEO judgment, not data. Phase transition headers. First-run session close ritual.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-ver">v1.9</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Stakes-aware research cap</div>
+          <div class="timeline-desc">20 searches standard / 30 VC-track or regulated vertical. Cap announced at Phase 2 start. Count reported at synthesis.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-ver">v1.9.4</div>
+        <div class="timeline-content">
+          <div class="timeline-title">State machine + quality gate tokens</div>
+          <div class="timeline-desc">session-state.json as authoritative resume anchor. STATE_JSON canonical. [CRITIQUE GATE] → PASS/FAIL token required. Dist integrity check.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-ver">v1.9.5</div>
+        <div class="timeline-content">
+          <div class="timeline-title">Contradiction detection</div>
+          <div class="timeline-desc">DRIFT CHECK (4 dimensions). Confidence labels 🔵🟡🔴. ASSUMPTION AUDIT. DEGRADATION MODES. Checkpoint summaries in every state file.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-ver">v1.9.6</div>
+        <div class="timeline-content">
+          <div class="timeline-title">The honesty layer</div>
+          <div class="timeline-desc">3 pushback triggers. Phase 1 HOLD condition. Heresy panel hardened. 🔴 fire rule. Pivot ≠ Refine made explicit.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel-footer">Afsal Ali · June 2026</div>
+</section>
+
+<!-- PANEL 09 — THE BOUNDARIES -->
+<section class="panel" id="p09">
+  <div class="panel-meta">
+    <span class="panel-num">№09 / 10</span>
+    <span class="panel-tag">THE BOUNDARIES</span>
+  </div>
+  <div class="panel-body">
+    <div class="section-title">What it genuinely<br><em>cannot do.</em></div>
+    <p>Every serious protocol system should be honest about its limits. These are not design failures — they are the fundamental boundary between promptware and real orchestration. No amount of SKILL.md refinement crosses them.</p>
+
+    <div class="boundary-grid">
+      <div class="boundary-item">
+        <div class="boundary-title">NO RUNTIME SCHEMA ENFORCEMENT</div>
+        <div class="boundary-body">There's no executor. Instructions can be followed imperfectly under context pressure. The model reconstructs state from disk — it doesn't maintain it in memory.</div>
+      </div>
+      <div class="boundary-item">
+        <div class="boundary-title">NO TRUE ASYNC MULTI-AGENT</div>
+        <div class="boundary-body">Agents are serialized through one inference stream. There's no parallel execution, no independent agent memory, no true disagreement between agents.</div>
+      </div>
+      <div class="boundary-item">
+        <div class="boundary-title">NO DETERMINISTIC ORCHESTRATION</div>
+        <div class="boundary-body">Long context accumulates entropy. Under pressure, the model may drift from instructions. This is a substrate limit — not a skill design problem.</div>
+      </div>
+      <div class="boundary-item">
+        <div class="boundary-title">NO OBSERVABLE KPIs</div>
+        <div class="boundary-body">The CEO cannot watch live metrics, read analytics dashboards, or observe what's actually happening in the product. It knows what you tell it.</div>
+      </div>
+      <div class="boundary-item">
+        <div class="boundary-title">NO ENTERPRISE AUDITABILITY</div>
+        <div class="boundary-body">No formal audit trail, no access control, no separation of concerns at the infrastructure level. This needs external tooling — it cannot live in a skill file.</div>
+      </div>
+      <div class="boundary-item">
+        <div class="boundary-title">NOT A REAL COMPANY</div>
+        <div class="boundary-body">The most honest limit: this is structured strategic decomposition — not simulated company consciousness. The more "executive theater" language used, the more sophisticated users will notice.</div>
+      </div>
+    </div>
+
+    <div class="pullquote">"The gap to 9.5/10 is no longer design sloppiness. It's the substrate."</div>
+  </div>
+  <div class="panel-footer">Afsal Ali · June 2026</div>
+</section>
+
+<!-- PANEL 10 — THE CALL -->
+<section class="panel" id="p10">
+  <div class="panel-meta">
+    <span class="panel-num">№10 / 10</span>
+    <span class="panel-tag">THE CALL</span>
+  </div>
+  <div class="panel-body">
+    <div class="section-title">What it is.<br><em>Who it's for.</em></div>
+
+    <div class="rating-block">
+      <div>
+        <div class="rating-num">8.6</div>
+        <div class="rating-denom">/ 10</div>
+        <div class="rating-label">CURRENT RATING — INDEPENDENT REVIEW</div>
+      </div>
+    </div>
+
+    <p>Project CEO is for solo founders, indie builders, and non-technical entrepreneurs who want the <em>thinking</em> done before the building starts. It is not a replacement for real advisors, a legal/compliance tool, or an enterprise orchestration platform.</p>
+
+    <div class="contrast-grid">
+      <div class="contrast-col good">
+        <div class="contrast-label good">WHAT IT DOES WELL</div>
+        <ul>
+          <li>Forces thesis specificity before research</li>
+          <li>Autonomous market research with hard caps</li>
+          <li>Graveyard analysis — cause-of-death patterns</li>
+          <li>Roster design from research, not templates</li>
+          <li>Resumable state across sessions</li>
+          <li>Pushes back when the evidence demands it</li>
+        </ul>
+      </div>
+      <div class="contrast-col bad">
+        <div class="contrast-label bad">WHAT IT DOESN'T DO</div>
+        <ul>
+          <li>Real-time market data or live APIs</li>
+          <li>True parallel agent execution</li>
+          <li>Replace a domain expert or advisor</li>
+          <li>Guarantee research accuracy</li>
+          <li>Enforce its own schemas at runtime</li>
+          <li>Build the product</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pullquote">"It makes you think before you build. That's the whole product."</div>
+    <p class="mono" style="margin-top:1rem;">github.com/afsalali1238/Incubator · Built with Claude · v1.9.6 · June 2026</p>
+  </div>
+  <div class="panel-footer">Afsal Ali · June 2026</div>
+</section>
+
+<div class="nav-hint">↑ ↓ to navigate</div>
+
+<script>
+  const panels = document.querySelectorAll('.panel');
+  let current = 0;
+
+  function goTo(idx) {
+    if (idx < 0 || idx >= panels.length) return;
+    current = idx;
+    panels[current].scrollIntoView({ behavior: 'smooth' });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
+    if (e.key === 'ArrowUp') { e.preventDefault(); goTo(current - 1); }
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        current = Array.from(panels).indexOf(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  panels.forEach(p => observer.observe(p));
+</script>
+</body>
+</html>

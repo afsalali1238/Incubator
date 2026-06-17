@@ -2,16 +2,11 @@
 
 [![Incubator Banner](./assets/banner.png)](https://github.com/afsalali1238/Incubator)
 
-<!-- 🎬 DEMO GIF — record a 60-second screen capture:
-     Start: type "I'm starting a new project, be the CEO"
-     Show: 2–3 Phase 1 interview questions and answers
-     Show: Phase 2 research counter ("Search 1/20:", "Search 2/20:"...)
-     End:  findings report HTML opening in browser
-     Export as GIF, save to assets/demo.gif, then replace this comment with:
-     ![Incubator Demo](./assets/demo.gif)
--->
+![Incubator Demo](./assets/demo.gif)
 
-A Claude skill that acts as the **founding CEO** for a new project — interviewing you into a testable hypothesis, researching the market, writing a findings report that will tell you to pivot if the evidence says so, and hiring a sequenced team of specialist AI agents.
+![Pipeline Overview](./assets/graphify.svg)
+
+A Claude skill that acts as the **founding CEO** for a new project — interviewing you into a testable hypothesis, researching the market, writing a findings report that will tell you to pivot if the evidence says so, and generating a sequenced specialist team: persona briefs and installable skill files derived from the research, one per role.
 
 Built for [Claude Cowork](https://claude.ai), Claude Code, and claude.ai.
 
@@ -186,17 +181,26 @@ The skill is useful in a single session. It becomes a different tool over weeks.
 
 ---
 
+## How the reliability works
+
+Long AI sessions accumulate state drift — the model reconstructs your project from context each session, and that reconstruction drifts slightly each time. Three engineering decisions address this:
+
+![Architecture](./assets/architecture.svg)
+
+**Phase checkpointing.** `INCUBATOR.md` is written the moment the Phase 1 thesis is locked — not at the end. Any session dropout between Phase 1 and Phase 4 is recoverable from disk. `session-state.json` is written after Phases 2, 3, and 4, carrying phase, confidence, open risks, and a 20-word summary. On resume, the CEO reads this first — not the conversation history.
+
+**Canonical JSON state.** `roster.md` stores agent team state as a JSON block at the bottom of the file. The CEO reads and writes that JSON block first, then regenerates the markdown table from it. Markdown is presentation only. The two cannot diverge.
+
+**Cold-start quality gates.** After generating each agent skill, the CEO pauses and waits for a `CRITIQUE` token from the user. This triggers a new generation turn with a cold-start evaluation instruction — the model must evaluate the skill as if it didn't write it. In-stream self-critique (asking the model to evaluate in the same output pass it just generated) is not real evaluation. The separate turn is.
+
+These are prompt-level mitigations, not runtime enforcement. The substrate limits (no true parallel agents, no runtime schema enforcement, no live KPI access) are documented in the [full-thesis writeup](./docs/full-thesis.html).
+
+---
+
 ## Design
 
 Built as a **founding operating system**, not a company simulator. What you get is a structured pre-build research-and-planning ritual with a persistent state layer — the kind of thinking an experienced founding team does before writing a line of code, compressed into a turn-based session.
 
 The model plays multiple personas, all from the same context. That's a planning artifact, not a real team. The value isn't the illusion of an org — it's that the phases enforce order: you can't hire before you've researched, can't build before you've validated, can't add Scale roles before you've earned them. Sense-making before building. Agentic coding makes building feel free; that's the trap this is designed to prevent.
 
-Roster pattern adapted from [slavingia/skills](https://github.com/slavingia/skills).
-
-
----
-
-## License
-
-MIT © [Afsal Ali](https://github.com/afsalali1238)
+Roster pattern adapted from [slaving

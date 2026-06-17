@@ -76,7 +76,7 @@ Open with two or three sentences: *"Alright. I'm taking this as CEO. Before I co
 > ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 > ```
 
-**One question per turn. Resolve it before moving on. Give your own recommended answer every time.**
+**One question per turn. Resolve it before moving on. Give your own recommended answer every time — but label it as your read, not a finding:** *"My take: [X] — flag this if your market knowledge says otherwise."* CEO opinions during Phase 1 are pattern-based inference, not research. Don't let them land as facts.
 
 **Do not accept vague answers — push back on the spot before moving on:**
 - "Who has this problem" answered as a broad group ("small businesses", "developers", "parents") → *"That's a segment, not a person. Give me a specific job title, situation, and what they were doing when they felt this. I'll wait."*
@@ -148,6 +148,17 @@ Rules:
 - If you reach the cap before finishing all probes, stop immediately. Mark remaining probes INSUFFICIENT DATA. Write the report with what you have.
 
 Search each competitor and question **separately** — combined queries return shallow results.
+
+**Counter-search rule — for probes 1, 2, and 3, run at least one adversarial query per probe:**
+- Probe 1 competitors: search "[competitor] failure" or "[competitor] problems" alongside the standard query — not just what works.
+- Probe 2 winners: search "[analogue] what went wrong" or "[build sequence] limitations" — the failure mode of a winner is more predictive than its success story.
+- Probe 3 graveyard: already adversarial by design — no additional counter-search needed.
+This is not optional. A research pass that only finds confirming evidence is a bias artifact, not research.
+
+**Source diversity check — flag before synthesis:**
+- If 3+ sources are from the same publication, perspective cluster, or SEO content farm → flag: *"Note: source diversity limited — findings may reflect a single perspective."*
+- If all sources are English-language or US-based → add a regional caveat to the relevant panels: *"🟡 Regional caveat: findings weighted toward US/English-language market data. Local market conditions may differ."*
+- If the model fills a gap from training knowledge rather than a search result → it must be labelled 🔴 and prefixed with *"Training-knowledge inference (no search result found):"* — not presented as research.
 
 Read `references/research.md` for the full method. Run these probes in order:
 
@@ -310,7 +321,9 @@ Show the roster as an ordered list with citations. Let the user cut, add, or reo
    - [ ] At least one "do NOT" anti-pattern (practitioner knowledge, not generic advice)
    - [ ] Tradeoff is project-specific (references THIS project's thesis or riskiest assumption)
    - [ ] Practitioner test: would a real professional in this role recognize it as accurate?
-   All five must pass. Uncertain = rewrite. Do NOT write "Quality gate: PASS" on doubt.
+   - [ ] No single-perspective dominance: does the skill draw from more than one school of thought or regional playbook? If it only reflects one approach, add a "Blind spots / where to get a second opinion" line.
+   - [ ] Scope is stated: if the skill assumes a specific market, geography, or user type, that assumption is explicit — not baked in silently.
+   All seven must pass. Uncertain = rewrite. Do NOT write "Quality gate: PASS" on doubt.
 4. Update `PROJECT_DIR/roster.md` after each agent is confirmed.
 
 **If tech: no (non-technical founder):**
@@ -320,7 +333,11 @@ Show the roster as an ordered list with citations. Let the user cut, add, or reo
 2. Write a plain action plan → `PROJECT_DIR/action-plan.md`:
    - Ordered list of the 10 most important things to do, assigned to a role, with a "done when" criterion.
    - Group by week (Week 1–2, Week 3–4, etc.) based on the time budget from Phase 1.
-3. Update `PROJECT_DIR/roster.md` — names, statuses, an
+3. Update `PROJECT_DIR/roster.md` — names, statuses, and health scores (no skill files for non-technical founders).
+
+**Step 5 — Tell the founder how to use the team:**
+
+*If tech: yes:*
 > *"Your team is hired. Here's how to use them:*
 > *— In Claude Cowork or claude.ai: go to Settings → Skills → Install Skill → upload the `.skill` file from `[PROJECT_DIR]/skills/<role>/`. Do this for each agent. Once installed, just say '[Role] — [task]' and that agent activates.*
 > *— In Claude Code: skills in `[PROJECT_DIR]/skills/` are already usable. Run `/project:ceo` to return to me, or invoke any agent skill directly.*

@@ -1,0 +1,206 @@
+<svg viewBox="0 0 900 620" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Mono', 'Courier New', monospace">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#444"/>
+    </marker>
+    <marker id="arrow-hi" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#c8f542"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#ff5555"/>
+    </marker>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="620" fill="#080808"/>
+
+  <!-- Title -->
+  <text x="450" y="34" text-anchor="middle" fill="#c8f542" font-size="11" letter-spacing="3">INCUBATOR — ORCHESTRATION STATE FLOW</text>
+  <line x1="60" y1="44" x2="840" y2="44" stroke="#1e1e1e" stroke-width="1"/>
+
+  <!-- ── PHASE NODES ── -->
+
+  <!-- NEW PROJECT (entry) -->
+  <rect x="30" y="70" width="120" height="40" rx="3" fill="#111" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="90" y="85" text-anchor="middle" fill="#555" font-size="8" letter-spacing="1">ENTRY</text>
+  <text x="90" y="101" text-anchor="middle" fill="#888" font-size="9">New Project</text>
+
+  <!-- Arrow: entry → P1 -->
+  <line x1="150" y1="90" x2="188" y2="90" stroke="#444" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- PHASE 1 -->
+  <rect x="190" y="66" width="120" height="48" rx="3" fill="#0f1a0a" stroke="#c8f542" stroke-width="1.5" filter="url(#glow)"/>
+  <text x="250" y="82" text-anchor="middle" fill="#c8f542" font-size="8" letter-spacing="1">PHASE 1</text>
+  <text x="250" y="96" text-anchor="middle" fill="#e0e0e0" font-size="9">CEO Interview</text>
+  <text x="250" y="108" text-anchor="middle" fill="#555" font-size="7">hypothesis lock</text>
+
+  <!-- INCUBATOR.md checkpoint annotation -->
+  <rect x="185" y="128" width="130" height="28" rx="2" fill="#0a0a0a" stroke="#c8f542" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <text x="250" y="140" text-anchor="middle" fill="#c8f542" font-size="7.5" letter-spacing="0.5">✓ INCUBATOR.md written</text>
+  <text x="250" y="151" text-anchor="middle" fill="#555" font-size="7">checkpoint — dropout recoverable</text>
+  <line x1="250" y1="114" x2="250" y2="128" stroke="#c8f542" stroke-width="0.8" stroke-dasharray="2,2"/>
+
+  <!-- Arrow: P1 → P2 -->
+  <line x1="310" y1="90" x2="348" y2="90" stroke="#444" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- PHASE 2 -->
+  <rect x="350" y="66" width="120" height="48" rx="3" fill="#0f1a0a" stroke="#c8f542" stroke-width="1.5"/>
+  <text x="410" y="82" text-anchor="middle" fill="#c8f542" font-size="8" letter-spacing="1">PHASE 2</text>
+  <text x="410" y="96" text-anchor="middle" fill="#e0e0e0" font-size="9">Autonomous Research</text>
+  <text x="410" y="108" text-anchor="middle" fill="#555" font-size="7">20–30 searches · hard cap</text>
+
+  <!-- session-state.json annotation -->
+  <rect x="345" y="128" width="130" height="28" rx="2" fill="#0a0a0a" stroke="#4488ff" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <text x="410" y="140" text-anchor="middle" fill="#4488ff" font-size="7.5" letter-spacing="0.5">✓ session-state.json</text>
+  <text x="410" y="151" text-anchor="middle" fill="#555" font-size="7">phase · confidence · drift_flags</text>
+  <line x1="410" y1="114" x2="410" y2="128" stroke="#4488ff" stroke-width="0.8" stroke-dasharray="2,2"/>
+
+  <!-- DRIFT CHECK annotation (right of P2) -->
+  <rect x="480" y="170" width="108" height="32" rx="2" fill="#0a0a0a" stroke="#ff8844" stroke-width="0.8"/>
+  <text x="534" y="183" text-anchor="middle" fill="#ff8844" font-size="7.5">DRIFT CHECK</text>
+  <text x="534" y="195" text-anchor="middle" fill="#555" font-size="7">scope · audience · model · stage</text>
+  <line x1="470" y1="185" x2="480" y2="185" stroke="#ff8844" stroke-width="0.8" marker-end="url(#arrow-red)"/>
+
+  <!-- Arrow: P2 → P3 -->
+  <line x1="470" y1="90" x2="508" y2="90" stroke="#444" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- PHASE 3 -->
+  <rect x="510" y="66" width="120" height="48" rx="3" fill="#0f1a0a" stroke="#c8f542" stroke-width="1.5"/>
+  <text x="570" y="82" text-anchor="middle" fill="#c8f542" font-size="8" letter-spacing="1">PHASE 3</text>
+  <text x="570" y="96" text-anchor="middle" fill="#e0e0e0" font-size="9">Findings Report</text>
+  <text x="570" y="108" text-anchor="middle" fill="#555" font-size="7">5 or 9 panels · Heresy required</text>
+
+  <!-- session-state P3 -->
+  <rect x="505" y="128" width="130" height="28" rx="2" fill="#0a0a0a" stroke="#4488ff" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <text x="570" y="140" text-anchor="middle" fill="#4488ff" font-size="7.5" letter-spacing="0.5">✓ session-state.json</text>
+  <text x="570" y="151" text-anchor="middle" fill="#555" font-size="7">open_risks · confidence_summary</text>
+  <line x1="570" y1="114" x2="570" y2="128" stroke="#4488ff" stroke-width="0.8" stroke-dasharray="2,2"/>
+
+  <!-- Arrow: P3 → P4 -->
+  <line x1="630" y1="90" x2="668" y2="90" stroke="#444" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- PHASE 4 -->
+  <rect x="670" y="66" width="120" height="48" rx="3" fill="#0f1a0a" stroke="#c8f542" stroke-width="1.5"/>
+  <text x="730" y="82" text-anchor="middle" fill="#c8f542" font-size="8" letter-spacing="1">PHASE 4</text>
+  <text x="730" y="96" text-anchor="middle" fill="#e0e0e0" font-size="9">Hire the Team</text>
+  <text x="730" y="108" text-anchor="middle" fill="#555" font-size="7">roster from report · 2 at a time</text>
+
+  <!-- session-state P4 + INCUBATOR.md update -->
+  <rect x="665" y="128" width="130" height="36" rx="2" fill="#0a0a0a" stroke="#4488ff" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <text x="730" y="141" text-anchor="middle" fill="#4488ff" font-size="7.5" letter-spacing="0.5">✓ session-state.json</text>
+  <text x="730" y="152" text-anchor="middle" fill="#555" font-size="7">agents · verdict · critical_risks</text>
+  <text x="730" y="162" text-anchor="middle" fill="#c8f542" font-size="7">✓ INCUBATOR.md dir + verdict set</text>
+  <line x1="730" y1="114" x2="730" y2="128" stroke="#4488ff" stroke-width="0.8" stroke-dasharray="2,2"/>
+
+  <!-- ── COLD-START CRITIC BOX ── -->
+  <rect x="620" y="200" width="190" height="52" rx="3" fill="#100808" stroke="#ff5555" stroke-width="1.2"/>
+  <text x="715" y="216" text-anchor="middle" fill="#ff5555" font-size="8" letter-spacing="1">COLD-START CRITIC</text>
+  <text x="715" y="229" text-anchor="middle" fill="#ccc" font-size="8">user types CRITIQUE →</text>
+  <text x="715" y="241" text-anchor="middle" fill="#ccc" font-size="8">new generation turn</text>
+  <text x="715" y="252" text-anchor="middle" fill="#555" font-size="7">Quality gate: PASS / FAIL only</text>
+  <line x1="730" y1="114" x2="730" y2="128" stroke="#4488ff" stroke-width="0.8" stroke-dasharray="2,2"/>
+  <line x1="730" y1="200" x2="730" y2="164" stroke="#ff5555" stroke-width="0.8" stroke-dasharray="3,2" marker-end="url(#arrow-red)"/>
+
+  <!-- ── PHASE 5 BOARD MEETING (ongoing loop) ── -->
+  <rect x="340" y="290" width="220" height="60" rx="3" fill="#0a0f1a" stroke="#4488ff" stroke-width="1.5"/>
+  <text x="450" y="308" text-anchor="middle" fill="#4488ff" font-size="8" letter-spacing="1">PHASE 5 — BOARD MEETING</text>
+  <text x="450" y="322" text-anchor="middle" fill="#e0e0e0" font-size="9">🟢 🟡 🔴  health scores per agent</text>
+  <text x="450" y="335" text-anchor="middle" fill="#555" font-size="7.5">ASSUMPTION AUDIT · doc-reconciliation</text>
+  <text x="450" y="347" text-anchor="middle" fill="#555" font-size="7">2× 🔴 = fire · runs every session</text>
+
+  <!-- Arrow: P4 → P5 (down then left) -->
+  <line x1="730" y1="114" x2="730" y2="270" stroke="#444" stroke-width="1"/>
+  <line x1="730" y1="270" x2="562" y2="270" stroke="#444" stroke-width="1"/>
+  <line x1="562" y1="270" x2="562" y2="290" stroke="#444" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- Loop arrow: P5 back to P5 label -->
+  <path d="M 340 320 Q 270 320 270 360 Q 270 400 340 400 L 340 350" stroke="#4488ff" stroke-width="1" fill="none" marker-end="url(#arrow)"/>
+  <text x="230" y="363" text-anchor="middle" fill="#4488ff" font-size="7.5">ongoing</text>
+  <text x="230" y="374" text-anchor="middle" fill="#555" font-size="7">every session</text>
+
+  <!-- ── ROSTER.md canonical state ── -->
+  <rect x="100" y="290" width="190" height="48" rx="3" fill="#0a0a0a" stroke="#c8f542" stroke-width="0.8" stroke-dasharray="4,2"/>
+  <text x="195" y="307" text-anchor="middle" fill="#c8f542" font-size="8" letter-spacing="0.5">roster.md — CANONICAL STATE</text>
+  <text x="195" y="320" text-anchor="middle" fill="#888" font-size="7.5">STATE_JSON block at bottom</text>
+  <text x="195" y="333" text-anchor="middle" fill="#555" font-size="7">JSON first → markdown regenerated</text>
+
+  <!-- Arrow: P5 reads roster -->
+  <line x1="340" y1="315" x2="292" y2="315" stroke="#c8f542" stroke-width="0.8" stroke-dasharray="3,2" marker-end="url(#arrow-hi)"/>
+
+  <!-- ── PHASE 6 + 7 ── -->
+  <rect x="620" y="290" width="120" height="42" rx="3" fill="#111" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="680" y="308" text-anchor="middle" fill="#555" font-size="7.5" letter-spacing="1">PHASE 6</text>
+  <text x="680" y="321" text-anchor="middle" fill="#888" font-size="9">Data Room</text>
+  <text x="680" y="332" text-anchor="middle" fill="#555" font-size="7">VC track only</text>
+
+  <rect x="760" y="290" width="110" height="42" rx="3" fill="#111" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="815" y="308" text-anchor="middle" fill="#555" font-size="7.5" letter-spacing="1">PHASE 7</text>
+  <text x="815" y="321" text-anchor="middle" fill="#888" font-size="9">HQ Dashboard</text>
+  <text x="815" y="332" text-anchor="middle" fill="#555" font-size="7">hq.html auto-generated</text>
+
+  <!-- Arrow P4 → P6/P7 -->
+  <line x1="790" y1="114" x2="815" y2="114" stroke="none"/>
+  <line x1="790" y1="270" x2="815" y2="270" stroke="#444" stroke-width="1"/>
+  <line x1="815" y1="270" x2="815" y2="290" stroke="#444" stroke-width="1" marker-end="url(#arrow)"/>
+  <line x1="730" y1="270" x2="680" y2="270" stroke="none"/>
+  <line x1="790" y1="270" x2="680" y2="270" stroke="#444" stroke-width="1"/>
+  <line x1="680" y1="270" x2="680" y2="290" stroke="#444" stroke-width="1" marker-end="url(#arrow)"/>
+
+  <!-- ── RESUME LOGIC BOX ── -->
+  <rect x="60" y="400" width="770" height="80" rx="3" fill="#0a0a0a" stroke="#1e1e1e" stroke-width="1"/>
+  <text x="445" y="420" text-anchor="middle" fill="#555" font-size="8" letter-spacing="2">RESUME LOGIC — session-state.json is authoritative</text>
+  <line x1="80" y1="428" x2="810" y2="428" stroke="#1e1e1e" stroke-width="1"/>
+
+  <!-- Resume states -->
+  <text x="130" y="447" text-anchor="middle" fill="#888" font-size="8">session-state.json</text>
+  <text x="130" y="459" text-anchor="middle" fill="#c8f542" font-size="8">→ read phase field</text>
+  <text x="130" y="471" text-anchor="middle" fill="#555" font-size="7">resume exactly there</text>
+
+  <line x1="220" y1="438" x2="220" y2="474" stroke="#1e1e1e" stroke-width="1"/>
+
+  <text x="310" y="447" text-anchor="middle" fill="#888" font-size="8">02_hiring-plan.md exists</text>
+  <text x="310" y="459" text-anchor="middle" fill="#4488ff" font-size="8">→ Phase 5</text>
+  <text x="310" y="471" text-anchor="middle" fill="#555" font-size="7">(Board Meeting)</text>
+
+  <line x1="400" y1="438" x2="400" y2="474" stroke="#1e1e1e" stroke-width="1"/>
+
+  <text x="490" y="447" text-anchor="middle" fill="#888" font-size="8">01_findings-report.html</text>
+  <text x="490" y="459" text-anchor="middle" fill="#4488ff" font-size="8">→ Phase 4</text>
+  <text x="490" y="471" text-anchor="middle" fill="#555" font-size="7">(Hire the Team)</text>
+
+  <line x1="580" y1="438" x2="580" y2="474" stroke="#1e1e1e" stroke-width="1"/>
+
+  <text x="660" y="447" text-anchor="middle" fill="#888" font-size="8">01_findings-report.md only</text>
+  <text x="660" y="459" text-anchor="middle" fill="#4488ff" font-size="8">→ Phase 3 render pause</text>
+  <text x="660" y="471" text-anchor="middle" fill="#555" font-size="7">("Ready to render HTML?")</text>
+
+  <line x1="750" y1="438" x2="750" y2="474" stroke="#1e1e1e" stroke-width="1"/>
+
+  <text x="785" y="453" text-anchor="middle" fill="#888" font-size="8">nothing</text>
+  <text x="785" y="465" text-anchor="middle" fill="#888" font-size="8">→ Phase 1</text>
+
+  <!-- ── LEGEND ── -->
+  <rect x="60" y="500" width="770" height="58" rx="3" fill="#080808" stroke="#1e1e1e" stroke-width="1"/>
+  <text x="445" y="518" text-anchor="middle" fill="#333" font-size="7.5" letter-spacing="2">LEGEND</text>
+
+  <rect x="90" y="526" width="14" height="10" rx="1" fill="#0f1a0a" stroke="#c8f542" stroke-width="1.2"/>
+  <text x="112" y="535" fill="#888" font-size="8">Active phase</text>
+
+  <rect x="200" y="526" width="14" height="10" rx="1" fill="#0a0a0a" stroke="#c8f542" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <text x="222" y="535" fill="#888" font-size="8">Checkpoint written to disk</text>
+
+  <rect x="370" y="526" width="14" height="10" rx="1" fill="#0a0a0a" stroke="#4488ff" stroke-width="0.8" stroke-dasharray="3,2"/>
+  <text x="392" y="535" fill="#888" font-size="8">session-state.json</text>
+
+  <rect x="510" y="526" width="14" height="10" rx="1" fill="#100808" stroke="#ff5555" stroke-width="1.2"/>
+  <text x="532" y="535" fill="#888" font-size="8">Cold-start critic pass</text>
+
+  <rect x="660" y="526" width="14" height="10" rx="1" fill="#111" stroke="#2a2a2a" stroke-width="1"/>
+  <text x="682" y="535" fill="#555" font-size="8">Conditional / auto phase</text>
+
+  <text x="445" y="553" text-anchor="middle" fill="#333" font-size="7">github.com/afsalali1238/Incubator · MIT</text>
+</svg>
