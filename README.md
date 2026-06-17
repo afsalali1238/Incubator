@@ -203,4 +203,11 @@ Built as a **founding operating system**, not a company simulator. What you get 
 
 The model plays multiple personas, all from the same context. That's a planning artifact, not a real team. The value isn't the illusion of an org — it's that the phases enforce order: you can't hire before you've researched, can't build before you've validated, can't add Scale roles before you've earned them. Sense-making before building. Agentic coding makes building feel free; that's the trap this is designed to prevent.
 
-Roster pattern adapted from [slaving
+Roster pattern adapted from [slavingia/skills](https://github.com/slavingia/skills).
+
+
+---
+
+## License
+
+MIT © [Afsal Ali](https://github.com/afsalali1238)
