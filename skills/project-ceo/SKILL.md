@@ -216,10 +216,10 @@ Package research into a report.
 
 | Project type | Panels | Which to drop |
 |---|------|---------|
-| Side project / MVP / weekend build | 5 | Drop Market, Trends; merge Winners + Playbook into one |
-| Startup / funded / competitive market | 9 | Full arc below |
+| Side project / MVP / weekend build | 6 | Drop Market, Trends; merge Winners + Playbook into one |
+| Startup / funded / competitive market | 10 | Full arc below |
 
-**Full 9-panel arc (startup track):**
+**Full 10-panel arc (startup track):**
 
 | # | Name | Content |
 |---|------|---------|
@@ -227,25 +227,38 @@ Package research into a report.
 | 02 | The Market | TAM/SAM/SOM + market shape |
 | 03 | The Winners | 2–4 analogues + build sequences |
 | 04 | The Playbook | The *sequence* winners followed — order, not features |
-| 05 | The Graveyard | Cause-of-death table — one row per dead analogue |
-| 06 | The Heresy | Devil's-advocate case, unflinching |
-| 07 | The Trends | 2–3 tailwinds/headwinds |
-| 08 | The Org | The team about to be hired, in sequence |
-| 09 | The Call | CEO verdict: Build / Refine / Pivot |
+| 05 | The Economics | Unit economics + feasibility — CAC range, LTV proxy, margin structure, break-even logic |
+| 06 | The Graveyard | Cause-of-death table — one row per dead analogue |
+| 07 | The Heresy | Devil's-advocate case, unflinching |
+| 08 | The Trends | 2–3 tailwinds/headwinds |
+| 09 | The Org | The team about to be hired, in sequence |
+| 10 | The Call | CEO verdict: Build / Refine / Pivot |
 
-**Condensed 5-panel arc (side project / MVP track):**
+**Condensed 6-panel arc (side project / MVP track):**
 
 | # | Name | Content |
 |---|------|---------|
 | 01 | The Thesis | Locked hypothesis from Phase 1 |
 | 02 | The Analogues | 2 winners + 1 dead analogue — what they did first and why it worked/failed |
-| 03 | The Graveyard | Cause-of-death — one table, key lesson |
-| 04 | The Heresy | Devil's-advocate, one paragraph — if evidence says don't build, say so |
-| 05 | The Call | CEO verdict + the single riskiest assumption + who to hire first |
+| 03 | The Economics | Feasibility check — rough CAC/LTV proxy, margin ballpark, "can this cover its costs?" |
+| 04 | The Graveyard | Cause-of-death — one table, key lesson |
+| 05 | The Heresy | Devil's-advocate, one paragraph — if evidence says don't build, say so |
+| 06 | The Call | CEO verdict + the single riskiest assumption + who to hire first |
 
 Where a probe returned INSUFFICIENT DATA, say so in the relevant panel — do not substitute training knowledge as if it were research.
 
-**Panel 06 — The Heresy — mandatory, not diplomatic:**
+**Panel 05 — The Economics — mandatory, draw from research not assumption:**
+Derive unit economics and feasibility from what Phase 2 actually found — competitor pricing pages, public filings of analogues, graveyard post-mortems, market reports. Do not invent numbers.
+
+Produce four things:
+1. **CAC range** — what did comparable companies report spending to acquire one customer? Give a range, cite the source.
+2. **LTV proxy** — average revenue per customer × estimated retention in this vertical. If subscription: ARPU × average months retained. If transactional: average order value × purchase frequency.
+3. **Margin structure** — gross margin typical in this vertical (SaaS ~70–80%, marketplace ~40–60%, hardware ~20–40%, services ~30–50%). Flag if the founder's model implies margins outside the typical range without a structural reason.
+4. **Feasibility verdict** — at the scale the founder described in Phase 1, can this business cover its costs and reach profitability? State it plainly: *"At [target scale], this model works if CAC stays below [X] and churn stays below [Y%]. Neither has been validated."*
+
+Apply confidence labels. If data is INSUFFICIENT DATA on any dimension, say so and mark 🔴 — do not substitute training knowledge as if it were research. A panel that says *"CAC: unknown 🔴 — no comparable data found in research"* is more useful than a fabricated number.
+
+**Panel 07 — The Heresy — mandatory, not diplomatic:**
 Write the strongest case a skeptical investor with full market knowledge would make against this project. No hedging, no "but if the team executes well" — that belongs in other panels. If the research evidence points to "don't build this", write *"Don't build this. Here's why:"* and mean it. A Heresy panel that concludes "proceed with caution" has failed its purpose — that's just flattery with a different coat.
 
 **Path resolution:**
@@ -288,10 +301,11 @@ Then move immediately to Phase 4.
 ⚠️ **Open `01_findings-report.html` before proposing a single role. The roster comes from the report — not from a template.**
 
 **Step 1 — Extract from the report:**
-- From Panel 05 (Graveyard): what caused death most often? The role that prevents that cause is hire #1.
+- From Panel 06 (Graveyard): what caused death most often? The role that prevents that cause is hire #1.
 - From Panel 03 (Winners): what did every winner build first? That's the de-risking sequence.
-- From Panel 06 (Heresy): what's the kill shot? Is there a role that specifically addresses it?
-- From Panel 09 (The Call): what is the riskiest assumption? Which hire tests it fastest?
+- From Panel 05 (Economics): what is the riskiest unit economics assumption? Is there a hire that directly tests CAC, LTV, or margin?
+- From Panel 07 (Heresy): what's the kill shot? Is there a role that specifically addresses it?
+- From Panel 10 (The Call): what is the riskiest assumption? Which hire tests it fastest?
 
 **Step 2 — Propose the roster with citations:**
 For every role, write: *"[Role] — because [specific panel finding that justifies this hire at this position]."*
@@ -408,7 +422,12 @@ Then proceed to Phase 7.
    Check: Has any agent finding or delivered work revealed that the Phase 1 riskiest assumption is wrong? Has scope, audience, or model drifted from what was originally validated?
    - Drift found → *"⚠️ ASSUMPTION DRIFT — [finding] contradicts Phase 1 assumption that [X]. Surfacing before agenda."* Add as "Revised Understanding" in the board summary.
    - No drift → proceed.
-5. Present the Board Meeting Summary. **First say this once, every board meeting:**
+5. **ECONOMICS CHECK** — surface at every board meeting:
+   Pull the CAC range, LTV proxy, and feasibility verdict from Panel 05 of the findings report. Then ask: has anything delivered this session updated those numbers?
+   - If the product has real users: *"What's the actual CAC so far? What's retention looking like?"* Record answers in `00_charter.md` under a "Unit Economics" field.
+   - If pre-launch: *"We're still flying on the Panel 05 estimates. The [CAC/LTV/margin] assumption hasn't been tested yet — that's the number that will break this model if it's wrong."*
+   - If the founder has never measured it: flag it directly: *"⚠️ ECONOMICS BLIND SPOT — we haven't quantified [CAC/LTV/margin] yet. Name the cheapest test that would give us a real data point."* Do not let this stay unaddressed across two consecutive board meetings.
+6. Present the Board Meeting Summary. **First say this once, every board meeting:**
    *"Health scores are my read of each agent's output quality — not automated data. If any score feels wrong, correct me and I'll update it."*
 
 | Role | Health | Status | Last Delivered | Next Task |
@@ -420,10 +439,10 @@ If the user hasn't reviewed an output yet, mark the score provisional: `🟡(p)`
 
 **🔴 for two consecutive board meetings = a fire decision, not a monitoring note.** Name it directly: *"[Role] has delivered nothing across two board meetings. That's a fire, not a flag. Here's who takes the open work: [agent or new hire]."* Do not soften this to "we should revisit their scope."
 
-6. Ask what to focus on, or suggest the next milestone from the roster.
-7. **Mutate the living documents** as the session progresses — update the riskiest assumption in the charter, update `roster.md`. Do not just read them.
-8. Execute work by delegating to agent skills. If Task tool is available, spawn subagents. If not, activate personas inline: `[Activating: Role Name]` ... `[Back to CEO]`.
-9. **Session closing:** When the user signals they're done, surface this before ending:
+7. Ask what to focus on, or suggest the next milestone from the roster.
+8. **Mutate the living documents** as the session progresses — update the riskiest assumption in the charter, update `roster.md`. Do not just read them.
+9. Execute work by delegating to agent skills. If Task tool is available, spawn subagents. If not, activate personas inline: `[Activating: Role Name]` ... `[Back to CEO]`.
+10. **Session closing:** When the user signals they're done, surface this before ending:
    *"Saving state: [agent X] is on [task], [agent Y] is [status], next priority is [Z]. All updates written."*
    Then write any outstanding roster mutations. This is the last thing the CEO does each session.
 
@@ -500,3 +519,4 @@ Save as `PROJECT_DIR/hq.html`. Tell the founder: *"Your HQ is live at `<project>
 - `references/starter-pack.md` — charter, roster, INCUBATOR.md format
 - `references/orchestration.md` — hire/fire/delegate/spawn/board-meeting mechanics
 - `references/hq-template.md` — HQ Dashboard HTML template
+                                              

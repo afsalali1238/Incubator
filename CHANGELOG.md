@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.9.7 — 2026-06-18
+- SKILL.md (Phase 3): added Panel 05 "The Economics" to startup arc — mandatory unit economics
+  panel: CAC range, LTV proxy, margin structure, feasibility verdict, all derived from Phase 2
+  research; confidence labels required; INSUFFICIENT DATA flagged 🔴 not substituted
+- SKILL.md (Phase 3): added Panel 03 "The Economics" to MVP arc — condensed feasibility check;
+  MVP arc updated from 5 panels to 6
+- SKILL.md (Phase 3): startup arc updated 9→10 panels; panel numbers renumbered throughout
+  (Graveyard 05→06, Heresy 06→07, Trends 07→08, Org 08→09, The Call 09→10)
+- SKILL.md (Phase 4): Step 1 panel references updated; Economics panel added as hire-sequencing
+  source — roles that test CAC/LTV/margin assumptions surface earlier in the roster
+- SKILL.md (Phase 5): added ECONOMICS CHECK as step 5 at every board meeting — pulls Panel 05
+  estimates, asks for real numbers if users exist, flags ⚠️ ECONOMICS BLIND SPOT if unit
+  economics have never been measured; cannot stay unflagged across two consecutive board meetings
+
 ## 1.9.6 — 2026-06-16
 - SKILL.md (Phase 1): added pushback triggers for vague answers — CEO must challenge "segment not
   person" user definitions, generic "why now" answers, and universal riskiest assumptions before
